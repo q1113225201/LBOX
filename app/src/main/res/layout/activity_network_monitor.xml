@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sjl.lbox.app.network.monitor.NetworkMonitorActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextViewCommonStyle"
+            android:text="当前网络状态：" />
+
+        <TextView
+            android:id="@+id/tvNetworkState"
+            style="@style/TextViewCommonStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextViewCommonStyle"
+            android:text="当前网络类型：" />
+
+        <TextView
+            android:id="@+id/tvNetworkType"
+            style="@style/TextViewCommonStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextViewCommonStyle"
+            android:text="IP：" />
+
+        <TextView
+            android:id="@+id/tvIp"
+            style="@style/TextViewCommonStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextViewCommonStyle"
+            android:text="MAC：" />
+
+        <TextView
+            android:id="@+id/tvMac"
+            style="@style/TextViewCommonStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextViewCommonStyle"
+            android:text="WIFI连接的速度：" />
+
+        <TextView
+            android:id="@+id/tvLinkSpeed"
+            style="@style/TextViewCommonStyle" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="刷新" />
+
+    <Button
+        android:id="@+id/btnOpenSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开WIFI设置" />
+</LinearLayout>
