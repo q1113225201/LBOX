@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sjl.lbox">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -22,7 +23,8 @@
         </activity>
         <activity android:name=".app.MainActivity" />
         <activity android:name=".app.webview.WebViewActivity" />
-        <activity android:name=".app.network.monitor.NetworkMonitorActivity"></activity>
+        <activity android:name=".app.network.monitor.NetworkMonitorActivity" />
+        <activity android:name=".app.image.ImageActivity"></activity>
     </application>
 
 </manifest>
