@@ -67,7 +67,7 @@ public class PictureUtil {
      *
      * @param code REQUEST_CODE_CAMERA 拍照 REQUEST_CODE_PHOTO 相册
      */
-    public static void chooseImage(int code) {
+    private static void chooseImage(int code) {
         if (code == REQUEST_CODE_CAMERA) {
 
             File file = new File(path);
@@ -82,9 +82,6 @@ public class PictureUtil {
         } else if (code == REQUEST_CODE_PHOTO) {
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");//相片类型
-//			intent.setDataAndType(
-//					MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//					"image/*");
             startActivityForResult(intent, REQUEST_CODE_PHOTO);
         }
     }
@@ -116,23 +113,7 @@ public class PictureUtil {
         if (requestCode == REQUEST_CODE_PHOTO) {
             startPhotoZoom(data.getData());
         } else if (requestCode == REQUEST_CODE_CAMERA) {
-            Uri uri = null;
-//			if (data != null) {
-//				uri = data.getData();
-//				if (uri == null) {
-//					Bundle bundle = data.getExtras();
-//					if (bundle != null) {
-//						Bitmap bitmap = (Bitmap) bundle.get("data"); // getbitmap
-//						try {
-//							BitmapUtil.save(bitmap, cameraPath);
-//						} catch (Exception e) {
-//							e.printStackTrace();
-//						}
-//					}
-//					uri = Uri.fromFile(new File(cameraPath));
-//				}
-//			}
-            uri = Uri.fromFile(new File(cameraPath));
+            Uri uri = Uri.fromFile(new File(cameraPath));
             startPhotoZoom(uri);
         } else if (requestCode == REQUEST_CODE_CROP) {
             Bitmap bitmap = null;
@@ -160,7 +141,7 @@ public class PictureUtil {
      *
      * @param uri
      */
-    public static void startPhotoZoom(Uri uri) {
+    private static void startPhotoZoom(Uri uri) {
         filename = System.currentTimeMillis() + ".png";
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");

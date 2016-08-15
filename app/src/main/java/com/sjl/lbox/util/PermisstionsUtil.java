@@ -18,10 +18,21 @@ import com.sjl.lbox.listener.BaseListener;
 @TargetApi(Build.VERSION_CODES.M)
 public class PermisstionsUtil {
     private static String tag = PermisstionsUtil.class.getSimpleName();
+    //拍照
     public static String CAMERA = Manifest.permission.CAMERA;
     public static int CAMERA_CODE = 0x1101;
+    //电话
     public static String CALL_PHONE = Manifest.permission.CALL_PHONE;
     public static int CALL_PHONE_CODE = 0x1102;
+    //读外部设备
+    public static String READ_EXTERNAL_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE;
+    public static int READ_EXTERNAL_STORAGE_CODE = 0x1103;
+    //写外部设备
+    public static String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+    public static int WRITE_EXTERNAL_STORAGE_CODE = 0x1104;
+    //写外部设备
+    public static String READ_CONTACTS = Manifest.permission.READ_CONTACTS;
+    public static int READ_CONTACTS_CODE = 0x1105;
 
     private static Context mContext;
     private static int currentRequestCode;

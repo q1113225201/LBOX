@@ -13,7 +13,12 @@ import android.webkit.WebView;
 import com.sjl.lbox.listener.BaseListener;
 import com.sjl.lbox.util.DialogUtil;
 import com.sjl.lbox.util.LogUtil;
-
+/**
+ * 重写WebChomeClient
+ *
+ * @author SJL
+ * @date 2016/8/11 23:36
+ */
 public class ReWebChomeClient extends WebChromeClient {
 
     private final String tag = ReWebChomeClient.class.getSimpleName();

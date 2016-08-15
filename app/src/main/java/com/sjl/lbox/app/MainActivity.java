@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.contact.ContactActivity;
+import com.sjl.lbox.app.image.ImageActivity;
 import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
 import com.sjl.lbox.app.webview.WebViewActivity;
 import com.sjl.lbox.base.BaseActivity;
@@ -52,5 +54,7 @@ public class MainActivity extends BaseActivity {
         list = new ArrayList<Module>();
         list.add(new Module("webview", WebViewActivity.class));
         list.add(new Module("网络信息及网络监听", NetworkMonitorActivity.class));
+        list.add(new Module("图片选择", ImageActivity.class));
+        list.add(new Module("联系人列表", ContactActivity.class));
     }
 }

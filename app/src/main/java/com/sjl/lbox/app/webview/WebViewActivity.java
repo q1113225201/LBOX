@@ -21,7 +21,12 @@ import com.sjl.lbox.util.PermisstionsUtil;
 import com.sjl.lbox.util.PictureUtil;
 
 import java.io.File;
-
+/**
+ * WebView控件
+ *
+ * @author SJL
+ * @date 2016/8/11 23:34
+ */
 public class WebViewActivity extends BaseActivity implements
         ReWebChomeClient.OpenFileChooserCallBack {
     private final String tag = WebViewActivity.class.getSimpleName();

@@ -37,6 +37,12 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLHandshakeException;
 
+/**
+ * 重写WebViewClient
+ *
+ * @author SJL
+ * @date 2016/8/11 23:39
+ */
 @SuppressLint({"NewApi", "HandlerLeak"})
 public class ReWebViewClient extends WebViewClient {
     private final String tag = ReWebViewClient.class.getSimpleName();
@@ -114,7 +120,7 @@ public class ReWebViewClient extends WebViewClient {
                 @Override
                 public void granted(int requestCode) {
                     try {
-                        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
                             mContext.startActivity(intent);
                             return;
