@@ -261,7 +261,7 @@ public class WebViewActivity extends BaseActivity implements
         LogUtil.i(tag, "appCacheDir path=" + appCacheDir.getAbsolutePath());
 
         File webviewCacheDir = new File(getCacheDir().getAbsolutePath()
-                + "/webviewCache");
+                + appCachePath);
         LogUtil.i(tag, "appCacheDir path=" + webviewCacheDir.getAbsolutePath());
 
         // 删除webView缓存目录

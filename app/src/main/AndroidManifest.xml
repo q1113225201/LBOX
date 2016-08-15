@@ -12,6 +12,8 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application
         android:name=".LBoxApp"
@@ -31,7 +33,10 @@
         <activity android:name=".app.webview.WebViewActivity" />
         <activity android:name=".app.network.monitor.NetworkMonitorActivity" />
         <activity android:name=".app.image.ImageActivity" />
-        <activity android:name=".app.contact.ContactActivity"></activity>
+        <activity android:name=".app.contact.ContactActivity" />
+        <activity android:name=".app.QRCode.QRCodeActivity" />
+        <activity android:name=".app.QRCode.BGAQRCode.BGAQRCodeActivity" />
+        <activity android:name=".app.QRCode.BGAQRCode.ScanActivity"></activity>
     </application>
 
 </manifest>
