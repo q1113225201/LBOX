@@ -1,4 +1,4 @@
-package com.sjl.lbox.app;
+package com.sjl.lbox.app.QRCode;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,39 +8,32 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.QRCode.QRCodeActivity;
-import com.sjl.lbox.app.contact.ContactActivity;
-import com.sjl.lbox.app.image.ImageActivity;
-import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
-import com.sjl.lbox.app.signature.SignatureActivity;
-import com.sjl.lbox.app.webview.WebViewActivity;
+import com.sjl.lbox.app.QRCode.BGAQRCode.BGAQRCodeActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
- * MainActivity
+ * 二维码扫描
  *
  * @author SJL
- * @date 2016/8/6 14:19
+ * @date 2016/8/15 22:46
  */
-public class MainActivity extends BaseActivity {
+public class QRCodeActivity extends BaseActivity {
     private ListView lv;
     private ArrayAdapter adapter;
     private List<Module> list;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_qrcode);
         initView();
     }
 
     private void initView() {
         initData();
-        lv = (ListView) findViewById(R.id.lv);
+        lv= (ListView) findViewById(R.id.lv);
         adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, list);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,11 +47,6 @@ public class MainActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
-        list.add(new Module("webview", WebViewActivity.class));
-        list.add(new Module("网络信息及网络监听", NetworkMonitorActivity.class));
-        list.add(new Module("图片选择", ImageActivity.class));
-        list.add(new Module("联系人列表", ContactActivity.class));
-        list.add(new Module("二维码扫描", QRCodeActivity.class));
-        list.add(new Module("App签名获取", SignatureActivity.class));
+        list.add(new Module("BGAQRCode", BGAQRCodeActivity.class));
     }
 }
