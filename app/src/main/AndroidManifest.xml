@@ -40,7 +40,10 @@
         <activity android:name=".app.QRCode.BGAQRCode.ScanActivity" />
         <activity
             android:name=".app.signature.SignatureActivity"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+        <activity android:name=".app.QRCode.MyQRCode.activity.CaptureActivity" />
+        <activity android:name=".app.QRCode.MyQRCode.MyQRCodeScanActivity" />
+        <activity android:name=".app.progress.ProgressActivity"></activity>
     </application>
 
 </manifest>

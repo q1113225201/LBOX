@@ -15,6 +15,7 @@ import com.sjl.lbox.view.dialog.BaseDialog;
 import com.sjl.lbox.view.dialog.BaseProgressDialog;
 import com.sjl.lbox.view.dialog.BaseProgressImageDialog;
 import com.sjl.lbox.view.dialog.NetWorkErrorDialog;
+import com.sjl.lbox.view.dialog.ProgressDialog;
 
 public class DialogUtil {
     private static BaseDialog baseDialog;
@@ -361,6 +362,27 @@ public class DialogUtil {
         LogUtil.i("dismissProgressImageDialog", "progressImageDialog = null");
     }
 
+    private static ProgressDialog loadProgressDialog;
+
+    public static ProgressDialog showLoadProgressDialog(Context context, boolean cancelableOnTouchOutside) {
+        if (loadProgressDialog != null && loadProgressDialog.isShowing()) {
+            return loadProgressDialog;
+        }
+        loadProgressDialog = new ProgressDialog(context, cancelableOnTouchOutside);
+        loadProgressDialog.show();
+        return loadProgressDialog;
+    }
+    /**
+     * 带进度条弹出框消失
+     */
+    public static void dismissLoadProgressDialog() {
+        if (loadProgressDialog != null && loadProgressDialog.isShowing()) {
+            loadProgressDialog.dismiss();
+            loadProgressDialog = null;
+            LogUtil.i("progressDialog", "progressDialog != null && progressDialog.isShowing()");
+        }
+        LogUtil.i("progressDialog", "progressDialog = null");
+    }
     /**
      * 显示网络报错页面
      *

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/ivProgressFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/progress_bg_load" />
+
+    <ImageView
+        android:layout_alignLeft="@+id/ivProgressFrame"
+        android:layout_alignRight="@+id/ivProgressFrame"
+        android:layout_alignTop="@+id/ivProgressFrame"
+        android:layout_alignBottom="@+id/ivProgressFrame"
+        android:id="@+id/ivProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/progress_outer" />
+
+    <TextView
+        android:id="@+id/tvProgress"
+        style="@style/TextViewCommonStyle"
+        android:layout_centerInParent="true"
+        android:text="100%" />
+</RelativeLayout>

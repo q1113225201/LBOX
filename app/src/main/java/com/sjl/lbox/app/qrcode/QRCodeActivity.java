@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.QRCode.BGAQRCode.BGAQRCodeActivity;
+import com.sjl.lbox.app.QRCode.MyQRCode.MyQRCodeScanActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -48,5 +49,6 @@ public class QRCodeActivity extends BaseActivity {
     private void initData() {
         list = new ArrayList<Module>();
         list.add(new Module("BGAQRCode", BGAQRCodeActivity.class));
+        list.add(new Module("MyQRCode", MyQRCodeScanActivity.class));
     }
 }

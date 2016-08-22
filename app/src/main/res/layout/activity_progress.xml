@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sjl.lbox.app.progress.ProgressActivity">
+
+    <Button
+        android:id="@+id/btnShowProgressWithTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示3秒"/>
+    <Button
+        android:id="@+id/btnShowProgressMaxTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置最大进度"/>
+    <Button
+        android:id="@+id/btnShowProgressCurrentTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置实时进度"/>
+
+</LinearLayout>

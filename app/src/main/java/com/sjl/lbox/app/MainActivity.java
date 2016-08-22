@@ -12,6 +12,7 @@ import com.sjl.lbox.app.QRCode.QRCodeActivity;
 import com.sjl.lbox.app.contact.ContactActivity;
 import com.sjl.lbox.app.image.ImageActivity;
 import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
+import com.sjl.lbox.app.progress.ProgressActivity;
 import com.sjl.lbox.app.signature.SignatureActivity;
 import com.sjl.lbox.app.webview.WebViewActivity;
 import com.sjl.lbox.base.BaseActivity;
@@ -60,5 +61,6 @@ public class MainActivity extends BaseActivity {
         list.add(new Module("联系人列表", ContactActivity.class));
         list.add(new Module("二维码扫描", QRCodeActivity.class));
         list.add(new Module("App签名获取", SignatureActivity.class));
+        list.add(new Module("进度条", ProgressActivity.class));
     }
 }
