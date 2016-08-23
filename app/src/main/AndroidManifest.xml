@@ -43,7 +43,9 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity android:name=".app.QRCode.MyQRCode.activity.CaptureActivity" />
         <activity android:name=".app.QRCode.MyQRCode.MyQRCodeScanActivity" />
-        <activity android:name=".app.progress.ProgressActivity"></activity>
+        <activity android:name=".app.progress.ProgressActivity" />
+        <activity android:name=".app.http.HttpActivity" />
+        <activity android:name=".app.http.NoHttp.NoHttpActivity" />
     </application>
 
 </manifest>

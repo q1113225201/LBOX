@@ -15,4 +15,8 @@ public class CacheConfig {
      * Log日志路径
      */
     public static String LOG_PATH = PATH+"/log";
+    /**
+     * 图片路径
+     */
+    public static String IMAGE_PATH = PATH+"/images";
 }

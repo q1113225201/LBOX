@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sjl.lbox.app.http.NoHttp.NoHttpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnNoHttpPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="POST请求" />
+
+        <TextView
+            android:id="@+id/tvNoHttpPostResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnNoHttpImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="图片请求" />
+
+        <ImageView
+            android:id="@+id/ivNoHttpResult"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</ScrollView>

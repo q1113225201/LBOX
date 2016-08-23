@@ -147,7 +147,7 @@ public class ReWebViewClient extends WebViewClient {
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
-//        if(!HttpUtil.checkNetworkAvailable(mContext)){
+//        if(!NetworkUtil.isNetworkAvailable(mContext)){
 //            new Handler().postDelayed(new Runnable() {
 //                @Override
 //                public void run() {
