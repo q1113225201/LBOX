@@ -46,6 +46,9 @@
         <activity android:name=".app.progress.ProgressActivity" />
         <activity android:name=".app.http.HttpActivity" />
         <activity android:name=".app.http.NoHttp.NoHttpActivity" />
+        <activity android:name=".app.Notification.NotificationActivity" />
+        <activity android:name=".app.Notification.NotificationClickActivity" />
+        <activity android:name=".app.Notification.NotificationClickPictureActivity"></activity>
     </application>
 
 </manifest>
