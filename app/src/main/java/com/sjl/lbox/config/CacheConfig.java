@@ -19,4 +19,8 @@ public class CacheConfig {
      * 图片路径
      */
     public static String IMAGE_PATH = PATH+"/images/";
+    /**
+     * 压缩文件路径
+     */
+    public static String ZIP_PATH = PATH+"/zip/";
 }

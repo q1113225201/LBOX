@@ -48,7 +48,8 @@
         <activity android:name=".app.http.NoHttp.NoHttpActivity" />
         <activity android:name=".app.Notification.NotificationActivity" />
         <activity android:name=".app.Notification.NotificationClickActivity" />
-        <activity android:name=".app.Notification.NotificationClickPictureActivity"></activity>
+        <activity android:name=".app.Notification.NotificationClickPictureActivity" />
+        <activity android:name=".app.zip.ZipActivity"></activity>
     </application>
 
 </manifest>

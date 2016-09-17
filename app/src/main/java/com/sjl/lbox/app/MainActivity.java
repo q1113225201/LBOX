@@ -17,6 +17,7 @@ import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
 import com.sjl.lbox.app.progress.ProgressActivity;
 import com.sjl.lbox.app.signature.SignatureActivity;
 import com.sjl.lbox.app.webview.WebViewActivity;
+import com.sjl.lbox.app.zip.ZipActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -66,5 +67,6 @@ public class MainActivity extends BaseActivity {
         list.add(new Module("webview", WebViewActivity.class));
         list.add(new Module("网络信息及网络监听", NetworkMonitorActivity.class));
         list.add(new Module("HTTP", HttpActivity.class));
+        list.add(new Module("Zip", ZipActivity.class));
     }
 }

@@ -45,7 +45,7 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/btn7"
+        android:id="@+id/btnNotificationMedia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick"
@@ -53,7 +53,7 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/btn8"
+        android:id="@+id/btnNotificationCustom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick"

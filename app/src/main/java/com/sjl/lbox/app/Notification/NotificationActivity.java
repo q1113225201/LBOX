@@ -3,12 +3,14 @@ package com.sjl.lbox.app.Notification;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.Button;
@@ -38,18 +40,20 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
     private Button btnNotificationBigPicture;
     private static final int BANNER = 5;
     private Button btnNotificationBanner;
+    private static final int MEDIA = 6;
+    private Button btnNotificationMedia;
 
     private Button btnNotificationRemove;
 
     private NotificationManager manager;
 
-    private Handler handler=new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(msg.what==PROGRESS){
-                if(msg.arg1<100) {
-                    progressNotification(msg.arg1+5);
+            if (msg.what == PROGRESS) {
+                if (msg.arg1 < 100) {
+                    progressNotification(msg.arg1 + 5);
                 }
             }
         }
@@ -78,6 +82,8 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
         btnNotificationBigPicture.setOnClickListener(this);
         btnNotificationBanner = (Button) findViewById(R.id.btnNotificationBanner);
         btnNotificationBanner.setOnClickListener(this);
+        btnNotificationMedia = (Button) findViewById(R.id.btnNotificationMedia);
+        btnNotificationMedia.setOnClickListener(this);
 
         manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     }
@@ -103,10 +109,44 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
             case R.id.btnNotificationBanner:
                 bannerNotification();
                 break;
+            case R.id.btnNotificationMedia:
+                mediaNotification();
+                break;
             case R.id.btnNotificationRemove:
                 removeNotification();
                 break;
         }
+    }
+
+    /**
+     * 音乐播放器通知
+     */
+    private void mediaNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setContentTitle("MediaStyle");
+        builder.setContentText("Song Title");
+        builder.setSmallIcon(R.drawable.ic_launcher);
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo));
+        builder.setDefaults(NotificationCompat.DEFAULT_ALL);
+        Intent intent = new Intent(this, NotificationClickPictureActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 1, intent, 0);
+        builder.setContentIntent(pIntent);
+        builder.addAction(R.drawable.iv_previous_white, "", null);
+        builder.addAction(R.drawable.iv_stop_white, "", null);
+        builder.addAction(R.drawable.iv_play_white, "", pIntent);
+        builder.addAction(R.drawable.iv_next_white, "", null);
+        NotificationCompat.MediaStyle style = new NotificationCompat.MediaStyle();
+        style.setMediaSession(new MediaSessionCompat(this, "MediaSession",
+                new ComponentName(mContext, Intent.ACTION_MEDIA_BUTTON), null).getSessionToken());
+        //CancelButton在5.0以下的机器有效
+        style.setCancelButtonIntent(pIntent);
+        style.setShowCancelButton(true);
+        //设置要显示在通知右方的图标 最多三个
+        style.setShowActionsInCompactView(2, 3);
+        builder.setStyle(style);
+        builder.setShowWhen(false);
+        Notification notification = builder.build();
+        manager.notify(MEDIA, notification);
     }
 
     /**
@@ -121,22 +161,22 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
      * 横幅通知
      */
     private void bannerNotification() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
-            ToastUtil.showToast(mContext,"此类通知在Android 5.0以上版本才会有横幅有效！");
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            ToastUtil.showToast(mContext, "此类通知在Android 5.0以上版本才会有横幅有效！");
         }
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle("横幅通知");
         builder.setContentText("请在设置通知管理中开启消息横幅提醒权限");
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
         builder.setSmallIcon(R.drawable.ic_launcher);
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.logo));
-        Intent intent = new Intent(this,NotificationClickPictureActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this,1,intent,0);
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo));
+        Intent intent = new Intent(this, NotificationClickPictureActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 1, intent, 0);
         builder.setContentIntent(pIntent);
-        builder.setFullScreenIntent(pIntent,true);
+        builder.setFullScreenIntent(pIntent, true);
         builder.setAutoCancel(true);
         Notification notification = builder.build();
-        manager.notify(BANNER,notification);
+        manager.notify(BANNER, notification);
     }
 
     /**
@@ -148,18 +188,18 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
         builder.setContentText("BigPicture演示示例");
         builder.setSmallIcon(R.drawable.ic_launcher);
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.logo));
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo));
         android.support.v4.app.NotificationCompat.BigPictureStyle style = new android.support.v4.app.NotificationCompat.BigPictureStyle();
         style.setBigContentTitle("BigContentTitle");
         style.setSummaryText("SummaryText");
-        style.bigPicture(BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher));
+        style.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
         builder.setStyle(style);
         builder.setAutoCancel(true);
-        Intent intent = new Intent(this,NotificationClickPictureActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this,1,intent,0);
+        Intent intent = new Intent(this, NotificationClickPictureActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 1, intent, 0);
         builder.setContentIntent(pIntent);
         Notification notification = builder.build();
-        manager.notify(BIG_PICTURE,notification);
+        manager.notify(BIG_PICTURE, notification);
     }
 
     /**
@@ -170,7 +210,7 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
         builder.setContentTitle("InboxStyle");
         builder.setContentText("InboxStyle演示示例");
         builder.setSmallIcon(R.drawable.ic_launcher);
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.logo));
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo));
         android.support.v4.app.NotificationCompat.InboxStyle style = new android.support.v4.app.NotificationCompat.InboxStyle();
         style.setBigContentTitle("BigContentTitle")
                 .addLine("第一行，第一行，第一行，第一行，第一行，第一行，第一行")
@@ -181,12 +221,12 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
                 .setSummaryText("SummaryText");
         builder.setStyle(style);
         builder.setAutoCancel(true);
-        Intent intent = new Intent(this,NotificationClickActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this,1,intent,0);
+        Intent intent = new Intent(this, NotificationClickActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 1, intent, 0);
         builder.setContentIntent(pIntent);
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
         Notification notification = builder.build();
-        manager.notify(IN_BOX,notification);
+        manager.notify(IN_BOX, notification);
     }
 
     /**
@@ -197,19 +237,19 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
         builder.setContentTitle("BigTextStyle");
         builder.setContentText("BigTextStyle演示示例");
         builder.setSmallIcon(R.drawable.ic_launcher);
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.logo));
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo));
         NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
         style.bigText("这里是点击通知后要显示的正文，可以换行可以显示很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长");
         style.setBigContentTitle("点击后的标题");
         style.setSummaryText("末尾只一行的文字内容");
         builder.setStyle(style);
         builder.setAutoCancel(true);
-        Intent intent = new Intent(this,NotificationClickActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this,1,intent,0);
+        Intent intent = new Intent(this, NotificationClickActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 1, intent, 0);
         builder.setContentIntent(pIntent);
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
         Notification notification = builder.build();
-        manager.notify(BIG_TEXT,notification);
+        manager.notify(BIG_TEXT, notification);
     }
 
     /**
@@ -218,32 +258,32 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
     private void progressNotification(int progress) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.ic_launcher);
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.logo));
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo));
         builder.setShowWhen(false);
-        if(progress==100){
+        if (progress == 100) {
             builder.setContentTitle("下载完成");
             //禁止用户点击删除按钮删除
             builder.setAutoCancel(true);
             //禁止滑动删除
             builder.setOngoing(false);
-        }else{
-            builder.setContentTitle("下载中..."+progress+"%");
+        } else {
+            builder.setContentTitle("下载中..." + progress + "%");
             //禁止用户点击删除按钮删除
             builder.setAutoCancel(false);
             //禁止滑动删除
             builder.setOngoing(true);
         }
-        builder.setProgress(100,progress,false);
+        builder.setProgress(100, progress, false);
         //builder.setContentInfo(progress+"%");
         builder.setOngoing(true);
         builder.setShowWhen(false);
         Notification notification = builder.build();
-        manager.notify(PROGRESS,notification);
+        manager.notify(PROGRESS, notification);
 
-        Message msg=new Message();
+        Message msg = new Message();
         msg.what = PROGRESS;
         msg.arg1 = progress;
-        handler.sendMessageDelayed(msg,500);
+        handler.sendMessageDelayed(msg, 500);
     }
 
     /**
@@ -271,7 +311,7 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
         PendingIntent pIntent = PendingIntent.getActivity(mContext, 1, intent, 0);
         builder.setContentIntent(pIntent);
         //设置震动
-        long[] vibrate = {100,200,100,200};
+        long[] vibrate = {100, 200, 100, 200};
         builder.setVibrate(vibrate);
 
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
