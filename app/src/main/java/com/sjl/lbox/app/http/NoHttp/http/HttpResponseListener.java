@@ -48,7 +48,7 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
 
     @Override
     public void onFailed(int what, String url, Object tag, Exception exception, int responseCode, long networkMillis) {
-        String errorMsg = "";
+        String errorMsg;
         if (exception instanceof NetworkError) {// 网络不好
             errorMsg = "请检查网络。";
         } else if (exception instanceof TimeoutError) {// 请求超时

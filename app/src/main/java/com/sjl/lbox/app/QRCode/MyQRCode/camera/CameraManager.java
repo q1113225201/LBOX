@@ -26,7 +26,7 @@ public class CameraManager implements Camera.AutoFocusCallback, Camera.PreviewCa
 
 
     private enum CameraState {
-        CLOSED, OPEN, PREVIEW;
+        CLOSED, OPEN, PREVIEW
     }
 
     private Camera camera;

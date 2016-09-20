@@ -40,7 +40,7 @@ public class IOUtil {
             throws IOException {
         byte[] buffer = new byte[1024];
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        int len = -1;
+        int len;
         String result = null;
         try {
             while ((len = in.read(buffer)) != -1) {
@@ -52,7 +52,7 @@ public class IOUtil {
             close(baos);
         }
         return result;
-    };
+    }
 
     /**
      * 将输入流转成字节数组
@@ -63,7 +63,7 @@ public class IOUtil {
     public static byte[] streamToByteArray(InputStream in) throws IOException {
         byte[] buffer = new byte[1024];
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        int len = -1;
+        int len;
         byte[] result = null;
         try {
             while ((len = in.read(buffer)) != -1) {

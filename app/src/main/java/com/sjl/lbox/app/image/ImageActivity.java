@@ -10,7 +10,6 @@ import android.widget.ImageView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
-import com.sjl.lbox.util.BitmapUtil;
 import com.sjl.lbox.util.ImageUtil;
 import com.sjl.lbox.util.PermisstionsUtil;
 import com.sjl.lbox.util.PictureUtil;
@@ -26,6 +25,7 @@ public class ImageActivity extends BaseActivity {
 
     private ImageView iv;
     private Button btnClear;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,7 @@ public class ImageActivity extends BaseActivity {
 
                     @Override
                     public void denied(int requestCode) {
-                        ToastUtil.showToast(mContext,"拍照权限被拒绝");
+                        ToastUtil.showToast(mContext, "拍照权限被拒绝");
                     }
                 });
             }
@@ -92,7 +92,7 @@ public class ImageActivity extends BaseActivity {
 
                 @Override
                 public void bitmapLoadFailure(String error) throws Exception {
-                    ToastUtil.showToast(mContext,error);
+                    ToastUtil.showToast(mContext, error);
                 }
             });
         } catch (Exception e) {

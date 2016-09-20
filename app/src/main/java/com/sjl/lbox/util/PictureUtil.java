@@ -41,9 +41,9 @@ public class PictureUtil {
     private static String filename = System.currentTimeMillis() + ".png";
 
     public interface BitmapLoadCallBack {
-        public void bitmapLoadSuccess(Bitmap bitmap, Uri uri) throws Exception;
+        void bitmapLoadSuccess(Bitmap bitmap, Uri uri) throws Exception;
 
-        public void bitmapLoadFailure(String error) throws Exception;
+        void bitmapLoadFailure(String error) throws Exception;
     }
 
     private static Context mContext;
@@ -176,7 +176,7 @@ public class PictureUtil {
          *
          * @param flag
          */
-        public void dismiss(Boolean flag);
+        void dismiss(Boolean flag);
     }
 
     /**

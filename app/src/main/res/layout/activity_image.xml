@@ -13,7 +13,7 @@
         android:layout_height="200dp"
         android:background="#cacaca"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/logo" />
 
     <Button
         android:id="@+id/btnClear"

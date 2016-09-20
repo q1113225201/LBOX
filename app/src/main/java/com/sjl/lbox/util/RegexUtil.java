@@ -13,10 +13,7 @@ public class RegexUtil {
     public static boolean regexCheck(String res, String regex) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(res);
-        if (matcher.matches()) {
-            return true;
-        }
-        return false;
+        return matcher.matches();
     }
 
     // 正则验证 x到y个任意字符
@@ -25,46 +22,22 @@ public class RegexUtil {
         // "^[A-Za-z_]+[A-Za-z0-9_]+$")){//只包含字母、数字、下划线，并且只能以字母或者下划线开头
         // return true;
         // }
-        if (x < 0 || y < 0 || x >= y) {
-            return false;
-        }
-        if (regexCheck(res, "^.{" + x + "," + y + "}$")) {
-            return true;
-        }
-        return false;
+        return !(x < 0 || y < 0 || x >= y) && regexCheck(res, "^.{" + x + "," + y + "}$");
     }
 
     // 正则验证 x到y个中文字符
     public static boolean regex_X_Y_chinese_Chars(String res, int x, int y) {
-        if (x < 0 || y < 0 || x >= y) {
-            return false;
-        }
-        if (regexCheck(res, "^[\u4E00-\u9FA5]{" + x + "," + y + "}$")) {
-            return true;
-        }
-        return false;
+        return !(x < 0 || y < 0 || x >= y) && regexCheck(res, "^[\u4E00-\u9FA5]{" + x + "," + y + "}$");
     }
 
     // 正则验证 x到y个阿拉伯数字
     public static boolean regex_X_Y_numbers_Chars(String res, int x, int y) {
-        if (x < 0 || y < 0 || x >= y) {
-            return false;
-        }
-        if (regexCheck(res, "^[0-9]{" + x + "," + y + "}$")) {
-            return true;
-        }
-        return false;
+        return !(x < 0 || y < 0 || x >= y) && regexCheck(res, "^[0-9]{" + x + "," + y + "}$");
     }
 
     // 验证字符串res是否是x位的不是空白符的字符串
     public static boolean regex_X_Not_Empty_Chars(String res, int x) {
-        if (x <= 0) {
-            return false;
-        }
-        if (regexCheck(res, "^(\\S){" + x + "}$")) {
-            return true;
-        }
-        return false;
+        return x > 0 && regexCheck(res, "^(\\S){" + x + "}$");
     }
 
     // 正则验证 11位数字手机号码
@@ -75,11 +48,8 @@ public class RegexUtil {
         // return false;
 
         //客户端只验证长度
-        if (regexCheck(res, "^[0-9]{11}$")) {
-            return true;
-        }
-        return false;
-//		if (regexCheck(res, "^[1]([3]|[4]|[5]|[7]|[8])[0-9]{9}$")) {
+        return regexCheck(res, "^[0-9]{11}$");
+        //		if (regexCheck(res, "^[1]([3]|[4]|[5]|[7]|[8])[0-9]{9}$")) {
 //			return true;
 //		}
 //		return false;
@@ -87,18 +57,12 @@ public class RegexUtil {
 
     // 身份证验证
     public static boolean regexIDCard(String res) {
-        if (!regexCheck(res, "^\\d{15}|(\\d{17}([0-9]|X|x))$")) {
-            return false;
-        }
-        return true;
+        return regexCheck(res, "^\\d{15}|(\\d{17}([0-9]|X|x))$");
     }
 
     //X位纯数字
     public static boolean regexXNumbers(String res, int x) {
-        if (regexCheck(res, "^[0-9]{" + x + "}$")) {
-            return true;
-        }
-        return false;
+        return regexCheck(res, "^[0-9]{" + x + "}$");
     }
 
     /**
@@ -108,10 +72,7 @@ public class RegexUtil {
      * @return
      */
     public static boolean regexChars(String str, int minLength, int maxLength) {
-        if (regexCheck(str, "^.{" + minLength + "," + maxLength + "}$")) {
-            return true;
-        }
-        return false;
+        return regexCheck(str, "^.{" + minLength + "," + maxLength + "}$");
     }
 
     /**
@@ -121,10 +82,7 @@ public class RegexUtil {
      * @return
      */
     public static boolean regexChinese(String str, int minLength, int maxLength) {
-        if (regexCheck(str, "^[\u4E00-\u9FA5]{" + minLength + "," + maxLength + "}$")) {
-            return true;
-        }
-        return false;
+        return regexCheck(str, "^[\u4E00-\u9FA5]{" + minLength + "," + maxLength + "}$");
     }
 
     /**

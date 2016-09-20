@@ -90,7 +90,6 @@ public class ContactActivity extends BaseActivity {
                         LogUtil.i(tag,"call:"+Uri.parse("tel:" + mobile).toString());
                         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mobile));
                         startActivity(intent);
-                        return;
                     }else{
                         LogUtil.i(tag,"无拨号权限");
                     }

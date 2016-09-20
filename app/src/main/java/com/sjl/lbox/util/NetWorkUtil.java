@@ -1,6 +1,5 @@
 package com.sjl.lbox.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -34,8 +33,8 @@ public class NetWorkUtil {
         } else {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
             if (info != null) {
-                for (int i = 0; i < info.length; i++) {
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                for (NetworkInfo anInfo : info) {
+                    if (anInfo.getState() == NetworkInfo.State.CONNECTED) {
                         LogUtil.i(tag, "Network Available");
                         return true;
                     }
@@ -48,15 +47,7 @@ public class NetWorkUtil {
     /**
      * 获取当前网络状态
      * 有网络时
-     * @return one of
-     * {@link ConnectivityManager#TYPE_MOBILE},
-     * {@link ConnectivityManager#TYPE_WIFI},
-     * {@link ConnectivityManager#TYPE_WIMAX},
-     * {@link ConnectivityManager#TYPE_ETHERNET},
-     * {@link ConnectivityManager#TYPE_BLUETOOTH},
-     * or other types defined by {@link ConnectivityManager}
      *
-     * 无网络时
      * @return -1
      */
     public static int getNetWorkType(Context context) {
@@ -74,9 +65,7 @@ public class NetWorkUtil {
     /**
      * 获取当前网络状态
      * 有网络时
-     * @return "WIFI" or "MOBILE".
      *
-     * 无网络时
      * @return NULL
      */
     public static String getNetWorkName(Context context) {
@@ -98,7 +87,7 @@ public class NetWorkUtil {
      */
     public static void openSetting(Context context) {
         Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
-        ((Activity) context).startActivity(intent);
+        context.startActivity(intent);
     }
 
     /**

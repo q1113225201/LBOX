@@ -2,7 +2,6 @@ package com.sjl.lbox.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Gravity;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
-import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -46,21 +44,22 @@ public class ProgressDialog extends Dialog {
     private int currentProgress;
 
     private int REFRESH = 0x10;
-    private ProgressHandler handler=new ProgressHandler();
-    private class ProgressHandler extends Handler{
+    private ProgressHandler handler = new ProgressHandler();
+
+    private class ProgressHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(msg.what==REFRESH){
-                int current = currentProgress*100/maxProgress;
-                if(current>100){
+            if (msg.what == REFRESH) {
+                int current = currentProgress * 100 / maxProgress;
+                if (current > 100) {
                     tvProgress.setText("100%");
                     dismiss();
                     return;
                 }
                 currentProgress++;
-                tvProgress.setText(current+"%");
-                handler.sendEmptyMessageDelayed(REFRESH,1000);
+                tvProgress.setText(current + "%");
+                handler.sendEmptyMessageDelayed(REFRESH, 1000);
             }
         }
     }
@@ -147,20 +146,20 @@ public class ProgressDialog extends Dialog {
 
     public void setMaxProgress(int maxProgress) {
         this.maxProgress = maxProgress;
-        this.currentProgress=0;
-        if(tvProgress.getVisibility()!=View.VISIBLE) {
+        this.currentProgress = 0;
+        if (tvProgress.getVisibility() != View.VISIBLE) {
             tvProgress.setVisibility(View.VISIBLE);
         }
         tvProgress.setText("0%");
-        handler.sendEmptyMessageDelayed(REFRESH,1000);
+        handler.sendEmptyMessageDelayed(REFRESH, 1000);
     }
 
     public void setCurrentProgress(int currentProgress) {
         this.currentProgress = currentProgress;
-        if(tvProgress.getVisibility()!=View.VISIBLE) {
+        if (tvProgress.getVisibility() != View.VISIBLE) {
             tvProgress.setVisibility(View.VISIBLE);
         }
-        tvProgress.setText(currentProgress+"%");
+        tvProgress.setText(currentProgress + "%");
     }
 
     @Override
@@ -172,8 +171,8 @@ public class ProgressDialog extends Dialog {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK&&event.getAction()==KeyEvent.ACTION_DOWN){
-            if(cancelableOnTouchOutside){
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (cancelableOnTouchOutside) {
                 dismiss();
             }
             return true;

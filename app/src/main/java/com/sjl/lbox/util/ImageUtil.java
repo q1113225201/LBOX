@@ -35,9 +35,7 @@ public class ImageUtil {
         float scaleWidht = ((float) dstWidth / width);
         float scaleHeight = ((float) dstHeight / height);
         matrix.postScale(scaleWidht, scaleHeight);
-        Bitmap newbmp = Bitmap.createBitmap(bitmap, 0, 0, width, height,
-                matrix, true);
-        return newbmp;
+        return Bitmap.createBitmap(bitmap, 0, 0, width, height,matrix, true);
     }
 
     /**

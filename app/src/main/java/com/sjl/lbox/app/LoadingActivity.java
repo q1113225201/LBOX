@@ -1,9 +1,8 @@
 package com.sjl.lbox.app;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;

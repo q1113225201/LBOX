@@ -198,8 +198,7 @@ public class SignatureActivity extends BaseActivity implements View.OnClickListe
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(signature);
             byte[] digest = md.digest();
-            String res = toHexString(digest);
-            return res;
+            return toHexString(digest);
         } catch (NoSuchAlgorithmException e) {
             LogUtil.i(tag, "parseSignature:" + e.getMessage());
         }
@@ -209,8 +208,8 @@ public class SignatureActivity extends BaseActivity implements View.OnClickListe
     private String toHexString(byte[] block) {
         StringBuffer buf = new StringBuffer();
         int len = block.length;
-        for (int i = 0; i < len; i++) {
-            byte2hex(block[i], buf);
+        for (byte aBlock : block) {
+            byte2hex(aBlock, buf);
         }
         return buf.toString();
     }

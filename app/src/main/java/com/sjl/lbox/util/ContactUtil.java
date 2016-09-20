@@ -69,7 +69,7 @@ public class ContactUtil {
             Uri contentUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
             Cursor cursor = contentResolver.query(contentUri, PHONES_PROJECTION, null, null, null);
 
-            while (cursor.moveToNext()) {
+            while (cursor != null ? cursor.moveToNext() : false) {
                 String name = cursor.getString(0);
                 String mobile = cursor.getString(1).replace("+86", "").replace(" ", "").replace("-", "");
                 String namePinYin = PinYinUtil.getFullPinYin(name).toUpperCase(Locale.US);
@@ -93,7 +93,7 @@ public class ContactUtil {
             ContentResolver contentResolver = context.getContentResolver();
             Uri uri = Uri.parse("content://icc/adn");
             Cursor cursor = contentResolver.query(uri, PHONES_PROJECTION, null, null, null);
-            while (cursor.moveToNext()) {
+            while (cursor != null ? cursor.moveToNext() : false) {
                 String name = cursor.getString(PHONES_DISPLAY_NAME_INDEX);
                 String mobile = cursor.getString(PHONES_NUMBER_INDEX).replace("+86", "").replace(" ", "").replace("-", "");
                 String namePinYin = PinYinUtil.getFullPinYin(name).toUpperCase(Locale.US);

@@ -1,12 +1,10 @@
 package com.sjl.lbox.util;
 
-import android.os.Environment;
 import android.util.Log;
 
 import com.sjl.lbox.config.CacheConfig;
 import com.sjl.lbox.config.DebugConfig;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

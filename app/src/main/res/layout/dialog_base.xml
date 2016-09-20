@@ -1,105 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/corner"
+    android:orientation="vertical"
     android:padding="40dp">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/corner"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/base_dialog_title_tv"
+        style="@style/dialogTitle"
+        android:text="提示" />
 
-        <TextView
-            android:id="@+id/base_dialog_title_tv"
-            style="@style/dialogTitle"
-            android:text="提示" />
+    <ScrollView
+        android:id="@+id/base_dialog_sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <ScrollView
-            android:id="@+id/base_dialog_sv"
+        <LinearLayout
+            android:id="@+id/base_dialog_content_ll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="80dp"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
-            <LinearLayout
-                android:id="@+id/base_dialog_content_ll"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/base_dialog_content_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:minHeight="80dp"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/base_dialog_content_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
-
-                <EditText
-                    android:id="@+id/base_dialog_content_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:height="25dp"
-                    android:background="@drawable/border_gray"
-                    android:hint=""
-                    android:padding="5dp"
-                    android:singleLine="true"
-                    android:textColorHint="#cacaca"
-                    android:textSize="12sp"
-                    android:visibility="gone" />
-            </LinearLayout>
-        </ScrollView>
-
-        <LinearLayout
-            android:id="@+id/base_dialog_content_lv_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ListView
-                android:id="@+id/base_dialog_content_lv"
+            <EditText
+                android:id="@+id/base_dialog_content_et"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></ListView>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:height="25dp"
+                android:background="@drawable/border_gray"
+                android:hint=""
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textColorHint="#cacaca"
+                android:textSize="12sp"
+                android:visibility="gone" />
         </LinearLayout>
+    </ScrollView>
 
-        <View
+    <LinearLayout
+        android:id="@+id/base_dialog_content_lv_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/base_dialog_content_lv"
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#c9d1d2" />
-
-        <LinearLayout
-            android:id="@+id/base_dialog_bottom_ll"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/base_dialog_cancel_btn"
-                style="@style/dialogBottomBtn"
-                android:text="取消" />
-
-            <View
-                android:id="@+id/base_dialog_cancel_view"
-                android:layout_width="1px"
-                android:layout_height="fill_parent"
-                android:background="#c9d1d2" />
-
-            <Button
-                android:id="@+id/base_dialog_confirm_btn"
-                style="@style/dialogBottomBtn"
-                android:text="确定" />
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
-</RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#c9d1d2" />
+
+    <LinearLayout
+        android:id="@+id/base_dialog_bottom_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/base_dialog_cancel_btn"
+            style="@style/dialogBottomBtn"
+            android:text="取消" />
+
+        <View
+            android:id="@+id/base_dialog_cancel_view"
+            android:layout_width="1px"
+            android:layout_height="fill_parent"
+            android:background="#c9d1d2" />
+
+        <Button
+            android:id="@+id/base_dialog_confirm_btn"
+            style="@style/dialogBottomBtn"
+            android:text="确定" />
+    </LinearLayout>
+</LinearLayout>

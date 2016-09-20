@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.Gravity;
 import android.widget.Toast;
 
 /**
@@ -34,7 +33,7 @@ public class ToastUtil {
      */
     public static void showToast(Context context, String text) {
         if (!(text == null || text.equals(""))) {
-            Toast toast=Toast.makeText(context, text, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
 //            toast.setGravity(Gravity.CENTER,0,0);
             toast.show();
         }
@@ -42,11 +41,12 @@ public class ToastUtil {
 
     public static void showToastLong(Context context, String text) {
         if (!(text == null || text.equals(""))) {
-            Toast toast=Toast.makeText(context, text, Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
 //            toast.setGravity(Gravity.CENTER,0,0);
             toast.show();
         }
     }
+
     /**
      * 显示提示文本,可自定义方向
      *
@@ -54,12 +54,12 @@ public class ToastUtil {
      * @param text
      * @param gravity
      */
-    public static void showToast(Context context, String text,int gravity) {
+    public static void showToast(Context context, String text, int gravity) {
         if (!(text == null || text.equals(""))) {
-            Toast toast=Toast.makeText(context, text, Toast.LENGTH_SHORT);
-            toast.setGravity(gravity,0,0);
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+            toast.setGravity(gravity, 0, 0);
             toast.show();
-            LogUtil.i("toast",text);
+            LogUtil.i("toast", text);
         }
     }
 

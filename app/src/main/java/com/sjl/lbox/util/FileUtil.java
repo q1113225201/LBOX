@@ -78,14 +78,14 @@ public class FileUtil {
             charsetName = "utf-8";
         File file = new File(filePath);
         StringBuilder fileContent = new StringBuilder("");
-        if (file == null || !file.isFile())
+        if (!file.isFile())
             return null;
         BufferedReader reader = null;
         try {
             InputStreamReader is = new InputStreamReader(new FileInputStream(
                     file), charsetName);
             reader = new BufferedReader(is);
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
                 if (!fileContent.toString().equals("")) {
                     fileContent.append("\r\n");
@@ -129,7 +129,7 @@ public class FileUtil {
             charsetName = "utf-8";
         File file = new File(filePath);
         List<String> fileContent = new ArrayList<String>();
-        if (file == null || !file.isFile()) {
+        if (!file.isFile()) {
             return null;
         }
         BufferedReader reader = null;
@@ -137,7 +137,7 @@ public class FileUtil {
             InputStreamReader is = new InputStreamReader(new FileInputStream(
                     file), charsetName);
             reader = new BufferedReader(is);
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
                 fileContent.add(line);
             }
@@ -280,7 +280,7 @@ public class FileUtil {
             createFile(file.getAbsolutePath());
             out = new FileOutputStream(file, append);
             byte data[] = new byte[1024];
-            int length = -1;
+            int length;
             while ((length = stream.read(data)) != -1) {
                 out.write(data, 0, length);
             }
@@ -307,7 +307,7 @@ public class FileUtil {
      */
     public static boolean copyFile(String sourceFilePath, String destFilePath)
             throws IOException {
-        InputStream inputStream = null;
+        InputStream inputStream;
         inputStream = new FileInputStream(sourceFilePath);
         return writeFile(destFilePath, inputStream);
     }
@@ -425,9 +425,7 @@ public class FileUtil {
 
             @Override
             public boolean accept(File dir, String filename) {
-                if (filename.indexOf("." + extension) > 0)
-                    return true;
-                return false;
+                return filename.indexOf("." + extension) > 0;
             }
         });
         if (files == null)
@@ -463,9 +461,7 @@ public class FileUtil {
      * @return
      */
     public static boolean createFile(String path) {
-        if (TextUtils.isEmpty(path))
-            return false;
-        return createFile(new File(path));
+        return !TextUtils.isEmpty(path) && createFile(new File(path));
     }
 
     /**
@@ -496,8 +492,7 @@ public class FileUtil {
             return false;
         }
         File folder = new File(filePath);
-        return (folder.exists() && folder.isDirectory()) ? true : folder
-                .mkdirs();
+        return (folder.exists() && folder.isDirectory()) || folder.mkdirs();
     }
 
     /**
@@ -506,9 +501,7 @@ public class FileUtil {
      * @return 如果目录创建成功，则返回true，否则返回false
      */
     public static boolean makeDirs(File dir) {
-        if (dir == null)
-            return false;
-        return (dir.exists() && dir.isDirectory()) ? true : dir.mkdirs();
+        return dir != null && ((dir.exists() && dir.isDirectory()) || dir.mkdirs());
     }
 
     /**
@@ -595,10 +588,7 @@ public class FileUtil {
      *          文件删除异常返回false
      */
     public static boolean deleteFile(String path) {
-        if (TextUtils.isEmpty(path)) {
-            return true;
-        }
-        return deleteFile(new File(path));
+        return TextUtils.isEmpty(path) || deleteFile(new File(path));
     }
     
     /**
@@ -649,7 +639,7 @@ public class FileUtil {
         if (!file.isDirectory())
             return;
 
-        File[] lists = null;
+        File[] lists;
         if (filter != null)
             lists = file.listFiles(filter);
         else
@@ -706,7 +696,7 @@ public class FileUtil {
             zipOut.putNextEntry(ze);
             
             byte data[] = new byte[1024];
-            int length = -1;
+            int length;
             while ((length = fis.read(data)) != -1) {
                 zipOut.write(data, 0, length);
             }
@@ -732,7 +722,9 @@ public class FileUtil {
             }
             return true;
         }finally {
-            outputStream.flush();
+            if(outputStream!=null) {
+                outputStream.flush();
+            }
             IOUtil.close(inputStream);
             IOUtil.close(outputStream);
         }

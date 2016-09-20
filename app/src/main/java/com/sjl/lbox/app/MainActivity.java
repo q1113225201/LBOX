@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.Notification.NotificationActivity;
 import com.sjl.lbox.app.QRCode.QRCodeActivity;
+import com.sjl.lbox.app.compass.CompassActivity;
 import com.sjl.lbox.app.contact.ContactActivity;
 import com.sjl.lbox.app.http.HttpActivity;
 import com.sjl.lbox.app.image.ImageActivity;
@@ -68,5 +69,6 @@ public class MainActivity extends BaseActivity {
         list.add(new Module("网络信息及网络监听", NetworkMonitorActivity.class));
         list.add(new Module("HTTP", HttpActivity.class));
         list.add(new Module("Zip", ZipActivity.class));
+        list.add(new Module("指南针", CompassActivity.class));
     }
 }

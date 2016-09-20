@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
@@ -40,20 +39,20 @@ public class ZipUtil {
      * 批量压缩文件（夹）
      *
      * @param resFileList 要压缩的文件（夹）列表
-     * @param zipFile 生成的压缩文件
-     * @param zipListener     zipListener
+     * @param zipFile     生成的压缩文件
+     * @param zipListener zipListener
      */
-    public static void zipFiles(Collection<File> resFileList, File zipFile, ZipListener zipListener)  {
+    public static void zipFiles(Collection<File> resFileList, File zipFile, ZipListener zipListener) {
 
-        ZipOutputStream zipout = null;
+        ZipOutputStream zipout;
         try {
             zipout = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(
                     zipFile), BUFF_SIZE));
             for (File resFile : resFileList) {
-                if(stopZipFlag){
+                if (stopZipFlag) {
                     break;
                 }
-                zipFile(resFile, zipout, "",zipListener);
+                zipFile(resFile, zipout, "", zipListener);
             }
             zipout.close();
         } catch (Exception e) {
@@ -65,17 +64,16 @@ public class ZipUtil {
      * 批量压缩文件（夹）
      *
      * @param resFileList 要压缩的文件（夹）列表
-     * @param zipFile 生成的压缩文件
-     * @param comment 压缩文件的注释
-     * @param zipListener    zipListener
+     * @param zipFile     生成的压缩文件
+     * @param comment     压缩文件的注释
+     * @param zipListener zipListener
      */
-    public static void zipFiles(Collection<File> resFileList, File zipFile, String comment,ZipListener zipListener)
-    {
-        ZipOutputStream zipout = null;
+    public static void zipFiles(Collection<File> resFileList, File zipFile, String comment, ZipListener zipListener) {
+        ZipOutputStream zipout;
         try {
             zipout = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(zipFile), BUFF_SIZE));
             for (File resFile : resFileList) {
-                zipFile(resFile, zipout, "",zipListener);
+                zipFile(resFile, zipout, "", zipListener);
             }
             zipout.setComment(comment);
             zipout.close();
@@ -87,7 +85,7 @@ public class ZipUtil {
     /**
      * 解压缩一个文件
      *
-     * @param zipFile 压缩文件
+     * @param zipFile    压缩文件
      * @param folderPath 解压缩的目标目录
      */
     public static void upZipFile(File zipFile, String folderPath) {
@@ -97,21 +95,21 @@ public class ZipUtil {
         try {
             zip = new ZipFile(zipFile);
             entries = (Enumeration<ZipEntry>) zip.entries();
-            while(entries.hasMoreElements()){
+            while (entries.hasMoreElements()) {
                 ZipEntry entry = entries.nextElement();
-                if(entry.isDirectory()){
+                if (entry.isDirectory()) {
                     continue;
                 }
                 File destination = new File(desDir, entry.getName());
-                FileUtil.writeFile(destination,zip.getInputStream(entry),false);
+                FileUtil.writeFile(destination, zip.getInputStream(entry), false);
             }
-        } catch (ZipException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
-                zip.close();
+                if (zip != null) {
+                    zip.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -121,10 +119,10 @@ public class ZipUtil {
     /**
      * 解压文件名包含传入文字的文件
      *
-     * @param zipFile 压缩文件
-     * @param folderPath 目标文件夹
+     * @param zipFile      压缩文件
+     * @param folderPath   目标文件夹
      * @param nameContains 传入的文件匹配名
-     * @return   返回的集合
+     * @return 返回的集合
      */
     public static ArrayList<File> upZipSelectedFile(File zipFile, String folderPath,
                                                     String nameContains) {
@@ -136,11 +134,11 @@ public class ZipUtil {
             desDir.mkdir();
         }
 
-        ZipFile zf = null;
+        ZipFile zf;
         try {
             zf = new ZipFile(zipFile);
-            for (Enumeration<?> entries = zf.entries(); entries.hasMoreElements();) {
-                ZipEntry entry = ((ZipEntry)entries.nextElement());
+            for (Enumeration<?> entries = zf.entries(); entries.hasMoreElements(); ) {
+                ZipEntry entry = ((ZipEntry) entries.nextElement());
                 if (entry.getName().contains(nameContains)) {
                     InputStream in = zf.getInputStream(entry);
                     String str = folderPath + File.separator + entry.getName();
@@ -182,11 +180,11 @@ public class ZipUtil {
     public static ArrayList<String> getEntriesNames(File zipFile) {
 
         ArrayList<String> entryNames = new ArrayList<String>();
-        Enumeration<?> entries = null;
+        Enumeration<?> entries;
         try {
             entries = getEntriesEnumeration(zipFile);
             while (entries.hasMoreElements()) {
-                ZipEntry entry = ((ZipEntry)entries.nextElement());
+                ZipEntry entry = ((ZipEntry) entries.nextElement());
                 entryNames.add(new String(getEntryName(entry).getBytes("GB2312"), "8859_1"));
             }
             return entryNames;
@@ -219,7 +217,7 @@ public class ZipUtil {
      * @param entry 压缩文件对象
      * @return 压缩文件对象的注释
      */
-    public static String getEntryComment(ZipEntry entry)  {
+    public static String getEntryComment(ZipEntry entry) {
         try {
             return new String(entry.getComment().getBytes("GB2312"), "8859_1");
         } catch (UnsupportedEncodingException e) {
@@ -234,7 +232,7 @@ public class ZipUtil {
      * @param entry 压缩文件对象
      * @return 压缩文件对象的名称
      */
-    public static String getEntryName(ZipEntry entry)  {
+    public static String getEntryName(ZipEntry entry) {
         try {
             return new String(entry.getName().getBytes("GB2312"), "8859_1");
         } catch (UnsupportedEncodingException e) {
@@ -246,29 +244,28 @@ public class ZipUtil {
     /**
      * 压缩文件
      *
-     * @param resFile 需要压缩的文件（夹）
-     * @param zipout 压缩的目的文件
+     * @param resFile  需要压缩的文件（夹）
+     * @param zipout   压缩的目的文件
      * @param rootpath 压缩的文件路径
      */
-    private static void zipFile(File resFile, ZipOutputStream zipout, String rootpath,ZipListener zipListener)
-    {
+    private static void zipFile(File resFile, ZipOutputStream zipout, String rootpath, ZipListener zipListener) {
         try {
             rootpath = rootpath + (rootpath.trim().length() == 0 ? "" : File.separator)
                     + resFile.getName();
             rootpath = new String(rootpath.getBytes("8859_1"), "GB2312");
             if (resFile.isDirectory()) {
                 File[] fileList = resFile.listFiles();
-                int length=fileList.length;
+                int length = fileList.length;
                 // Log.e("zipprogress", (int)((1 / (float) (length+1))*100)+"%");
-                zipListener.zipProgress((int)((1 / (float) (length+1))*100));
-                for (int i=0;i<length;i++) {
-                    if(stopZipFlag){
+                zipListener.zipProgress((int) ((1 / (float) (length + 1)) * 100));
+                for (int i = 0; i < length; i++) {
+                    if (stopZipFlag) {
                         break;
                     }
-                    File file=fileList[i];
-                    zipFile(file, zipout, rootpath,zipListener);
+                    File file = fileList[i];
+                    zipFile(file, zipout, rootpath, zipListener);
                     // Log.e("zipprogress", (int)(((i+2) / (float) (length+1))*100)+"%");
-                    zipListener.zipProgress((int)(((i+2) / (float) (length+1))*100));
+                    zipListener.zipProgress((int) (((i + 2) / (float) (length + 1)) * 100));
                 }
             } else {
                 byte buffer[] = new byte[BUFF_SIZE];
@@ -277,7 +274,7 @@ public class ZipUtil {
                 zipout.putNextEntry(new ZipEntry(rootpath));
                 int realLength;
                 while ((realLength = in.read(buffer)) != -1) {
-                    if(stopZipFlag){
+                    if (stopZipFlag) {
                         break;
                     }
                     zipout.write(buffer, 0, realLength);
@@ -286,12 +283,13 @@ public class ZipUtil {
                 zipout.flush();
                 zipout.closeEntry();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
     }
-    public interface ZipListener{
+
+    public interface ZipListener {
         void zipProgress(int zipProgress);
     }
 }

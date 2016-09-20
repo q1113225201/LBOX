@@ -123,7 +123,6 @@ public class ReWebViewClient extends WebViewClient {
                         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
                             mContext.startActivity(intent);
-                            return;
                         }
                     } catch (Exception e) {
 

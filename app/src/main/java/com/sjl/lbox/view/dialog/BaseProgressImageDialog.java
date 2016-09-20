@@ -45,7 +45,7 @@ public class BaseProgressImageDialog extends Dialog {
                     return;
                 }
                 if (tvProgress != null) {
-                    String currentProgress = (int) (currentSecond * 100 / maxTime) + "%";
+                    String currentProgress = currentSecond * 100 / maxTime + "%";
                     LogUtil.i(tag, "当前进度：" + currentProgress);
                     tvProgress.setText(currentProgress);
                 }
@@ -82,7 +82,7 @@ public class BaseProgressImageDialog extends Dialog {
         super(context, R.style.baseDialogStyle);
         this.mContext = context;
         this.cancelableOnTouchOutside = false;
-        setCanceledOnTouchOutside(cancelableOnTouchOutside);
+        setCanceledOnTouchOutside(false);
     }
 
     public BaseProgressImageDialog(Context context, int layoutId) {
@@ -90,7 +90,7 @@ public class BaseProgressImageDialog extends Dialog {
         this.mContext = context;
         this.layoutId = layoutId;
         this.cancelableOnTouchOutside = false;
-        setCanceledOnTouchOutside(cancelableOnTouchOutside);
+        setCanceledOnTouchOutside(false);
     }
 
     public BaseProgressImageDialog(Context context, int layoutId, boolean cancelableOnTouchOutside) {

@@ -281,8 +281,8 @@ public class WebViewActivity extends BaseActivity implements
                 file.delete();
             } else if (file.isDirectory()) {
                 File files[] = file.listFiles();
-                for (int i = 0; i < files.length; i++) {
-                    deleteFile(files[i]);
+                for (File file1 : files) {
+                    deleteFile(file1);
                 }
             }
             file.delete();

@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
-import com.sjl.lbox.util.BitmapUtil;
 import com.sjl.lbox.util.ImageUtil;
 import com.sjl.lbox.util.PermisstionsUtil;
 import com.sjl.lbox.util.ToastUtil;
 
 import cn.bingoogolapple.qrcode.zxing.QRCodeDecoder;
 import cn.bingoogolapple.qrcode.zxing.QRCodeEncoder;
+
 /**
  * BGAQRCode扫码、编码
  *

@@ -85,11 +85,7 @@ public class PinYinUtil {
     public static boolean isEnglish(String s) {
         char c = s.charAt(0);
         int i = (int) c;
-        if ((i >= 65 && i <= 90) || (i >= 97 && i <= 122)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (i >= 65 && i <= 90) || (i >= 97 && i <= 122);
     }
 
 

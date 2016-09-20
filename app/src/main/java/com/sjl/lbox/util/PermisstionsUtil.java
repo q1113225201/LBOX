@@ -33,6 +33,9 @@ public class PermisstionsUtil {
     //写外部设备
     public static String READ_CONTACTS = Manifest.permission.READ_CONTACTS;
     public static int READ_CONTACTS_CODE = 0x1105;
+    //定位
+    public static String ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    public static int ACCESS_FINE_LOCATION_CODE = 0x1106;
 
     private static Context mContext;
     private static int currentRequestCode;

@@ -93,9 +93,9 @@ public class ReWebChomeClient extends WebChromeClient {
         //mOpenFileChooserCallBack.openFileChooserCallBackForAndroid5(uploadMsg);
         String acceptTypes[] = fileChooserParams.getAcceptTypes();
         String acceptType = "";
-        for (int i = 0; i < acceptTypes.length; ++i) {
-            if (acceptTypes[i] != null && acceptTypes[i].length() != 0)
-                acceptType += acceptTypes[i] + ";";
+        for (String acceptType1 : acceptTypes) {
+            if (acceptType1 != null && acceptType1.length() != 0)
+                acceptType += acceptType1 + ";";
         }
         if (acceptType.length() == 0)
             acceptType = "*/*";
