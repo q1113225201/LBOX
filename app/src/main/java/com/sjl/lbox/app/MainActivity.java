@@ -15,6 +15,7 @@ import com.sjl.lbox.app.contact.ContactActivity;
 import com.sjl.lbox.app.http.HttpActivity;
 import com.sjl.lbox.app.image.ImageActivity;
 import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
+import com.sjl.lbox.app.pedometer.PedometerActivity;
 import com.sjl.lbox.app.progress.ProgressActivity;
 import com.sjl.lbox.app.signature.SignatureActivity;
 import com.sjl.lbox.app.webview.WebViewActivity;
@@ -70,5 +71,6 @@ public class MainActivity extends BaseActivity {
         list.add(new Module("HTTP", HttpActivity.class));
         list.add(new Module("Zip", ZipActivity.class));
         list.add(new Module("指南针", CompassActivity.class));
+        list.add(new Module("计步器", PedometerActivity.class));
     }
 }
