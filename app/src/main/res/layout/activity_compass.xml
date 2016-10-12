@@ -4,21 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sjl.lbox.app.compass.CompassActivity">
+    tools:context="com.sjl.lbox.app.compass.CompassActivity"
+    android:weightSum="1">
 
     <TextView
         android:id="@+id/tvLocation"
+        android:layout_width="match_parent"
         style="@style/TextViewCommonStyle" />
 
     <TextView
         android:id="@+id/tvOrientation"
+        android:layout_width="match_parent"
+        style="@style/TextViewCommonStyle" />
+    <TextView
+        android:id="@+id/tvSpeed"
+        android:layout_width="match_parent"
         style="@style/TextViewCommonStyle" />
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1">
+        android:layout_width="480dp"
+        android:layout_height="480dp"
+        android:layout_gravity="center">
 
         <ImageView
             android:layout_width="wrap_content"

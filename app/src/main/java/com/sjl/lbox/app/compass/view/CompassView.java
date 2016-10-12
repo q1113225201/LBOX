@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.sjl.lbox.util.LogUtil;
+
 /**
  * 指南针View
  *
@@ -31,12 +33,13 @@ public class CompassView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
 //        super.onDraw(canvas);
+
         if(compass==null){
             compass = getDrawable();
-            compass.setBounds(0,0,getWidth(),getHeight());
+            //compass.setBounds(0,0,getWidth(),getWidth());
         }
         canvas.save();
-        canvas.rotate(direction,getWidth()/2,getHeight()/2);
+        canvas.rotate(direction,getWidth()/2,getWidth()/2);
         compass.draw(canvas);
         canvas.restore();
     }

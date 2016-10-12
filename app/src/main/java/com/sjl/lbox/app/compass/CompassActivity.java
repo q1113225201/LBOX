@@ -33,6 +33,7 @@ public class CompassActivity extends BaseActivity {
 
     private TextView tvLocation;
     private TextView tvOrientation;
+    private TextView tvSpeed;
     private CompassView compassView;
 
     //定位
@@ -42,6 +43,7 @@ public class CompassActivity extends BaseActivity {
         public void onLocationChanged(Location location) {
             LogUtil.i(tag, "onLocationChanged:" + location.toString());
             tvLocation.setText("经度:" + location.getLongitude() + ",纬度:" + location.getLatitude());
+            tvSpeed.setText("速度："+location.getSpeed());
         }
 
         @Override
@@ -95,6 +97,7 @@ public class CompassActivity extends BaseActivity {
     private void initView() {
         tvLocation = (TextView) findViewById(R.id.tvLocation);
         tvOrientation = (TextView) findViewById(R.id.tvOrientation);
+        tvSpeed = (TextView) findViewById(R.id.tvSpeed);
         compassView = (CompassView) findViewById(R.id.compassView);
         initLocation();
         initSensor();
