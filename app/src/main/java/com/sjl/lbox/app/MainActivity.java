@@ -12,6 +12,7 @@ import com.sjl.lbox.app.Notification.NotificationActivity;
 import com.sjl.lbox.app.QRCode.QRCodeActivity;
 import com.sjl.lbox.app.compass.CompassActivity;
 import com.sjl.lbox.app.contact.ContactActivity;
+import com.sjl.lbox.app.gesture.GestureActivity;
 import com.sjl.lbox.app.http.HttpActivity;
 import com.sjl.lbox.app.image.ImageActivity;
 import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
@@ -72,5 +73,6 @@ public class MainActivity extends BaseActivity {
         list.add(new Module("Zip", ZipActivity.class));
         list.add(new Module("指南针", CompassActivity.class));
         list.add(new Module("计步器", PedometerActivity.class));
+        list.add(new Module("手势密码", GestureActivity.class));
     }
 }
