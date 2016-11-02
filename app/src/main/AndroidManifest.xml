@@ -40,11 +40,15 @@
         <activity android:name=".app.contact.ContactActivity" />
         <activity android:name=".app.QRCode.QRCodeActivity" />
         <activity android:name=".app.QRCode.BGAQRCode.BGAQRCodeActivity" />
-        <activity android:name=".app.QRCode.BGAQRCode.ScanActivity" />
+        <activity
+            android:name=".app.QRCode.BGAQRCode.ScanActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".app.signature.SignatureActivity"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
-        <activity android:name=".app.QRCode.MyQRCode.activity.CaptureActivity" />
+        <activity
+            android:name=".app.QRCode.MyQRCode.activity.CaptureActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".app.QRCode.MyQRCode.MyQRCodeScanActivity" />
         <activity android:name=".app.progress.ProgressActivity" />
         <activity android:name=".app.http.HttpActivity" />
@@ -61,7 +65,13 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".app.gesture.GestureActivity"></activity>
+        <activity android:name=".app.gesture.GestureActivity" />
+        <activity android:name=".app.animate.AnimateActivity" />
+        <activity android:name=".app.animate.FrameAnimateActivity" />
+        <activity android:name=".app.animate.TweenAnimateActivity" />
+        <activity android:name=".app.animate.PropertyAnimateActivity" />
+        <activity android:name=".app.viewpager.ViewPagerActivity" />
+        <activity android:name=".app.viewpager.AdvertiseActivity"></activity>
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.adapter.ContactAdapter;
+import com.sjl.lbox.app.contact.adapter.ContactAdapter;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.PhoneContact;
 import com.sjl.lbox.listener.BaseListener;

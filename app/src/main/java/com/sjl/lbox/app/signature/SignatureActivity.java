@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.adapter.AppInfoAdapter;
+import com.sjl.lbox.app.signature.adapter.AppInfoAdapter;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.AppInfo;
 import com.sjl.lbox.util.DialogUtil;

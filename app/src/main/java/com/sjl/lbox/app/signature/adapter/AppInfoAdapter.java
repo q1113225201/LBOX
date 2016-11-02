@@ -1,4 +1,4 @@
-package com.sjl.lbox.adapter;
+package com.sjl.lbox.app.signature.adapter;
 
 import android.content.Context;
 import android.view.View;
