@@ -1,6 +1,7 @@
 package com.sjl.lbox;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.yolanda.nohttp.NoHttp;
 
@@ -26,5 +27,11 @@ public class LBoxApp extends Application {
 
     private void init() {
         NoHttp.initialize(app);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        //加载dex分包
     }
 }

@@ -10,12 +10,23 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    dexOptions {//dex配置
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+        additionalParameters = [//dex参数详见 dx --help
+                                '--multi-dex',//多分包
+                                '--set-max-idx-number=60000',//每个包内方法数上限
+                                '--main-dex-list='+project.rootDir.absolutePath+'/app/maindexlist.txt',//打包进主classes.dex的文件列表（放在build.gradle同级目录）
+                                '--minimal-main-dex'//使上一句生效
+        ]
     }
 }
 
