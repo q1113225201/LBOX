@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_music"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sjl.lbox.app.music.MusicActivity">
+
+    <Button
+        android:id="@+id/btnChooseMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择音乐" />
+
+    <Button
+        android:id="@+id/btnPlayMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="播放音乐" />
+
+    <Button
+        android:id="@+id/btnStopMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="停止播放" />
+
+    <TextView
+        android:id="@+id/tvMusic"
+        style="@style/TextViewCommonStyle"
+        android:text="请选择音乐" />
+</LinearLayout>

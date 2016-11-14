@@ -16,6 +16,7 @@ import com.sjl.lbox.app.contact.ContactActivity;
 import com.sjl.lbox.app.gesture.GestureActivity;
 import com.sjl.lbox.app.http.HttpActivity;
 import com.sjl.lbox.app.image.ImageActivity;
+import com.sjl.lbox.app.music.MusicActivity;
 import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
 import com.sjl.lbox.app.pedometer.PedometerActivity;
 import com.sjl.lbox.app.progress.ProgressActivity;
@@ -64,6 +65,7 @@ public class MainActivity extends BaseActivity {
     private void initData() {
         list = new ArrayList<Module>();
         list.add(new Module("图片选择", ImageActivity.class));
+        list.add(new Module("音乐选择", MusicActivity.class));
         list.add(new Module("联系人列表", ContactActivity.class));
         list.add(new Module("二维码扫描", QRCodeActivity.class));
         list.add(new Module("App签名获取", SignatureActivity.class));

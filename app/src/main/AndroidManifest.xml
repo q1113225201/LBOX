@@ -42,13 +42,13 @@
         <activity android:name=".app.QRCode.BGAQRCode.BGAQRCodeActivity" />
         <activity
             android:name=".app.QRCode.BGAQRCode.ScanActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".app.signature.SignatureActivity"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity
             android:name=".app.QRCode.MyQRCode.activity.CaptureActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity android:name=".app.QRCode.MyQRCode.MyQRCodeScanActivity" />
         <activity android:name=".app.progress.ProgressActivity" />
         <activity android:name=".app.http.HttpActivity" />
@@ -71,7 +71,8 @@
         <activity android:name=".app.animate.TweenAnimateActivity" />
         <activity android:name=".app.animate.PropertyAnimateActivity" />
         <activity android:name=".app.viewpager.ViewPagerActivity" />
-        <activity android:name=".app.viewpager.AdvertiseActivity"></activity>
+        <activity android:name=".app.viewpager.AdvertiseActivity" />
+        <activity android:name=".app.music.MusicActivity"></activity>
     </application>
 
 </manifest>
