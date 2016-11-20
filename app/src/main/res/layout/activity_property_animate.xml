@@ -10,27 +10,150 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView style="@style/TextViewCommonStyle"
-                android:text="ValueAnimator"/>
+
+            <TextView
+                style="@style/TextViewCommonStyle"
+                android:text="ValueAnimator" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="注:ValueAnimator是对值进行了一个平滑的动画过渡" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btnStartValueAnimator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="开始ValueAnimator"/>
+                    android:text="开始ValueAnimator" />
+
                 <TextView
                     android:id="@+id/tvValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="value"/>
+                    android:text="value" />
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewCommonStyle"
+                android:text="ObjectAnimator" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="注:ObjectAnimator继承自ValueAnimator，较常用，可直接对任何对象的任何属性进行操作" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnObjectAnimatorAlpha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="alpha" />
+
+                <Button
+                    android:id="@+id/btnObjectAnimatorRotation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="rotation" />
+
+                <TextView
+                    android:id="@+id/tvObject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Object" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnObjectAnimatorTranslationX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="translationX" />
+
+                <Button
+                    android:id="@+id/btnObjectAnimatorScaleX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="scaleX" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewCommonStyle"
+                android:text="组合动画" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="使用AnimatorSet，传入Animator" />
+
+            <Button
+                android:id="@+id/btnGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始组合动画" />
+
+            <TextView
+                android:id="@+id/tvGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="组合动画" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewCommonStyle"
+                android:text="动画监听器" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ValueAnimator、ObjectAnimator和AnimatorSet等继承Animator的都有通用的addListener()方法" />
+
+            <Button
+                android:id="@+id/btnAnimatorListener"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="监听器" />
+
+            <TextView
+                android:id="@+id/tvAnimatorListener"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="listener" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
