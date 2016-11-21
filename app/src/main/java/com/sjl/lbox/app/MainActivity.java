@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.FloatWindow.FloatWindowActivity;
 import com.sjl.lbox.app.Notification.NotificationActivity;
 import com.sjl.lbox.app.QRCode.QRCodeActivity;
 import com.sjl.lbox.app.animate.AnimateActivity;
@@ -64,6 +65,8 @@ public class MainActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
+        list.add(new Module("动画", AnimateActivity.class));
+        list.add(new Module("悬浮窗", FloatWindowActivity.class));
         list.add(new Module("图片选择", ImageActivity.class));
         list.add(new Module("音乐选择", MusicActivity.class));
         list.add(new Module("联系人列表", ContactActivity.class));
@@ -78,7 +81,6 @@ public class MainActivity extends BaseActivity {
         list.add(new Module("指南针", CompassActivity.class));
         list.add(new Module("计步器", PedometerActivity.class));
         list.add(new Module("手势密码", GestureActivity.class));
-        list.add(new Module("动画", AnimateActivity.class));
         list.add(new Module("ViewPager", ViewPagerActivity.class));
     }
 }
