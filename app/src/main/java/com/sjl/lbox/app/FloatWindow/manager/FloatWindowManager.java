@@ -3,7 +3,10 @@ package com.sjl.lbox.app.FloatWindow.manager;
 
 import android.content.Context;
 import android.view.WindowManager;
+import android.widget.TextView;
 
+import com.sjl.lbox.R;
+import com.sjl.lbox.app.FloatWindow.view.FloatWindowBig;
 import com.sjl.lbox.app.FloatWindow.view.FloatWindowSmall;
 
 /**
@@ -33,14 +36,23 @@ public class FloatWindowManager {
 
     private static FloatWindowSmall floatWindowSmall;
 
+    /**
+     * 显示小悬浮窗
+     *
+     * @param context
+     */
     public void showFloatWindowSmall(Context context) {
         if (floatWindowSmall == null) {
             floatWindowSmall = new FloatWindowSmall(context);
+            this.context = context;
         }
         floatWindowManager = new FloatWindowManager(context);
         getWindowManager().addView(floatWindowSmall, floatWindowSmall.layoutParams);
     }
 
+    /**
+     * 关闭小悬浮窗
+     */
     public void removeFloatWindowSmall() {
         if (floatWindowSmall != null) {
             getWindowManager().removeView(floatWindowSmall);
@@ -48,12 +60,52 @@ public class FloatWindowManager {
         }
     }
 
-    public void removeAllFloatWindow(){
-        removeFloatWindowSmall();
+    private static FloatWindowBig floatWindowBig;
+
+    /**
+     * 显示大悬浮窗
+     *
+     * @param context
+     */
+    public void showFloatWindowBig(Context context) {
+        if (floatWindowBig == null) {
+            floatWindowBig = new FloatWindowBig(context);
+            this.context = context;
+        }
+        getWindowManager().addView(floatWindowBig, floatWindowBig.layoutParams);
     }
 
-    public boolean isWindowShowing(){
-        return floatWindowSmall!=null;
+    public void updateFloatWindowBig(){
+        if(floatWindowBig!=null){
+            floatWindowBig.update();
+        }
+    }
+
+    /**
+     * 关闭大悬浮窗
+     */
+    public void removeFloatWindowBig() {
+        if (floatWindowBig != null) {
+            getWindowManager().removeView(floatWindowBig);
+            floatWindowBig = null;
+        }
+    }
+
+    /**
+     * 关闭所有悬浮窗
+     */
+    public void removeAllFloatWindow() {
+        removeFloatWindowSmall();
+        removeFloatWindowBig();
+    }
+
+    /**
+     * 返回是否有悬浮窗显示
+     *
+     * @return
+     */
+    public boolean isWindowShowing() {
+        return floatWindowSmall != null || floatWindowBig != null;
     }
 
     private WindowManager getWindowManager() {

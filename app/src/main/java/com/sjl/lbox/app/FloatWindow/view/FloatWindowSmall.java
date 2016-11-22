@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.FloatWindow.manager.FloatWindowManager;
 import com.sjl.lbox.util.AppUtil;
 import com.sjl.lbox.util.ToastUtil;
 
@@ -57,7 +58,10 @@ public class FloatWindowSmall extends LinearLayout {
         findViewById(R.id.ivFloatWindowSmall).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showToast(context,"click");
+                //关闭小悬浮窗
+                FloatWindowManager.getInstance(context).removeFloatWindowSmall();
+                //显示大悬浮窗
+                FloatWindowManager.getInstance(context).showFloatWindowBig(context);
             }
         });
     }

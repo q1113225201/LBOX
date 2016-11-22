@@ -56,14 +56,38 @@ public class FloatWindowService extends Service {
         @Override
         public void run() {
             LogUtil.i(tag,"isWindowShowing:"+FloatWindowManager.getInstance(context).isWindowShowing());
-            if (!FloatWindowManager.getInstance(context).isWindowShowing()) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        LogUtil.i(tag,"showFloatWindowSmall");
-                        FloatWindowManager.getInstance(context).showFloatWindowSmall(context);
-                    }
-                });
+            LogUtil.i(tag,"isHome:"+AppUtil.isHome(context));
+            if (!AppUtil.isHome(context)) {
+                //在桌面上
+                if(FloatWindowManager.getInstance(context).isWindowShowing()){
+                    //已显示悬浮窗，则更新大悬浮窗
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            FloatWindowManager.getInstance(context).updateFloatWindowBig();
+                        }
+                    });
+                }else{
+                    //没显示悬浮窗，则显示小悬浮窗
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            LogUtil.i(tag,"showFloatWindowSmall");
+                            FloatWindowManager.getInstance(context).showFloatWindowSmall(context);
+                        }
+                    });
+                }
+            }else if(!AppUtil.isHome(context)){
+                //不在桌面上
+                if(FloatWindowManager.getInstance(context).isWindowShowing()){
+                    //已显示悬浮窗，则关闭所有悬浮窗
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            FloatWindowManager.getInstance(context).removeAllFloatWindow();
+                        }
+                    });
+                }
             }
         }
     }
@@ -71,6 +95,8 @@ public class FloatWindowService extends Service {
     @Override
     public void onDestroy() {
         LogUtil.i(tag,"onDestroy");
+        timer.cancel();
+        timer = null;
         FloatWindowManager.getInstance(context).removeAllFloatWindow();
         super.onDestroy();
     }
