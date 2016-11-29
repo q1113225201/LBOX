@@ -1,4 +1,4 @@
-package com.sjl.lbox.app;
+package com.sjl.lbox.app.EditText;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.EditText.EditTextActivity;
+import com.sjl.lbox.app.EditText.PwdEditText.PwdEditTextActivity;
 import com.sjl.lbox.app.FloatWindow.FloatWindowActivity;
 import com.sjl.lbox.app.Notification.NotificationActivity;
 import com.sjl.lbox.app.QRCode.QRCodeActivity;
@@ -32,13 +32,7 @@ import com.sjl.lbox.bean.Module;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * MainActivity
- *
- * @author SJL
- * @date 2016/8/6 14:19
- */
-public class MainActivity extends BaseActivity {
+public class EditTextActivity extends BaseActivity {
     private ListView lv;
     private ArrayAdapter adapter;
     private List<Module> list;
@@ -46,7 +40,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_edit_text);
         initView();
     }
 
@@ -66,23 +60,6 @@ public class MainActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
-        list.add(new Module("动画", AnimateActivity.class));
-        list.add(new Module("悬浮窗", FloatWindowActivity.class));
-        list.add(new Module("手势密码", GestureActivity.class));
-        list.add(new Module("输入框", EditTextActivity.class));
-        list.add(new Module("图片选择", ImageActivity.class));
-        list.add(new Module("音乐选择", MusicActivity.class));
-        list.add(new Module("联系人列表", ContactActivity.class));
-        list.add(new Module("二维码扫描", QRCodeActivity.class));
-        list.add(new Module("App签名获取", SignatureActivity.class));
-        list.add(new Module("进度条", ProgressActivity.class));
-        list.add(new Module("通知", NotificationActivity.class));
-        list.add(new Module("webview", WebViewActivity.class));
-        list.add(new Module("网络信息及网络监听", NetworkMonitorActivity.class));
-        list.add(new Module("HTTP", HttpActivity.class));
-        list.add(new Module("Zip", ZipActivity.class));
-        list.add(new Module("指南针", CompassActivity.class));
-        list.add(new Module("计步器", PedometerActivity.class));
-        list.add(new Module("ViewPager", ViewPagerActivity.class));
+        list.add(new Module("仿支付宝密码输入框", PwdEditTextActivity.class));
     }
 }

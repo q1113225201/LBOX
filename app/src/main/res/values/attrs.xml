@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PwdEditText">
+        <!--圆角半径-->
+        <attr name="borderCornerRadius" format="float"/>
+        <!--密码长度-->
+        <attr name="passwordLength" format="integer"/>
+        <!--背景颜色-->
+        <attr name="bgColor" format="color"/>
+        <!--线宽度-->
+        <attr name="lineWidth" format="float"/>
+        <!--线颜色-->
+        <attr name="lineColor" format="color"/>
+        <!--密码点半径-->
+        <attr name="dotRadius" format="float"/>
+        <!--点颜色-->
+        <attr name="dotColor" format="color"/>
+    </declare-styleable>
+</resources>
