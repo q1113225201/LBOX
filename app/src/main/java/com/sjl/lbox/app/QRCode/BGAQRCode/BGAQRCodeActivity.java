@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.util.ImageUtil;
-import com.sjl.lbox.util.PermisstionsUtil;
+import com.sjl.lbox.util.PermisstionUtil;
 import com.sjl.lbox.util.ToastUtil;
 
 import cn.bingoogolapple.qrcode.zxing.QRCodeDecoder;
@@ -113,7 +113,19 @@ public class BGAQRCodeActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void scan() {
-        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CAMERA, PermisstionsUtil.CAMERA_CODE, "拍照权限", new PermisstionsUtil.PermissionResult() {
+//        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CAMERA, PermisstionsUtil.CAMERA_CODE, "拍照权限", new PermisstionsUtil.PermissionResult() {
+//            @Override
+//            public void granted(int requestCode) {
+//                Intent intent = new Intent(mContext, ScanActivity.class);
+//                startActivityForResult(intent, SCAN_CODE);
+//            }
+//
+//            @Override
+//            public void denied(int requestCode) {
+//                ToastUtil.showToast(mContext, "无拍照权限");
+//            }
+//        });
+        PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CAMERA}, PermisstionUtil.CAMERA_CODE, "拍照权限", new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
                 Intent intent = new Intent(mContext, ScanActivity.class);
@@ -133,5 +145,10 @@ public class BGAQRCodeActivity extends BaseActivity implements View.OnClickListe
         if (requestCode == SCAN_CODE && resultCode == SCAN_RESULT_CODE) {
             tvScanResult.setText(data.getStringExtra("result"));
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

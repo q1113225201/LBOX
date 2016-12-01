@@ -12,13 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="启动悬浮窗服务" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="启动服务后每0.5秒检测一次当前是否是桌面，如果是就显示悬浮窗，不是则移除。"/>
     <Button
         android:id="@+id/btnStopService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="停止悬浮窗服务" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开启悬浮窗服务后，在应用处于后台运行时显示悬浮窗，可任意拖动，也可以点击显示大悬浮窗。" />
+    <Button
+        android:id="@+id/btnAuthorizationUsage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="授权查看应用使用情况权限" />
+    <Button
+        android:id="@+id/btnAuthorizationFloatWindow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="授权悬浮窗" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注:\n1、5.0之后getRunningTasks废弃，使用usage；6.0之后查看应用使用情况需要手动开启权限。\n2、6.0之后悬浮窗权限默认关闭，需要手动开启。" />
 </LinearLayout>

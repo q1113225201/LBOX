@@ -18,7 +18,7 @@ import com.sjl.lbox.listener.BaseListener;
 import com.sjl.lbox.util.ContactUtil;
 import com.sjl.lbox.util.DialogUtil;
 import com.sjl.lbox.util.LogUtil;
-import com.sjl.lbox.util.PermisstionsUtil;
+import com.sjl.lbox.util.PermisstionUtil;
 import com.sjl.lbox.util.ToastUtil;
 
 import java.util.Collections;
@@ -47,7 +47,18 @@ public class ContactActivity extends BaseActivity {
     private void initView() {
         lv = (ListView) findViewById(R.id.lv);
 
-        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.READ_CONTACTS, PermisstionsUtil.READ_CONTACTS_CODE, "读取联系人权限", new PermisstionsUtil.PermissionResult() {
+//        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.READ_CONTACTS, PermisstionsUtil.READ_CONTACTS_CODE, "读取联系人权限", new PermisstionsUtil.PermissionResult() {
+//            @Override
+//            public void granted(int requestCode) {
+//                initData();
+//            }
+//
+//            @Override
+//            public void denied(int requestCode) {
+//                ToastUtil.showToast(mContext, "读取联系人权限被拒绝");
+//            }
+//        });
+        PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CONTACTS}, PermisstionUtil.CONTACTS_CODE, "读取联系人权限", new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
                 initData();
@@ -82,7 +93,29 @@ public class ContactActivity extends BaseActivity {
 
     private void callPerson(final String mobile) {
         LogUtil.i(tag,"mobile:"+mobile);
-        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CALL_PHONE, PermisstionsUtil.CALL_PHONE_CODE, "拨号权限", new PermisstionsUtil.PermissionResult() {
+//        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CALL_PHONE, PermisstionsUtil.CALL_PHONE_CODE, "拨号权限", new PermisstionsUtil.PermissionResult() {
+//            @Override
+//            public void granted(int requestCode) {
+//                try {
+//                    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+//                        LogUtil.i(tag,"call:"+Uri.parse("tel:" + mobile).toString());
+//                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mobile));
+//                        startActivity(intent);
+//                    }else{
+//                        LogUtil.i(tag,"无拨号权限");
+//                    }
+//                } catch (Exception e) {
+//                    LogUtil.i(tag,"e:"+e.getMessage());
+//                }
+//            }
+//
+//            @Override
+//            public void denied(int requestCode) {
+//                LogUtil.i(tag,"拨号权限被拒绝");
+//                ToastUtil.showToast(mContext, "拨号权限被拒绝");
+//            }
+//        });
+        PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CALL_PHONE}, PermisstionUtil.CALL_PHONE_CODE, "拨号权限", new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
                 try {
@@ -109,6 +142,5 @@ public class ContactActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PermisstionsUtil.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

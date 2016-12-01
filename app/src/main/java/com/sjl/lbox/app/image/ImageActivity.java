@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.util.ImageUtil;
-import com.sjl.lbox.util.PermisstionsUtil;
+import com.sjl.lbox.util.PermisstionUtil;
 import com.sjl.lbox.util.PictureUtil;
 import com.sjl.lbox.util.ToastUtil;
 
@@ -40,7 +40,18 @@ public class ImageActivity extends BaseActivity {
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CAMERA, PermisstionsUtil.CAMERA_CODE, "图片选择需要拍照权限。", new PermisstionsUtil.PermissionResult() {
+//                PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CAMERA, PermisstionsUtil.CAMERA_CODE, "图片选择需要拍照权限。", new PermisstionsUtil.PermissionResult() {
+//                    @Override
+//                    public void granted(int requestCode) {
+//                        choosePicture();
+//                    }
+//
+//                    @Override
+//                    public void denied(int requestCode) {
+//                        ToastUtil.showToast(mContext, "拍照权限被拒绝");
+//                    }
+//                });
+                PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CAMERA}, PermisstionUtil.CAMERA_CODE, "图片选择需要拍照权限", new PermisstionUtil.OnPermissionResult() {
                     @Override
                     public void granted(int requestCode) {
                         choosePicture();
@@ -75,9 +86,18 @@ public class ImageActivity extends BaseActivity {
     }
 
     private void requestPermission() {
-        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CAMERA, PermisstionsUtil.CAMERA_CODE, "图片选择需要拍照权限。", null);
-        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.WRITE_EXTERNAL_STORAGE, PermisstionsUtil.WRITE_EXTERNAL_STORAGE_CODE, "SD卡读写权限。", null);
-        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.READ_EXTERNAL_STORAGE, PermisstionsUtil.READ_EXTERNAL_STORAGE_CODE, "SD卡读写权限", null);
+//        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CAMERA, PermisstionsUtil.CAMERA_CODE, "图片选择需要拍照权限。", null);
+        PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CAMERA}, PermisstionUtil.CAMERA_CODE, "图片选择需要拍照权限", new PermisstionUtil.OnPermissionResult() {
+            @Override
+            public void granted(int requestCode) {
+
+            }
+
+            @Override
+            public void denied(int requestCode) {
+
+            }
+        });
     }
 
     @Override
@@ -98,5 +118,10 @@ public class ImageActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

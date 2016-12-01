@@ -17,7 +17,7 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.app.compass.view.CompassView;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.util.LogUtil;
-import com.sjl.lbox.util.PermisstionsUtil;
+import com.sjl.lbox.util.PermisstionUtil;
 import com.sjl.lbox.util.ToastUtil;
 
 /**
@@ -43,7 +43,7 @@ public class CompassActivity extends BaseActivity {
         public void onLocationChanged(Location location) {
             LogUtil.i(tag, "onLocationChanged:" + location.toString());
             tvLocation.setText("经度:" + location.getLongitude() + ",纬度:" + location.getLatitude());
-            tvSpeed.setText("速度："+location.getSpeed());
+            tvSpeed.setText("速度：" + location.getSpeed());
         }
 
         @Override
@@ -108,7 +108,31 @@ public class CompassActivity extends BaseActivity {
      */
     private void initLocation() {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.ACCESS_FINE_LOCATION, PermisstionsUtil.ACCESS_FINE_LOCATION_CODE, "位置权限", new PermisstionsUtil.PermissionResult() {
+//        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.ACCESS_FINE_LOCATION, PermisstionsUtil.ACCESS_FINE_LOCATION_CODE, "位置权限", new PermisstionsUtil.PermissionResult() {
+//            @Override
+//            public void granted(int requestCode) {
+//                if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//                    if (locationManager.getProvider(LocationManager.NETWORK_PROVIDER) != null) {
+//                        LogUtil.i(tag, "NETWORK_PROVIDER");
+//                        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+//                    } else if (locationManager.getProvider(LocationManager.GPS_PROVIDER) != null) {
+//                        LogUtil.i(tag, "GPS_PROVIDER");
+//                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+//                    } else {
+//                        ToastUtil.showToast(mContext, "无法定位");
+//                    }
+//                } else {
+//                    LogUtil.i(tag, "无定位权限");
+//                }
+//
+//            }
+//
+//            @Override
+//            public void denied(int requestCode) {
+//                ToastUtil.showToast(mContext, "位置权限被拒绝");
+//            }
+//        });
+        PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.ACCESS_FINE_LOCATION}, PermisstionUtil.ACCESS_FINE_LOCATION_CODE, "位置权限", new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
                 if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -124,7 +148,6 @@ public class CompassActivity extends BaseActivity {
                 } else {
                     LogUtil.i(tag, "无定位权限");
                 }
-
             }
 
             @Override
@@ -132,7 +155,6 @@ public class CompassActivity extends BaseActivity {
                 ToastUtil.showToast(mContext, "位置权限被拒绝");
             }
         });
-
     }
 
     /**
@@ -210,6 +232,5 @@ public class CompassActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PermisstionsUtil.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

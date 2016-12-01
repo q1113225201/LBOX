@@ -3,9 +3,7 @@ package com.sjl.lbox.app.FloatWindow.manager;
 
 import android.content.Context;
 import android.view.WindowManager;
-import android.widget.TextView;
 
-import com.sjl.lbox.R;
 import com.sjl.lbox.app.FloatWindow.view.FloatWindowBig;
 import com.sjl.lbox.app.FloatWindow.view.FloatWindowSmall;
 
@@ -46,7 +44,7 @@ public class FloatWindowManager {
             floatWindowSmall = new FloatWindowSmall(context);
             this.context = context;
         }
-        floatWindowManager = new FloatWindowManager(context);
+        //floatWindowManager = new FloatWindowManager(context);
         getWindowManager().addView(floatWindowSmall, floatWindowSmall.layoutParams);
     }
 

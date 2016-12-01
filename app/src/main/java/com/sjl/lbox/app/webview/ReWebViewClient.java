@@ -23,7 +23,7 @@ import android.webkit.WebViewClient;
 import com.sjl.lbox.listener.BaseListener;
 import com.sjl.lbox.util.DialogUtil;
 import com.sjl.lbox.util.LogUtil;
-import com.sjl.lbox.util.PermisstionsUtil;
+import com.sjl.lbox.util.PermisstionUtil;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -116,7 +116,25 @@ public class ReWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, final String url) {
         if (url.startsWith("tel:")) {
-            PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CALL_PHONE, PermisstionsUtil.CALL_PHONE_CODE, "拨打电话需要拨号权限，是否继续？", new PermisstionsUtil.PermissionResult() {
+//            PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CALL_PHONE, PermisstionsUtil.CALL_PHONE_CODE, "拨打电话需要拨号权限，是否继续？", new PermisstionsUtil.PermissionResult() {
+//                @Override
+//                public void granted(int requestCode) {
+//                    try {
+//                        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+//                            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+//                            mContext.startActivity(intent);
+//                        }
+//                    } catch (Exception e) {
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void denied(int requestCode) {
+//
+//                }
+//            });
+            PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CALL_PHONE}, PermisstionUtil.CALL_PHONE_CODE, "拨打电话需要拨号权限，是否继续？", new PermisstionUtil.OnPermissionResult() {
                 @Override
                 public void granted(int requestCode) {
                     try {
@@ -342,5 +360,4 @@ public class ReWebViewClient extends WebViewClient {
             });
         }
     }
-
 }

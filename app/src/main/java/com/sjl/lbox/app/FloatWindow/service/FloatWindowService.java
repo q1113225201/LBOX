@@ -55,10 +55,19 @@ public class FloatWindowService extends Service {
 
         @Override
         public void run() {
-            LogUtil.i(tag,"isWindowShowing:"+FloatWindowManager.getInstance(context).isWindowShowing());
-            LogUtil.i(tag,"isHome:"+AppUtil.isHome(context));
-            if (!AppUtil.isHome(context)) {
-                //在桌面上
+            if(AppUtil.getLatestPackage(context)==null){
+                //最近运行的app包名为null执行刷新小悬浮窗操作
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //已显示悬浮窗，更新大悬浮窗
+                        FloatWindowManager.getInstance(context).updateFloatWindowBig();
+                    }
+                });
+                return;
+            }
+            if (AppUtil.isHome(context)) {
+                //当前在桌面上则显示或更新悬浮窗
                 if(FloatWindowManager.getInstance(context).isWindowShowing()){
                     //已显示悬浮窗，则更新大悬浮窗
                     handler.post(new Runnable() {
@@ -77,8 +86,8 @@ public class FloatWindowService extends Service {
                         }
                     });
                 }
-            }else if(!AppUtil.isHome(context)){
-                //不在桌面上
+            }else {
+                //当前不在桌面则关闭所有悬浮窗
                 if(FloatWindowManager.getInstance(context).isWindowShowing()){
                     //已显示悬浮窗，则关闭所有悬浮窗
                     handler.post(new Runnable() {

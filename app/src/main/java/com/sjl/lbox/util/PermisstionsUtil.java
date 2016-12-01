@@ -30,7 +30,7 @@ public class PermisstionsUtil {
     //写外部设备
     public static String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     public static int WRITE_EXTERNAL_STORAGE_CODE = 0x1104;
-    //写外部设备
+    //读取联系人
     public static String READ_CONTACTS = Manifest.permission.READ_CONTACTS;
     public static int READ_CONTACTS_CODE = 0x1105;
     //定位

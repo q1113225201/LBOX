@@ -17,7 +17,6 @@ import android.webkit.WebView;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.util.LogUtil;
 import com.sjl.lbox.util.NetWorkUtil;
-import com.sjl.lbox.util.PermisstionsUtil;
 import com.sjl.lbox.util.PictureUtil;
 
 import java.io.File;
@@ -315,7 +314,7 @@ public class WebViewActivity extends BaseActivity implements
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PermisstionsUtil.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //PermisstionsUtil.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
     //    @Override
 //    protected void onSaveInstanceState(Bundle outState) {
