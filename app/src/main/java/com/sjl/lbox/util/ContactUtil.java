@@ -72,11 +72,9 @@ public class ContactUtil {
             while (cursor != null ? cursor.moveToNext() : false) {
                 String name = cursor.getString(0);
                 String mobile = cursor.getString(1).replace("+86", "").replace(" ", "").replace("-", "");
-                String namePinYin = PinYinUtil.getFullPinYin(name).toUpperCase(Locale.US);
+                String namePinYin = PinYinUtil.getPinYin(name).toUpperCase(Locale.US);
                 PhoneContact contactInfo = new PhoneContact(name, mobile, namePinYin);
-                if (RegexUtil.regexMobile(contactInfo.getMobile())) {
-                    list.add(contactInfo);
-                }
+                list.add(contactInfo);
             }
             cursor.close();
         } catch (Exception e) {
@@ -96,11 +94,9 @@ public class ContactUtil {
             while (cursor != null ? cursor.moveToNext() : false) {
                 String name = cursor.getString(PHONES_DISPLAY_NAME_INDEX);
                 String mobile = cursor.getString(PHONES_NUMBER_INDEX).replace("+86", "").replace(" ", "").replace("-", "");
-                String namePinYin = PinYinUtil.getFullPinYin(name).toUpperCase(Locale.US);
+                String namePinYin = PinYinUtil.getPinYin(name).toUpperCase(Locale.US);
                 PhoneContact contactInfo = new PhoneContact(name, mobile, namePinYin);
-                if (RegexUtil.regexMobile(contactInfo.getMobile())) {
-                    list.add(contactInfo);
-                }
+                list.add(contactInfo);
             }
             cursor.close();
         } catch (Exception ex) {
