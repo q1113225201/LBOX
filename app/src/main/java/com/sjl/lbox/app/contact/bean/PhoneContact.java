@@ -1,4 +1,4 @@
-package com.sjl.lbox.bean;
+package com.sjl.lbox.app.contact.bean;
 
 import java.util.Comparator;
 
@@ -12,6 +12,7 @@ public class PhoneContact implements Comparator<PhoneContact> {
     private String name;
     private String mobile;
     private String namePinYin;
+    private String nameFirstChar;
 
     public PhoneContact() {
     }
@@ -20,6 +21,14 @@ public class PhoneContact implements Comparator<PhoneContact> {
         this.name = name;
         this.mobile = mobile;
         this.namePinYin = namePinYin;
+        this.nameFirstChar = "";
+    }
+
+    public PhoneContact(String name, String mobile, String namePinYin, String nameFirstChar) {
+        this.name = name;
+        this.mobile = mobile;
+        this.namePinYin = namePinYin;
+        this.nameFirstChar = nameFirstChar;
     }
 
     public String getName() {
@@ -46,8 +55,17 @@ public class PhoneContact implements Comparator<PhoneContact> {
         this.namePinYin = namePinYin;
     }
 
+    public String getNameFirstChar() {
+        return nameFirstChar;
+    }
+
+    public void setNameFirstChar(String nameFirstChar) {
+        this.nameFirstChar = nameFirstChar;
+    }
+
     @Override
     public int compare(PhoneContact lhs, PhoneContact rhs) {
-        return lhs.getNamePinYin().compareTo(rhs.getNamePinYin())>0?1:-1;
+        //先根据首字母排序，再根据文字拼音
+        return (lhs.getNameFirstChar().compareTo(rhs.getNameFirstChar()) == 0 || lhs.getNamePinYin().compareTo(rhs.getNamePinYin()) == 0)?0:lhs.getNameFirstChar().compareTo(rhs.getNameFirstChar());
     }
 }

@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
-import com.sjl.lbox.bean.PhoneContact;
+import com.sjl.lbox.app.contact.bean.PhoneContact;
 
 import java.util.ArrayList;
 import java.util.List;

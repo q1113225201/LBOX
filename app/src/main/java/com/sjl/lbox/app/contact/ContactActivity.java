@@ -1,26 +1,25 @@
 package com.sjl.lbox.app.contact;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.contact.adapter.ContactAdapter;
+import com.sjl.lbox.app.contact.bean.PhoneContact;
+import com.sjl.lbox.app.contact.view.SectionIndexBar;
 import com.sjl.lbox.base.BaseActivity;
-import com.sjl.lbox.bean.PhoneContact;
-import com.sjl.lbox.listener.BaseListener;
 import com.sjl.lbox.util.ContactUtil;
-import com.sjl.lbox.util.DialogUtil;
-import com.sjl.lbox.util.LogUtil;
 import com.sjl.lbox.util.PermisstionUtil;
 import com.sjl.lbox.util.ToastUtil;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,33 +31,61 @@ import java.util.List;
  */
 public class ContactActivity extends BaseActivity {
     private String tag = ContactActivity.class.getSimpleName();
+    private EditText etKeyword;
     private ListView lv;
-    private ContactAdapter adapter;
+    private TextView tvCenter;
+
+    private SectionIndexBar sectionIndexBar;
+
+    private List<PhoneContact> allList;
+
     private List<PhoneContact> list;
+
+    private ContactAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         setContentView(R.layout.activity_contact);
 
         initView();
     }
 
     private void initView() {
+        etKeyword = (EditText) findViewById(R.id.etKeyword);
         lv = (ListView) findViewById(R.id.lv);
+        sectionIndexBar = (SectionIndexBar) findViewById(R.id.sectionIndexBar);
+        tvCenter = (TextView) findViewById(R.id.tvCenter);
 
-//        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.READ_CONTACTS, PermisstionsUtil.READ_CONTACTS_CODE, "读取联系人权限", new PermisstionsUtil.PermissionResult() {
-//            @Override
-//            public void granted(int requestCode) {
-//                initData();
-//            }
-//
-//            @Override
-//            public void denied(int requestCode) {
-//                ToastUtil.showToast(mContext, "读取联系人权限被拒绝");
-//            }
-//        });
-        PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CONTACTS}, PermisstionUtil.CONTACTS_CODE, "读取联系人权限", new PermisstionUtil.OnPermissionResult() {
+        etKeyword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //根据关键字查询
+                String keyword = etKeyword.getText().toString();
+                list.clear();
+                PhoneContact phoneContact;
+                for (int i = 0; i < allList.size(); i++) {
+                    phoneContact = allList.get(i);
+                    if (phoneContact.getNamePinYin().contains(keyword.toUpperCase()) || phoneContact.getName().contains(keyword)) {
+                        list.add(phoneContact);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        PermisstionUtil.requestPermissions(this, new String[]{PermisstionUtil.CONTACTS}, PermisstionUtil.CONTACTS_CODE, "读取联系人需要联系人读写权限", new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
                 initData();
@@ -66,77 +93,53 @@ public class ContactActivity extends BaseActivity {
 
             @Override
             public void denied(int requestCode) {
-                ToastUtil.showToast(mContext, "读取联系人权限被拒绝");
+                ToastUtil.showToast(mContext, "联系人权限被拒绝");
             }
         });
     }
 
     private void initData() {
-        list = ContactUtil.getAllPhoneContacts(mContext);
-        //排序
-        Collections.sort(list, new PhoneContact());
-        adapter = new ContactAdapter(mContext, list);
+        allList = ContactUtil.getAllPhoneContacts(this);
+        initPhoneContact();
+        adapter = new ContactAdapter(this, list);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final PhoneContact phoneContact = list.get(position);
-                DialogUtil.showConfirm(mContext, "提示", phoneContact.getName() + ":" + phoneContact.getMobile(), "呼叫", null, new BaseListener() {
-                    @Override
-                    public void baseListener(View v, String msg) {
-                        callPerson(phoneContact.getMobile());
+                ToastUtil.showToast(mContext, list.get(position).getName() + "——" + list.get(position).getMobile());
+            }
+        });
+        sectionIndexBar.setOnIndexListener(new SectionIndexBar.OnIndexListener() {
+            @Override
+            public void onIndexSelect(String str) {
+                tvCenter.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onIndexChange(String str) {
+                tvCenter.setText(str);
+                tvCenter.setVisibility(View.VISIBLE);
+                for (int i = 0; i < list.size(); i++) {
+                    if (str.charAt(0) <= list.get(i).getNameFirstChar().charAt(0)) {
+                        lv.setSelection(i);
+                        break;
                     }
-                }, null, false);
+                }
             }
         });
     }
 
-    private void callPerson(final String mobile) {
-        LogUtil.i(tag,"mobile:"+mobile);
-//        PermisstionsUtil.checkSelfPermission(mContext, PermisstionsUtil.CALL_PHONE, PermisstionsUtil.CALL_PHONE_CODE, "拨号权限", new PermisstionsUtil.PermissionResult() {
-//            @Override
-//            public void granted(int requestCode) {
-//                try {
-//                    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-//                        LogUtil.i(tag,"call:"+Uri.parse("tel:" + mobile).toString());
-//                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mobile));
-//                        startActivity(intent);
-//                    }else{
-//                        LogUtil.i(tag,"无拨号权限");
-//                    }
-//                } catch (Exception e) {
-//                    LogUtil.i(tag,"e:"+e.getMessage());
-//                }
-//            }
-//
-//            @Override
-//            public void denied(int requestCode) {
-//                LogUtil.i(tag,"拨号权限被拒绝");
-//                ToastUtil.showToast(mContext, "拨号权限被拒绝");
-//            }
-//        });
-        PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CALL_PHONE}, PermisstionUtil.CALL_PHONE_CODE, "拨号权限", new PermisstionUtil.OnPermissionResult() {
-            @Override
-            public void granted(int requestCode) {
-                try {
-                    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                        LogUtil.i(tag,"call:"+Uri.parse("tel:" + mobile).toString());
-                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mobile));
-                        startActivity(intent);
-                    }else{
-                        LogUtil.i(tag,"无拨号权限");
-                    }
-                } catch (Exception e) {
-                    LogUtil.i(tag,"e:"+e.getMessage());
-                }
-            }
-
-            @Override
-            public void denied(int requestCode) {
-                LogUtil.i(tag,"拨号权限被拒绝");
-                ToastUtil.showToast(mContext, "拨号权限被拒绝");
-            }
-        });
+    private void initPhoneContact() {
+        list = new ArrayList<>();
+        for (PhoneContact item : allList) {
+            //不能转换为字母的都用#
+            String nameFirstChar = (item.getNamePinYin() == null || item.getNamePinYin().length() == 0 || !(item.getNamePinYin().charAt(0) >= 'A' && item.getNamePinYin().charAt(0) <= 'Z')) ? "#" : item.getNamePinYin().substring(0, 1);
+            item.setNameFirstChar(nameFirstChar);
+            list.add(item);
+        }
+        //按字母排序
+        Collections.sort(allList, new PhoneContact());
+        Collections.sort(list, new PhoneContact());
     }
 
     @Override
