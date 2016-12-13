@@ -87,7 +87,11 @@
             android:exported="true" />
 
         <activity android:name=".app.EditText.EditTextActivity" />
-        <activity android:name=".app.EditText.PwdEditText.PwdEditTextActivity"></activity>
+        <activity android:name=".app.EditText.PwdEditText.PwdEditTextActivity" />
+        <activity android:name=".app.mode.ModeActivity" />
+        <activity android:name=".app.mode.mvp.MVPActivity" />
+        <activity android:name=".app.mode.mvp.login.MVPLoginActivity" />
+        <activity android:name=".app.mode.mvp.main.MVPMainActivity"></activity>
     </application>
 
 </manifest>

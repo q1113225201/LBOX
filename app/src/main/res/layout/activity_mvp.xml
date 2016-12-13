@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_mvp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sjl.lbox.app.mode.mvp.MVPActivity">
+
+    <Button
+        android:id="@+id/btnEnter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="进入MVP实现的登陆界面" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewCommonStyle"
+                android:text="MVP核心思想\nMVP把Activity中的UI逻辑抽象成View接口，把业务逻辑抽象成Presenter接口，Model类还是原来的Model。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Activity只响应生命周期，其他都交给Presenter。Presenter是Model和View之间的桥梁，为了让结构变得更加简单，View并不能直接对Model进行操作，这也是MVP与MVC最大的不同之处。" />
+
+            <TextView
+                style="@style/TextViewCommonStyle"
+                android:text="MVP模式的作用（*为重点）" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1、分离了视图逻辑和业务逻辑，降低了耦合；\n*2、Activity只处理生命周期的任务，代码变得更加简洁；\n3、视图逻辑和业务逻辑分别抽象到了View和Presenter的接口中去，提高代码的可阅读性；\n*4、Presenter被抽象成接口，可以有多种具体的实现，所以方便进行单元测试；\n*5、把业务逻辑抽到Presenter中去，避免后台线程引用着Activity导致Activity的资源无法被系统回收从而引起内存泄露和OOM；" />
+
+            <TextView
+                style="@style/TextViewCommonStyle"
+                android:text="参考" />
+
+            <TextView
+                android:id="@+id/tvLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="http://www.open-open.com/lib/view/open1446377609317.html#articleHeader3" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

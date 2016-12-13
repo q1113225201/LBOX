@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_mvpmain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sjl.lbox.app.mode.mvp.main.MVPMainActivity">
+
+    <TextView
+        style="@style/TextViewCommonStyle"
+        android:text="MVP首页" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登录用户信息" />
+
+    <TextView
+        android:id="@+id/tvMVPUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvMVPPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnMVPLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注销" />
+</LinearLayout>

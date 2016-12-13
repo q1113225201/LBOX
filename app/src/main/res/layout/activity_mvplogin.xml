@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_mvplogin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sjl.lbox.app.mode.mvp.login.MVPLoginActivity">
+
+    <EditText
+        android:id="@+id/etMVPUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入帐号" />
+
+    <EditText
+        android:id="@+id/etMVPPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入密码"
+        android:inputType="textPassword" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnMVPLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="登陆" />
+
+        <Button
+            android:id="@+id/btnMVPReset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="重置" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextViewCommonStyle"
+        android:text="正确帐号：mvp，密码：mvp" />
+</LinearLayout>
