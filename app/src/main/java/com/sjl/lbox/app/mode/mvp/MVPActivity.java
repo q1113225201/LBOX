@@ -34,7 +34,7 @@ public class MVPActivity extends BaseActivity {
     private void initView() {
         btnEnter = (Button) findViewById(R.id.btnEnter);
         tvLink = (TextView) findViewById(R.id.tvLink);
-        tvLink.getPaint().setFlags(Paint.ANTI_ALIAS_FLAG);
+        tvLink.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         btnEnter.setOnClickListener(new View.OnClickListener() {
             @Override
