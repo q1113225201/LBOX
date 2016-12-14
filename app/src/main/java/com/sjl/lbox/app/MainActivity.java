@@ -18,6 +18,7 @@ import com.sjl.lbox.app.contact.ContactActivity;
 import com.sjl.lbox.app.gesture.GestureActivity;
 import com.sjl.lbox.app.http.HttpActivity;
 import com.sjl.lbox.app.image.ImageActivity;
+import com.sjl.lbox.app.intentService.IntentServiceActivity;
 import com.sjl.lbox.app.mode.ModeActivity;
 import com.sjl.lbox.app.music.MusicActivity;
 import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
@@ -68,6 +69,7 @@ public class MainActivity extends BaseActivity {
     private void initData() {
         list = new ArrayList<Module>();
         list.add(new Module("开发模式", ModeActivity.class));
+        list.add(new Module("IntentService和LocalBroadcastManager", IntentServiceActivity.class));
         list.add(new Module("动画", AnimateActivity.class));
         list.add(new Module("悬浮窗", FloatWindowActivity.class));
         list.add(new Module("手势密码", GestureActivity.class));

@@ -91,7 +91,12 @@
         <activity android:name=".app.mode.ModeActivity" />
         <activity android:name=".app.mode.mvp.MVPActivity" />
         <activity android:name=".app.mode.mvp.login.MVPLoginActivity" />
-        <activity android:name=".app.mode.mvp.main.MVPMainActivity"></activity>
+        <activity android:name=".app.mode.mvp.main.MVPMainActivity" />
+        <activity android:name=".app.intentService.IntentServiceActivity" />
+
+        <service
+            android:name=".app.intentService.service.CustomeIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
