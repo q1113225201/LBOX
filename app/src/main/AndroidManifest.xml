@@ -100,7 +100,10 @@
 
         <activity android:name=".app.slideMenu.SlideMenuActivity" />
         <activity android:name=".app.slideMenu.NavigationViewActivity" />
-        <activity android:name=".app.slideMenu.ListMenuActivity"></activity>
+        <activity android:name=".app.slideMenu.ListMenuActivity" />
+        <activity android:name=".app.repeat.listview.ListViewActivity" />
+        <activity android:name=".app.repeat.listview.RefreshListViewActivity" />
+        <activity android:name=".app.repeat.RepeatActivity"></activity>
     </application>
 
 </manifest>

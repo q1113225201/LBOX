@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.slideMenu;
+package com.sjl.lbox.app.repeat.listview;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 侧滑菜单实现
- * 
+ * ListView效果
+ *
  * @author SJL
- * @date 2016/12/18 21:19
+ * @date 2016/12/18 21:21
  */
-public class SlideMenuActivity extends BaseActivity {
-
+public class ListViewActivity extends BaseActivity {
     private ListView lv;
     private ArrayAdapter adapter;
     private List<Module> list;
@@ -29,7 +28,7 @@ public class SlideMenuActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_slide_menu);
+        setContentView(R.layout.activity_list_view);
 
         initView();
     }
@@ -50,7 +49,6 @@ public class SlideMenuActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
-        list.add(new Module("DrawerLayout + NavigationView", NavigationViewActivity.class));
-        list.add(new Module("DrawerLayout + ListView", ListMenuActivity.class));
+        list.add(new Module("RefreshListView", RefreshListViewActivity.class));
     }
 }

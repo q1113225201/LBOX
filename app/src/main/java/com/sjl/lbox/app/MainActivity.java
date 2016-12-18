@@ -24,6 +24,7 @@ import com.sjl.lbox.app.music.MusicActivity;
 import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
 import com.sjl.lbox.app.pedometer.PedometerActivity;
 import com.sjl.lbox.app.progress.ProgressActivity;
+import com.sjl.lbox.app.repeat.RepeatActivity;
 import com.sjl.lbox.app.signature.SignatureActivity;
 import com.sjl.lbox.app.slideMenu.SlideMenuActivity;
 import com.sjl.lbox.app.viewpager.ViewPagerActivity;
@@ -69,6 +70,7 @@ public class MainActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
+        list.add(new Module("列表、网状布局", RepeatActivity.class));
         list.add(new Module("侧滑菜单", SlideMenuActivity.class));
         list.add(new Module("开发模式", ModeActivity.class));
         list.add(new Module("IntentService和LocalBroadcastManager", IntentServiceActivity.class));
