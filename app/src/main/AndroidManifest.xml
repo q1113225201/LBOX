@@ -96,7 +96,11 @@
 
         <service
             android:name=".app.intentService.service.CustomeIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".app.slideMenu.SlideMenuActivity" />
+        <activity android:name=".app.slideMenu.NavigationViewActivity" />
+        <activity android:name=".app.slideMenu.ListMenuActivity"></activity>
     </application>
 
 </manifest>

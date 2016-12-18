@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/navHome"
+            android:checkable="true"
+            android:icon="@drawable/logo"
+            android:title="Home" />
+        <item
+            android:id="@+id/navMessage"
+            android:checkable="true"
+            android:icon="@drawable/logo"
+            android:title="Message" />
+    </group>
+    <item android:title="Other">
+        <menu>
+            <item
+                android:checkable="true"
+                android:title="other1" />
+            <item
+                android:checkable="true"
+                android:title="other2" />
+        </menu>
+    </item>
+</menu>

@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.sjl.lbox.util.LogUtil;
+
 
 /**
  * 自定义IntentService
@@ -12,6 +14,7 @@ import android.support.v4.content.LocalBroadcastManager;
  * @date 2016/12/14 22:39
  */
 public class CustomeIntentService extends IntentService {
+    private static final String TAG = "CustomeIntentService";
 
     public static final String ACTION_RESULE = "com.sjl.result";
     public static final String RESULT = "result";
@@ -55,6 +58,7 @@ public class CustomeIntentService extends IntentService {
         while (progress < 100) {
             intent = new Intent(ACTION_RESULE);
             intent.putExtra(RESULT, String.format("download...%d%%", progress));
+            LogUtil.i(TAG,String.format("download...%d%%", progress));
             localBroadcastManager.sendBroadcast(intent);
             progress += 20;
             try {
@@ -76,6 +80,7 @@ public class CustomeIntentService extends IntentService {
         while (progress < 100) {
             intent = new Intent(ACTION_RESULE);
             intent.putExtra(RESULT, String.format("upload...%d%%", progress));
+            LogUtil.i(TAG,String.format("upload...%d%%", progress));
             localBroadcastManager.sendBroadcast(intent);
             progress += 20;
             try {
