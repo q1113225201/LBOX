@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.repeat.listview.ListViewActivity;
+import com.sjl.lbox.app.repeat.recyclerview.RecyclerViewActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -51,5 +52,6 @@ public class RepeatActivity extends BaseActivity {
     private void initData() {
         list = new ArrayList<Module>();
         list.add(new Module("ListView", ListViewActivity.class));
+        list.add(new Module("RecyclerView", RecyclerViewActivity.class));
     }
 }
