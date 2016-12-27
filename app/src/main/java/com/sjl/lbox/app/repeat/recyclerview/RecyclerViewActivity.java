@@ -62,7 +62,7 @@ public class RecyclerViewActivity extends BaseActivity implements View.OnClickLi
         adapter.setOnItemClickListener(new RVAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ToastUtil.showToast(mContext, list.get(position));
+                ToastUtil.showToast(mContext, adapter.getItem(position));
             }
         });
         recyclerView.setAdapter(adapter);

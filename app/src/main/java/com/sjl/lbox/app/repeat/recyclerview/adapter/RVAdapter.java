@@ -69,6 +69,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         notifyItemRemoved(position);
     }
 
+    /**
+     * 获取项
+     * @param position
+     * @return
+     */
+    public String getItem(int position){
+        return list.get(position);
+    }
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.single_text.setText(list.get(position));
@@ -94,19 +103,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         void onItemClick(View view, int position);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnItemClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder{
         TextView single_text;
 
         public ViewHolder(View itemView) {
             super(itemView);
             single_text = (TextView) itemView.findViewById(R.id.single_text);
-        }
-
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(view, position);
-            }
         }
     }
 }
