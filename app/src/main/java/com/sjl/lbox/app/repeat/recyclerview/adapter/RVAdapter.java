@@ -3,7 +3,6 @@ package com.sjl.lbox.app.repeat.recyclerview.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -71,13 +70,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.single_text.setText(list.get(position));
         if (onItemClickListener != null) {
             holder.single_text.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onItemClick(v, position);
+                    //holder.itemView代表这一项的View
+                    //holder.getLayoutPosition()获取点击的是第几项
+                    onItemClickListener.onItemClick(holder.itemView, holder.getLayoutPosition());
                 }
             });
         }
