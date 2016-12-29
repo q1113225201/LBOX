@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--仿支付宝密码输入框-->
     <declare-styleable name="PwdEditText">
         <!--圆角半径-->
-        <attr name="borderCornerRadius" format="float"/>
+        <attr name="borderCornerRadius" format="float" />
         <!--密码长度-->
-        <attr name="passwordLength" format="integer"/>
+        <attr name="passwordLength" format="integer" />
         <!--背景颜色-->
-        <attr name="bgColor" format="color"/>
+        <attr name="bgColor" format="color" />
         <!--线宽度-->
-        <attr name="lineWidth" format="float"/>
+        <attr name="lineWidth" format="float" />
         <!--线颜色-->
-        <attr name="lineColor" format="color"/>
+        <attr name="lineColor" format="color" />
         <!--密码点半径-->
-        <attr name="dotRadius" format="float"/>
+        <attr name="dotRadius" format="float" />
         <!--点颜色-->
-        <attr name="dotColor" format="color"/>
+        <attr name="dotColor" format="color" />
+    </declare-styleable>
+    <!--左滑删除控件-->
+    <declare-styleable name="SwipeItemLayout">
+        <!--能否滑动-->
+        <attr name="isSwipeEnable" format="boolean" />
+        <!--是否左滑-->
+        <attr name="isLeftSwipe" format="boolean" />
     </declare-styleable>
 </resources>

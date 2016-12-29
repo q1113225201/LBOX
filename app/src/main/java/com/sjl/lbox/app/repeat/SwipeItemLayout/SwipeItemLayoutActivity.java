@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.repeat;
+package com.sjl.lbox.app.repeat.SwipeItemLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.repeat.SwipeItemLayout.SwipeItemLayoutActivity;
-import com.sjl.lbox.app.repeat.listview.ListViewActivity;
-import com.sjl.lbox.app.repeat.recyclerview.RecyclerViewActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -18,12 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 重复样式，列表、网状布局
+ * SwipeItemLayout演示
  *
  * @author SJL
- * @date 2016/12/18 21:25
+ * @date 2016/12/29
  */
-public class RepeatActivity extends BaseActivity {
+public class SwipeItemLayoutActivity extends BaseActivity {
     private ListView lv;
     private ArrayAdapter adapter;
     private List<Module> list;
@@ -31,7 +28,7 @@ public class RepeatActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repeat);
+        setContentView(R.layout.activity_swipe_item_layout);
 
         initView();
     }
@@ -52,8 +49,7 @@ public class RepeatActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
-        list.add(new Module("ListView", ListViewActivity.class));
-        list.add(new Module("RecyclerView", RecyclerViewActivity.class));
-        list.add(new Module("SwipeItemLayout", SwipeItemLayoutActivity.class));
+        list.add(new Module("RecyclerView", SwipeRecyclerViewActivity.class));
+        list.add(new Module("ListView", SwipeListViewActivity.class));
     }
 }

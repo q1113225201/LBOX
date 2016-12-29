@@ -104,7 +104,10 @@
         <activity android:name=".app.repeat.listview.ListViewActivity" />
         <activity android:name=".app.repeat.listview.RefreshListViewActivity" />
         <activity android:name=".app.repeat.RepeatActivity" />
-        <activity android:name=".app.repeat.recyclerview.RecyclerViewActivity"></activity>
+        <activity android:name=".app.repeat.recyclerview.RecyclerViewActivity" />
+        <activity android:name=".app.repeat.SwipeItemLayout.SwipeItemLayoutActivity" />
+        <activity android:name=".app.repeat.SwipeItemLayout.SwipeRecyclerViewActivity" />
+        <activity android:name=".app.repeat.SwipeItemLayout.SwipeListViewActivity" />
     </application>
 
 </manifest>
