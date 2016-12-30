@@ -84,7 +84,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
      * @param position
      */
     public void topItem(int position) {
-
+        String item = list.get(position);
+        list.remove(position);
+        notifyItemRemoved(position);
+        list.add(0, item);
+        notifyItemInserted(0);
     }
 
     /**

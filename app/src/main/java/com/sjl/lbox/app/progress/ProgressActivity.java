@@ -5,11 +5,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.progress.view.CircleProgress;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.util.DialogUtil;
+import com.sjl.lbox.util.ToastUtil;
 import com.sjl.lbox.view.dialog.ProgressDialog;
+
 /**
  * 自定义进度条显示Activity
  *
@@ -19,15 +23,18 @@ import com.sjl.lbox.view.dialog.ProgressDialog;
 public class ProgressActivity extends BaseActivity implements View.OnClickListener {
 
     private Button btnShowProgressWithTime;
-
     private Button btnShowProgressMaxTime;
-
     private Button btnShowProgressCurrentTime;
+    private Button btnProgressSetting;
+    private Button btnProgressRunning;
+    private EditText etProgressValue;
+    private CircleProgress circleProgress;
 
     private int current = 0;
 
     private final int DISMISS = 0;
     private final int REFRESH = 1000;
+    private final int PROGRESS = 10;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -37,12 +44,22 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
                     DialogUtil.dismissLoadProgressDialog();
                     break;
                 case REFRESH:
-                    current+=10;
-                    if(current<=100){
+                    current += 10;
+                    if (current <= 100) {
                         progressDialog.setCurrentProgress(current);
-                        handler.sendEmptyMessageDelayed(REFRESH,1000);
-                    }else{
+                        handler.sendEmptyMessageDelayed(REFRESH, 1000);
+                    } else {
                         handler.sendEmptyMessage(DISMISS);
+                    }
+                    break;
+                case PROGRESS:
+                    if (current < 360) {
+                        current++;
+                        circleProgress.setProgressValue(current);
+                        circleProgress.setText(current + "");
+                        handler.sendEmptyMessageDelayed(PROGRESS, PROGRESS);
+                    } else {
+                        circleProgress.setProgressValue(0);
                     }
                     break;
             }
@@ -61,10 +78,18 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
         btnShowProgressWithTime = (Button) findViewById(R.id.btnShowProgressWithTime);
         btnShowProgressMaxTime = (Button) findViewById(R.id.btnShowProgressMaxTime);
         btnShowProgressCurrentTime = (Button) findViewById(R.id.btnShowProgressCurrentTime);
+        btnProgressSetting = (Button) findViewById(R.id.btnProgressSetting);
+        btnProgressRunning = (Button) findViewById(R.id.btnProgressRunning);
+        etProgressValue = (EditText) findViewById(R.id.etProgressValue);
+        circleProgress = (CircleProgress) findViewById(R.id.circleProgress);
+        //设置初始进度
+        circleProgress.setProgressValue(Float.parseFloat(etProgressValue.getText().toString()));
 
         btnShowProgressWithTime.setOnClickListener(this);
         btnShowProgressMaxTime.setOnClickListener(this);
         btnShowProgressCurrentTime.setOnClickListener(this);
+        btnProgressSetting.setOnClickListener(this);
+        btnProgressRunning.setOnClickListener(this);
     }
 
     private ProgressDialog progressDialog;
@@ -86,10 +111,23 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
                 progressDialog.setMaxProgress(5);
                 break;
             case R.id.btnShowProgressCurrentTime:
-                current=0;
+                current = 0;
                 progressDialog = DialogUtil.showLoadProgressDialog(mContext, false);
                 progressDialog.setCurrentProgress(current);
                 handler.sendEmptyMessage(REFRESH);
+                break;
+            case R.id.btnProgressSetting:
+                try {
+                    Float value = Float.parseFloat(etProgressValue.getText().toString());
+                    circleProgress.setProgressValue(value);
+                } catch (Exception e) {
+                    ToastUtil.showToast(mContext, "请输入合法进度");
+                }
+                break;
+            case R.id.btnProgressRunning:
+                current = 0;
+                circleProgress.setProgressMax(360);
+                handler.sendEmptyMessageDelayed(PROGRESS, PROGRESS);
                 break;
         }
     }

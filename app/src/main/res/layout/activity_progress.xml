@@ -1,25 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.sjl.lbox.app.progress.ProgressActivity">
 
-    <Button
-        android:id="@+id/btnShowProgressWithTime"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="显示3秒"/>
-    <Button
-        android:id="@+id/btnShowProgressMaxTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="设置最大进度"/>
-    <Button
-        android:id="@+id/btnShowProgressCurrentTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="设置实时进度"/>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnShowProgressWithTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显示3秒" />
+
+        <Button
+            android:id="@+id/btnShowProgressMaxTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置最大进度" />
+
+        <Button
+            android:id="@+id/btnShowProgressCurrentTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置实时进度" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etProgressValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="请输入进度"
+                    android:text="30" />
+
+                <Button
+                    android:id="@+id/btnProgressSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置" />
+
+                <Button
+                    android:id="@+id/btnProgressRunning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运行" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <com.sjl.lbox.app.progress.view.CircleProgress
+                    android:id="@+id/circleProgress"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:progressBackgroundColor="#CACACA"
+                    app:progressColor="#00FF00"
+                    app:progressWidth="20"></com.sjl.lbox.app.progress.view.CircleProgress>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

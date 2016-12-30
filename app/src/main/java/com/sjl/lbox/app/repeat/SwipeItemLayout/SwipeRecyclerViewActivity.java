@@ -1,6 +1,7 @@
 package com.sjl.lbox.app.repeat.SwipeItemLayout;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -74,6 +75,7 @@ public class SwipeRecyclerViewActivity extends BaseActivity implements View.OnCl
             public void onItemTop(View view, int position) {
                 ToastUtil.showToast(mContext, adapter.getItem(position) + "置顶");
                 adapter.topItem(position);
+                recyclerView.scrollToPosition(0);
             }
         });
         recyclerView.setAdapter(adapter);
@@ -81,7 +83,13 @@ public class SwipeRecyclerViewActivity extends BaseActivity implements View.OnCl
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                adapter.refresh(getList("refresh"));
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.refresh(getList("refresh"));
+                        refresh.setRefreshing(false);
+                    }
+                },2000);
             }
         });
     }

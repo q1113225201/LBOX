@@ -1,6 +1,7 @@
 package com.sjl.lbox.app.repeat.SwipeItemLayout;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +64,19 @@ public class SwipeListViewActivity extends BaseActivity implements View.OnClickL
                 ((SwipeItemLayout)view).closeSwipe();
                 ToastUtil.showToast(mContext, adapter.getItem(position) + "删除成功");
                 adapter.removeItem(position);
+            }
+        });
+
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.refresh(getList("refresh"));
+                        refresh.setRefreshing(false);
+                    }
+                },2000);
             }
         });
     }

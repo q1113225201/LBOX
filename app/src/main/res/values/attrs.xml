@@ -24,4 +24,17 @@
         <!--是否左滑-->
         <attr name="isLeftSwipe" format="boolean" />
     </declare-styleable>
+    <!--圆形进度条-->
+    <declare-styleable name="CircleProgress">
+        <!--进度条颜色-->
+        <attr name="progressColor" format="color" />
+        <!--进度条背景颜色-->
+        <attr name="progressBackgroundColor" format="color" />
+        <!--进度条宽度-->
+        <attr name="progressWidth" format="float" />
+        <!--最大进度-->
+        <attr name="progressMax" format="float" />
+        <!--字体颜色-->
+        <attr name="textColor" format="color" />
+    </declare-styleable>
 </resources>

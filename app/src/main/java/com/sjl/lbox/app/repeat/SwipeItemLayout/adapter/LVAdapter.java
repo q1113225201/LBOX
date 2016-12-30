@@ -68,6 +68,15 @@ public class LVAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * 刷新
+     * @param refreshList
+     */
+    public void refresh(List<String> refreshList){
+        this.list = refreshList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
