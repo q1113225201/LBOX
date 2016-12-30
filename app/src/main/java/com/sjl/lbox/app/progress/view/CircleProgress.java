@@ -5,12 +5,14 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.util.DensityUtil;
 
 /**
  * CircleProgress
@@ -53,7 +55,7 @@ public class CircleProgress extends View {
     //字体颜色
     private int textColor;
     //字体大小
-    private float textSize = 18;
+    private float textSize;
     //字体大小
     private String text = "";
     //宽度
@@ -80,6 +82,7 @@ public class CircleProgress extends View {
         progressWidth = typedArray.getFloat(R.styleable.CircleProgress_progressWidth, 4.0f);
         progressMax = typedArray.getFloat(R.styleable.CircleProgress_progressMax, 100f);
         textColor = typedArray.getColor(R.styleable.CircleProgress_textColor, Color.BLACK);
+        textSize = DensityUtil.sp2px(context,30f);
         typedArray.recycle();
     }
 
@@ -99,6 +102,8 @@ public class CircleProgress extends View {
         mPaintText.setAntiAlias(true);//消锯齿
         mPaintText.setTextSize(textSize);//设置字体大小
         mPaintText.setTypeface(Typeface.DEFAULT_BOLD);//设置字体
+        mPaintText.setTextAlign(Paint.Align.CENTER);
+        mPaintText.setStrokeWidth(progressWidth);
     }
 
     @Override
@@ -125,7 +130,9 @@ public class CircleProgress extends View {
         RectF rectF = new RectF(mWidth / 2 - radius, mHeight / 2 - radius, mWidth / 2 + radius, mHeight / 2 + radius);
         canvas.drawArc(rectF, 0f, 360 * progressValue / progressMax, false, mPaintProgress);
         //画字体
-        canvas.drawText(text, radius, radius, mPaintText);
+        Rect rect = new Rect();
+        mPaintText.getTextBounds(text, 0, text.length(), rect);
+        canvas.drawText("当前进度："+text, mWidth / 2, mHeight / 2,mPaintText);
     }
 
     /**
