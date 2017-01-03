@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
@@ -15,7 +14,7 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.util.DensityUtil;
 
 /**
- * CircleProgress
+ * 环形进度
  *
  * @author SJL
  * @date 2016/12/29
@@ -37,7 +36,8 @@ public class CircleProgress extends View {
         this.context = context;
         init(attrs);
     }
-
+    //偏移角度
+    private float offsetAngle;
     //进度条画笔
     private Paint mPaintProgress;
     //文字画笔
@@ -77,9 +77,10 @@ public class CircleProgress extends View {
      */
     private void initAttrs(AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgress);
+        offsetAngle = typedArray.getFloat(R.styleable.CircleProgress_progressOffsetAngle, 90f);
         progressColor = typedArray.getColor(R.styleable.CircleProgress_progressColor, Color.BLACK);
         progressBackgroundColor = typedArray.getColor(R.styleable.CircleProgress_progressBackgroundColor, Color.GRAY);
-        progressWidth = typedArray.getFloat(R.styleable.CircleProgress_progressWidth, 4.0f);
+        progressWidth = typedArray.getFloat(R.styleable.CircleProgress_progressWidth, 20.0f);
         progressMax = typedArray.getFloat(R.styleable.CircleProgress_progressMax, 100f);
         textColor = typedArray.getColor(R.styleable.CircleProgress_textColor, Color.BLACK);
         textSize = DensityUtil.sp2px(context,18f);
@@ -121,7 +122,7 @@ public class CircleProgress extends View {
      * @param canvas
      */
     private void drawProgress(Canvas canvas) {
-        int radius = (int) (Math.min(mWidth, mHeight) / 2 - progressWidth);
+        /*int radius = (int) (Math.min(mWidth, mHeight) / 2 - progressWidth);
         //画进度背景
         mPaintProgress.setColor(progressBackgroundColor);
         canvas.drawCircle(mWidth / 2, mHeight / 2, radius, mPaintProgress);
@@ -129,6 +130,15 @@ public class CircleProgress extends View {
         mPaintProgress.setColor(progressColor);
         RectF rectF = new RectF(mWidth / 2 - radius, mHeight / 2 - radius, mWidth / 2 + radius, mHeight / 2 + radius);
         canvas.drawArc(rectF, 0f, 360 * progressValue / progressMax, false, mPaintProgress);
+*/
+
+        //绘制进度背景
+        mPaintProgress.setColor(progressBackgroundColor);
+        canvas.drawArc(progressWidth,progressWidth,mWidth-progressWidth,mHeight-progressWidth,0f,360f,false,mPaintProgress);
+        //绘制进度
+        mPaintProgress.setColor(progressColor);
+        canvas.drawArc(progressWidth,progressWidth,mWidth-progressWidth,mHeight-progressWidth,0f+offsetAngle,360*progressValue/progressMax,false,mPaintProgress);
+
         //画字体
         Rect rect = new Rect();
         mPaintText.getTextBounds(text, 0, text.length(), rect);

@@ -56,7 +56,9 @@
             android:name=".app.QRCode.MyQRCode.activity.CaptureActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".app.QRCode.MyQRCode.MyQRCodeScanActivity" />
-        <activity android:name=".app.progress.ProgressActivity" />
+        <activity
+            android:name=".app.progress.ProgressActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".app.http.HttpActivity" />
         <activity android:name=".app.http.NoHttp.NoHttpActivity" />
         <activity android:name=".app.Notification.NotificationActivity" />

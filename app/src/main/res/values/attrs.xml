@@ -26,6 +26,8 @@
     </declare-styleable>
     <!--圆形进度条-->
     <declare-styleable name="CircleProgress">
+        <!--偏移角度-->
+        <attr name="progressOffsetAngle" format="float" />
         <!--进度条颜色-->
         <attr name="progressColor" format="color" />
         <!--进度条背景颜色-->
@@ -36,5 +38,29 @@
         <attr name="progressMax" format="float" />
         <!--字体颜色-->
         <attr name="textColor" format="color" />
+    </declare-styleable>
+    <!--节点进度-->
+    <declare-styleable name="NodeProgress">
+        <!--偏移角度-->
+        <attr name="nodeProgressOffsetAngle" format="float" />
+        <!--进度条颜色-->
+        <attr name="nodeProgressColor" format="color" />
+        <!--进度条背景颜色-->
+        <attr name="nodeProgressBackgroundColor" format="color" />
+        <!--进度条宽度-->
+        <attr name="nodeProgressWidth" format="float" />
+        <!--最大进度-->
+        <attr name="nodeProgressMax" format="float" />
+        <!--进度条类型-->
+        <attr name="nodeProgressStyle" format="enum">
+            <!--圆弧形-->
+            <enum name="arc" value="0" />
+            <!--线形-->
+            <enum name="line" value="1" />
+        </attr>
+        <!--节点个数-->
+        <attr name="nodeCount" format="integer" />
+        <!--节点宽度-->
+        <attr name="nodeWidth" format="float" />
     </declare-styleable>
 </resources>

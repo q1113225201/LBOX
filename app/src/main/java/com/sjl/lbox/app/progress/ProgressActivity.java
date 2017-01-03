@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.progress.view.CircleProgress;
+import com.sjl.lbox.app.progress.view.NodeProgress;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.util.DialogUtil;
 import com.sjl.lbox.util.ToastUtil;
@@ -29,12 +30,18 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
     private Button btnProgressRunning;
     private EditText etProgressValue;
     private CircleProgress circleProgress;
+    private Button btnARC;
+    private Button btnLINE;
+    private Button btnNodeProgressRun;
+    private NodeProgress nodeProgress;
 
     private int current = 0;
+    private int currentNodeProgress = 0;
 
     private final int DISMISS = 0;
     private final int REFRESH = 1000;
     private final int PROGRESS = 10;
+    private final int NODE_PROGRESS = 1;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -62,6 +69,13 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
                         circleProgress.setProgressValue(0);
                     }
                     break;
+                case NODE_PROGRESS:
+                    if (currentNodeProgress < 100) {
+                        currentNodeProgress++;
+                        nodeProgress.setCurrentProgress(currentNodeProgress);
+                        handler.sendEmptyMessageDelayed(NODE_PROGRESS, PROGRESS);
+                    }
+                    break;
             }
         }
     };
@@ -80,16 +94,26 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
         btnShowProgressCurrentTime = (Button) findViewById(R.id.btnShowProgressCurrentTime);
         btnProgressSetting = (Button) findViewById(R.id.btnProgressSetting);
         btnProgressRunning = (Button) findViewById(R.id.btnProgressRunning);
+        //圆弧进度
         etProgressValue = (EditText) findViewById(R.id.etProgressValue);
         circleProgress = (CircleProgress) findViewById(R.id.circleProgress);
         //设置初始进度
         circleProgress.setProgressValue(Float.parseFloat(etProgressValue.getText().toString()));
+
+        //节点进度
+        btnARC = (Button) findViewById(R.id.btnARC);
+        btnLINE = (Button) findViewById(R.id.btnLINE);
+        btnNodeProgressRun = (Button) findViewById(R.id.btnNodeProgressRun);
+        nodeProgress = (NodeProgress) findViewById(R.id.nodeProgress);
 
         btnShowProgressWithTime.setOnClickListener(this);
         btnShowProgressMaxTime.setOnClickListener(this);
         btnShowProgressCurrentTime.setOnClickListener(this);
         btnProgressSetting.setOnClickListener(this);
         btnProgressRunning.setOnClickListener(this);
+        btnARC.setOnClickListener(this);
+        btnLINE.setOnClickListener(this);
+        btnNodeProgressRun.setOnClickListener(this);
     }
 
     private ProgressDialog progressDialog;
@@ -128,6 +152,16 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
                 current = 0;
                 circleProgress.setProgressMax(360);
                 handler.sendEmptyMessageDelayed(PROGRESS, PROGRESS);
+                break;
+            case R.id.btnARC:
+                nodeProgress.setProgressStyle(NodeProgress.ARC);
+                break;
+            case R.id.btnLINE:
+                nodeProgress.setProgressStyle(NodeProgress.LINE);
+                break;
+            case R.id.btnNodeProgressRun:
+                currentNodeProgress = 0;
+                handler.sendEmptyMessageDelayed(NODE_PROGRESS, PROGRESS);
                 break;
         }
     }
