@@ -82,7 +82,7 @@ public class CircleProgress extends View {
         progressWidth = typedArray.getFloat(R.styleable.CircleProgress_progressWidth, 4.0f);
         progressMax = typedArray.getFloat(R.styleable.CircleProgress_progressMax, 100f);
         textColor = typedArray.getColor(R.styleable.CircleProgress_textColor, Color.BLACK);
-        textSize = DensityUtil.sp2px(context,30f);
+        textSize = DensityUtil.sp2px(context,18f);
         typedArray.recycle();
     }
 
@@ -123,16 +123,19 @@ public class CircleProgress extends View {
     private void drawProgress(Canvas canvas) {
         int radius = (int) (Math.min(mWidth, mHeight) / 2 - progressWidth);
         //画进度背景
-        mPaintProgress.setColor(progressColor);
+        mPaintProgress.setColor(progressBackgroundColor);
         canvas.drawCircle(mWidth / 2, mHeight / 2, radius, mPaintProgress);
         //画进度
-        mPaintProgress.setColor(progressBackgroundColor);
+        mPaintProgress.setColor(progressColor);
         RectF rectF = new RectF(mWidth / 2 - radius, mHeight / 2 - radius, mWidth / 2 + radius, mHeight / 2 + radius);
         canvas.drawArc(rectF, 0f, 360 * progressValue / progressMax, false, mPaintProgress);
         //画字体
         Rect rect = new Rect();
         mPaintText.getTextBounds(text, 0, text.length(), rect);
-        canvas.drawText("当前进度："+text, mWidth / 2, mHeight / 2,mPaintText);
+        //居中绘制进度，文字基线高度位置=高度中心点-文字高度/2
+        //descent()基线下方距离
+        //ascent()基线上方距离
+        canvas.drawText(text, mWidth / 2, mHeight / 2-(mPaintText.descent()+mPaintText.ascent())/2,mPaintText);
     }
 
     /**
