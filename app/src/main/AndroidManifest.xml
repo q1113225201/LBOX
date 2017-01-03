@@ -110,6 +110,7 @@
         <activity android:name=".app.repeat.SwipeItemLayout.SwipeItemLayoutActivity" />
         <activity android:name=".app.repeat.SwipeItemLayout.SwipeRecyclerViewActivity" />
         <activity android:name=".app.repeat.SwipeItemLayout.SwipeListViewActivity" />
+        <activity android:name=".app.animate.activityAnim.ActivityAnimActivity"></activity>
     </application>
 
 </manifest>
