@@ -111,7 +111,9 @@
         <activity android:name=".app.repeat.SwipeItemLayout.SwipeRecyclerViewActivity" />
         <activity android:name=".app.repeat.SwipeItemLayout.SwipeListViewActivity" />
         <activity android:name=".app.animate.activityAnim.ActivityAnimActivity" />
-        <activity android:name=".app.animate.activityAnim.AnotherActivity"></activity>
+        <activity android:name=".app.animate.activityAnim.AnotherActivity" />
+        <activity android:name=".app.DesignPattern.DesignPatternActivity" />
+        <activity android:name=".app.DesignPattern.Singleton.SingletonActivity"></activity>
     </application>
 
 </manifest>
