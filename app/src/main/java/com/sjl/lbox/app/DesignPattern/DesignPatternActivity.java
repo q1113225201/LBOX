@@ -8,6 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.DesignPattern.Builder.BuilderActivity;
+import com.sjl.lbox.app.DesignPattern.FactoryMethod.FactoryMethodActivity;
+import com.sjl.lbox.app.DesignPattern.Prototype.PrototypeActivity;
 import com.sjl.lbox.app.DesignPattern.Singleton.SingletonActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
@@ -50,6 +53,9 @@ public class DesignPatternActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
-        list.add(new Module("单例模式", SingletonActivity.class));
+        list.add(new Module("单例模式（Singleton）", SingletonActivity.class));
+        list.add(new Module("建造者模式（Builder）", BuilderActivity.class));
+        list.add(new Module("原型模式（Prototype）", PrototypeActivity.class));
+        list.add(new Module("工厂方法模式（Factory Method）", FactoryMethodActivity.class));
     }
 }

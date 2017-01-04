@@ -7,7 +7,7 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
 
 /**
- * 单例模式
+ * 单例模式（Singleton）
  *
  * @author SJL
  * @date 2017/1/4

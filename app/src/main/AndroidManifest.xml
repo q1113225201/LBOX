@@ -113,7 +113,10 @@
         <activity android:name=".app.animate.activityAnim.ActivityAnimActivity" />
         <activity android:name=".app.animate.activityAnim.AnotherActivity" />
         <activity android:name=".app.DesignPattern.DesignPatternActivity" />
-        <activity android:name=".app.DesignPattern.Singleton.SingletonActivity"></activity>
+        <activity android:name=".app.DesignPattern.Singleton.SingletonActivity" />
+        <activity android:name=".app.DesignPattern.Builder.BuilderActivity" />
+        <activity android:name=".app.DesignPattern.Prototype.PrototypeActivity" />
+        <activity android:name=".app.DesignPattern.FactoryMethod.FactoryMethodActivity"></activity>
     </application>
 
 </manifest>
