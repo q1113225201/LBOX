@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.sjl.lbox.R;
 
 /**
- * 工厂方法模式（Factory Method）
+ * 工厂方法模式（AbstractFactory Method）
  *
  * @author SJL
  * @date 2017/1/4

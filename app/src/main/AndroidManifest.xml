@@ -117,7 +117,8 @@
         <activity android:name=".app.DesignPattern.Builder.BuilderActivity" />
         <activity android:name=".app.DesignPattern.Prototype.PrototypeActivity" />
         <activity android:name=".app.DesignPattern.FactoryMethod.FactoryMethodActivity" />
-        <activity android:name=".app.DesignPattern.AbstractFactory.AbstractFactoryActivity"></activity>
+        <activity android:name=".app.DesignPattern.AbstractFactory.AbstractFactoryActivity" />
+        <activity android:name=".app.DesignPattern.Strategy.StrategyActivity"></activity>
     </application>
 
 </manifest>

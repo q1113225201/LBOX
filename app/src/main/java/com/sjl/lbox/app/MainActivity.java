@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.DesignPattern.DesignPatternActivity;
 import com.sjl.lbox.app.EditText.EditTextActivity;
 import com.sjl.lbox.app.FloatWindow.FloatWindowActivity;
 import com.sjl.lbox.app.Notification.NotificationActivity;
@@ -73,6 +74,7 @@ public class MainActivity extends BaseActivity {
         list.add(new Module("列表、网状布局", RepeatActivity.class));
         list.add(new Module("侧滑菜单", SlideMenuActivity.class));
         list.add(new Module("开发模式", ModeActivity.class));
+        list.add(new Module("设计模式", DesignPatternActivity.class));
         list.add(new Module("IntentService和LocalBroadcastManager", IntentServiceActivity.class));
         list.add(new Module("动画", AnimateActivity.class));
         list.add(new Module("悬浮窗", FloatWindowActivity.class));

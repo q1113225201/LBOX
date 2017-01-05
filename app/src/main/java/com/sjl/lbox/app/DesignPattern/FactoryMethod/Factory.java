@@ -1,7 +1,7 @@
 package com.sjl.lbox.app.DesignPattern.FactoryMethod;
 
 /**
- * Factory
+ * AbstractFactory
  *
  * @author SJL
  * @date 2017/1/4

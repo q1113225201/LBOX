@@ -1,7 +1,7 @@
 package com.sjl.lbox.app.DesignPattern.FactoryMethod;
 
 /**
- * ProductB
+ * AbstractProductB
  *
  * @author SJL
  * @date 2017/1/4
@@ -10,6 +10,6 @@ package com.sjl.lbox.app.DesignPattern.FactoryMethod;
 public class ProductB implements Product {
     @Override
     public String getProductType() {
-        return "ProductB";
+        return "AbstractProductB";
     }
 }
