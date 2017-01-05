@@ -8,10 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.DesignPattern.AbstractFactory.AbstractFactoryActivity;
 import com.sjl.lbox.app.DesignPattern.Builder.BuilderActivity;
+import com.sjl.lbox.app.DesignPattern.ChainOfResponsibility.ChainOfResponsibilityActivity;
 import com.sjl.lbox.app.DesignPattern.FactoryMethod.FactoryMethodActivity;
+import com.sjl.lbox.app.DesignPattern.Interpreter.InterpreterActivity;
 import com.sjl.lbox.app.DesignPattern.Prototype.PrototypeActivity;
 import com.sjl.lbox.app.DesignPattern.Singleton.SingletonActivity;
+import com.sjl.lbox.app.DesignPattern.State.StateActivity;
 import com.sjl.lbox.app.DesignPattern.Strategy.StrategyActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
@@ -58,6 +62,10 @@ public class DesignPatternActivity extends BaseActivity {
         list.add(new Module("建造者模式（Builder）", BuilderActivity.class));
         list.add(new Module("原型模式（Prototype）", PrototypeActivity.class));
         list.add(new Module("工厂方法模式（AbstractFactory Method）", FactoryMethodActivity.class));
+        list.add(new Module("抽象工厂模式（Abstract AbstractFactory）", AbstractFactoryActivity.class));
         list.add(new Module("策略模式（strategy）", StrategyActivity.class));
+        list.add(new Module("状态模式（State）", StateActivity.class));
+        list.add(new Module("责任链模式（Chain of Responsibility）", ChainOfResponsibilityActivity.class));
+        list.add(new Module("解释器模式（Interpreter）", InterpreterActivity.class));
     }
 }

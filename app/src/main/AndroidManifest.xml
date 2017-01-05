@@ -118,7 +118,10 @@
         <activity android:name=".app.DesignPattern.Prototype.PrototypeActivity" />
         <activity android:name=".app.DesignPattern.FactoryMethod.FactoryMethodActivity" />
         <activity android:name=".app.DesignPattern.AbstractFactory.AbstractFactoryActivity" />
-        <activity android:name=".app.DesignPattern.Strategy.StrategyActivity"></activity>
+        <activity android:name=".app.DesignPattern.Strategy.StrategyActivity" />
+        <activity android:name=".app.DesignPattern.State.StateActivity" />
+        <activity android:name=".app.DesignPattern.ChainOfResponsibility.ChainOfResponsibilityActivity" />
+        <activity android:name=".app.DesignPattern.Interpreter.InterpreterActivity"></activity>
     </application>
 
 </manifest>
