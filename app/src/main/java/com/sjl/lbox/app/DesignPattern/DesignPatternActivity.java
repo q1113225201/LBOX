@@ -11,8 +11,10 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.app.DesignPattern.AbstractFactory.AbstractFactoryActivity;
 import com.sjl.lbox.app.DesignPattern.Builder.BuilderActivity;
 import com.sjl.lbox.app.DesignPattern.ChainOfResponsibility.ChainOfResponsibilityActivity;
+import com.sjl.lbox.app.DesignPattern.Command.CommandActivity;
 import com.sjl.lbox.app.DesignPattern.FactoryMethod.FactoryMethodActivity;
 import com.sjl.lbox.app.DesignPattern.Interpreter.InterpreterActivity;
+import com.sjl.lbox.app.DesignPattern.Observer.ObserverActivity;
 import com.sjl.lbox.app.DesignPattern.Prototype.PrototypeActivity;
 import com.sjl.lbox.app.DesignPattern.Singleton.SingletonActivity;
 import com.sjl.lbox.app.DesignPattern.State.StateActivity;
@@ -67,5 +69,7 @@ public class DesignPatternActivity extends BaseActivity {
         list.add(new Module("状态模式（State）", StateActivity.class));
         list.add(new Module("责任链模式（Chain of Responsibility）", ChainOfResponsibilityActivity.class));
         list.add(new Module("解释器模式（Interpreter）", InterpreterActivity.class));
+        list.add(new Module("命令模式（Command）", CommandActivity.class));
+        list.add(new Module("观察者模式（Observer）", ObserverActivity.class));
     }
 }

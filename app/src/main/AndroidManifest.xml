@@ -121,7 +121,9 @@
         <activity android:name=".app.DesignPattern.Strategy.StrategyActivity" />
         <activity android:name=".app.DesignPattern.State.StateActivity" />
         <activity android:name=".app.DesignPattern.ChainOfResponsibility.ChainOfResponsibilityActivity" />
-        <activity android:name=".app.DesignPattern.Interpreter.InterpreterActivity"></activity>
+        <activity android:name=".app.DesignPattern.Interpreter.InterpreterActivity" />
+        <activity android:name=".app.DesignPattern.Command.CommandActivity" />
+        <activity android:name=".app.DesignPattern.Observer.ObserverActivity"></activity>
     </application>
 
 </manifest>
