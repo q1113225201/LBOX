@@ -1,10 +1,10 @@
 package com.sjl.lbox.app.DesignPattern.Strategy;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.base.BaseActivity;
 
 /**
  * 策略模式（strategy）
@@ -12,7 +12,7 @@ import com.sjl.lbox.R;
  * @author SJL
  * @date 2017/1/5
  */
-public class StrategyActivity extends Activity {
+public class StrategyActivity extends BaseActivity {
     private TextView tvDefine;
     private TextView tvUsage;
     @Override

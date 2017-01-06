@@ -14,6 +14,8 @@ import com.sjl.lbox.app.DesignPattern.ChainOfResponsibility.ChainOfResponsibilit
 import com.sjl.lbox.app.DesignPattern.Command.CommandActivity;
 import com.sjl.lbox.app.DesignPattern.FactoryMethod.FactoryMethodActivity;
 import com.sjl.lbox.app.DesignPattern.Interpreter.InterpreterActivity;
+import com.sjl.lbox.app.DesignPattern.Iterator.IteratorActivity;
+import com.sjl.lbox.app.DesignPattern.Memento.MementoActivity;
 import com.sjl.lbox.app.DesignPattern.Observer.ObserverActivity;
 import com.sjl.lbox.app.DesignPattern.Prototype.PrototypeActivity;
 import com.sjl.lbox.app.DesignPattern.Singleton.SingletonActivity;
@@ -71,5 +73,7 @@ public class DesignPatternActivity extends BaseActivity {
         list.add(new Module("解释器模式（Interpreter）", InterpreterActivity.class));
         list.add(new Module("命令模式（Command）", CommandActivity.class));
         list.add(new Module("观察者模式（Observer）", ObserverActivity.class));
+        list.add(new Module("备忘录模式（Memento）", MementoActivity.class));
+        list.add(new Module("迭代器模式（Iterator）", IteratorActivity.class));
     }
 }

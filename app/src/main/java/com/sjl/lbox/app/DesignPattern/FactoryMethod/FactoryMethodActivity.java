@@ -1,10 +1,10 @@
 package com.sjl.lbox.app.DesignPattern.FactoryMethod;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.base.BaseActivity;
 
 /**
  * 工厂方法模式（AbstractFactory Method）
@@ -12,7 +12,7 @@ import com.sjl.lbox.R;
  * @author SJL
  * @date 2017/1/4
  */
-public class FactoryMethodActivity extends Activity {
+public class FactoryMethodActivity extends BaseActivity {
     private TextView tvDefine;
     private TextView tvUsage;
 
