@@ -125,7 +125,10 @@
         <activity android:name=".app.DesignPattern.Command.CommandActivity" />
         <activity android:name=".app.DesignPattern.Observer.ObserverActivity" />
         <activity android:name=".app.DesignPattern.Memento.MementoActivity" />
-        <activity android:name=".app.DesignPattern.Iterator.IteratorActivity"></activity>
+        <activity android:name=".app.DesignPattern.Iterator.IteratorActivity" />
+        <activity android:name=".app.DesignPattern.TemplateMethod.TemplateMethodActivity" />
+        <activity android:name=".app.DesignPattern.Visitor.VisitorActivity" />
+        <activity android:name=".app.DesignPattern.Mediator.MediatorActivity"></activity>
     </application>
 
 </manifest>
