@@ -128,7 +128,10 @@
         <activity android:name=".app.DesignPattern.Iterator.IteratorActivity" />
         <activity android:name=".app.DesignPattern.TemplateMethod.TemplateMethodActivity" />
         <activity android:name=".app.DesignPattern.Visitor.VisitorActivity" />
-        <activity android:name=".app.DesignPattern.Mediator.MediatorActivity"></activity>
+        <activity android:name=".app.DesignPattern.Mediator.MediatorActivity" />
+        <activity android:name=".app.DesignPattern.Proxy.ProxyActivity" />
+        <activity android:name=".app.DesignPattern.Composite.CompositeActivity" />
+        <activity android:name=".app.DesignPattern.Adapter.AdapterActivity"></activity>
     </application>
 
 </manifest>
