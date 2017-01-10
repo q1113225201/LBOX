@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
 /**
- * 适配器模式（Adapter1）
+ * 适配器模式（Adapter）
  * 
  * @author SJL
  * @date 2017/1/9

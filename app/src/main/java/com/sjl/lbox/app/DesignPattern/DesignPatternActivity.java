@@ -9,11 +9,16 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.DesignPattern.AbstractFactory.AbstractFactoryActivity;
+import com.sjl.lbox.app.DesignPattern.Adapter.AdapterActivity;
+import com.sjl.lbox.app.DesignPattern.Bridge.BridgeActivity;
 import com.sjl.lbox.app.DesignPattern.Builder.BuilderActivity;
 import com.sjl.lbox.app.DesignPattern.ChainOfResponsibility.ChainOfResponsibilityActivity;
 import com.sjl.lbox.app.DesignPattern.Command.CommandActivity;
 import com.sjl.lbox.app.DesignPattern.Composite.CompositeActivity;
+import com.sjl.lbox.app.DesignPattern.Decorator.DecoratorActivity;
+import com.sjl.lbox.app.DesignPattern.Facade.FacadeActivity;
 import com.sjl.lbox.app.DesignPattern.FactoryMethod.FactoryMethodActivity;
+import com.sjl.lbox.app.DesignPattern.Flyweight.FlyweightActivity;
 import com.sjl.lbox.app.DesignPattern.Interpreter.InterpreterActivity;
 import com.sjl.lbox.app.DesignPattern.Iterator.IteratorActivity;
 import com.sjl.lbox.app.DesignPattern.Mediator.MediatorActivity;
@@ -85,5 +90,10 @@ public class DesignPatternActivity extends BaseActivity {
         list.add(new Module("中介者模式（Mediator）", MediatorActivity.class));
         list.add(new Module("代理模式（Proxy）", ProxyActivity.class));
         list.add(new Module("组合模式（Composite）", CompositeActivity.class));
+        list.add(new Module("适配器模式（Adapter）", AdapterActivity.class));
+        list.add(new Module("装饰模式（Decorator）", DecoratorActivity.class));
+        list.add(new Module("享元模式（Flyweight）", FlyweightActivity.class));
+        list.add(new Module("外观模式（Facade）", FacadeActivity.class));
+        list.add(new Module("桥接模式（Bridge）", BridgeActivity.class));
     }
 }

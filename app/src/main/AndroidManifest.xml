@@ -131,7 +131,11 @@
         <activity android:name=".app.DesignPattern.Mediator.MediatorActivity" />
         <activity android:name=".app.DesignPattern.Proxy.ProxyActivity" />
         <activity android:name=".app.DesignPattern.Composite.CompositeActivity" />
-        <activity android:name=".app.DesignPattern.Adapter.AdapterActivity"></activity>
+        <activity android:name=".app.DesignPattern.Adapter.AdapterActivity" />
+        <activity android:name=".app.DesignPattern.Decorator.DecoratorActivity" />
+        <activity android:name=".app.DesignPattern.Flyweight.FlyweightActivity" />
+        <activity android:name=".app.DesignPattern.Facade.FacadeActivity" />
+        <activity android:name=".app.DesignPattern.Bridge.BridgeActivity"></activity>
     </application>
 
 </manifest>
