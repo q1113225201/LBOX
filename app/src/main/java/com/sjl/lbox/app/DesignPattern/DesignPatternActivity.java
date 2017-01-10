@@ -72,6 +72,7 @@ public class DesignPatternActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
+        list.add(new Module("设计模式的六大原则", DesignPatternPrincipleActivity.class));
         list.add(new Module("单例模式（Singleton）", SingletonActivity.class));
         list.add(new Module("建造者模式（Builder）", BuilderActivity.class));
         list.add(new Module("原型模式（Prototype）", PrototypeActivity.class));
