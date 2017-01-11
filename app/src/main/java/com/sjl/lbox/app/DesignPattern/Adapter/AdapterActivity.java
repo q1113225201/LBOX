@@ -13,22 +13,27 @@ import com.sjl.lbox.base.BaseActivity;
  */
 public class AdapterActivity extends BaseActivity {
     private TextView tvDefine;
+    private TextView tvAdvantage;
     private TextView tvUsage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adapter);
+        setContentView(R.layout.activity_design_pattern_item);
 
         initView();
     }
 
     private void initView() {
         tvDefine = (TextView) findViewById(R.id.tvDefine);
+        tvAdvantage = (TextView) findViewById(R.id.tvAdvantage);
         tvUsage = (TextView) findViewById(R.id.tvUsage);
+
         tvDefine.setText("将一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作。");
-        tvUsage.setText("1、类的适配器模式：希望一个类转换成满足另一个新接口的类时，可使用该模式创建一个新类继承原有类实现新接口；\n" +
-                "2、对象的适配模式：希望一个对象转换成满足另一个新接口的对象时，可创建一个新类持有原有类的一个实例，在新类中调用实例的方法；\n" +
-                "3、接口的适配模式：不希望实现一个接口中所有方法时，可创建一个抽象类实现所有方法，写其他类的时候继承抽象类即可；");
+        tvAdvantage.setText("1、让两个没有任何关系的类在一起运行；\n" +
+                "2、增加类的透明性；\n" +
+                "3、提高了类的复用度；\n" +
+                "4、灵活性非常好；");
+        tvUsage.setText("1、想修改一个已经在使用中的接口；");
 
         //简单使用
         //类适配

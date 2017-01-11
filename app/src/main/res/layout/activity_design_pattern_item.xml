@@ -20,6 +20,15 @@
 
         <TextView
             style="@style/TextViewCommonStyle"
+            android:text="优点：" />
+
+        <TextView
+            android:id="@+id/tvAdvantage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/TextViewCommonStyle"
             android:text="使用场景：" />
 
         <TextView

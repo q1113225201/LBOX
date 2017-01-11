@@ -14,22 +14,28 @@ import com.sjl.lbox.base.BaseActivity;
  */
 public class StateActivity extends BaseActivity {
     private TextView tvDefine;
+    private TextView tvAdvantage;
     private TextView tvUsage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_state);
+        setContentView(R.layout.activity_design_pattern_item);
 
         initView();
     }
 
     private void initView() {
         tvDefine = (TextView) findViewById(R.id.tvDefine);
+        tvAdvantage = (TextView) findViewById(R.id.tvAdvantage);
         tvUsage = (TextView) findViewById(R.id.tvUsage);
-        tvDefine.setText("允许一个对象在其内部状态改变时改变它的行为，对象看起来似乎修改了它的类。其别名为状态对象(Objects for States)，状态模式是一种对象行为型模式。");
-        tvUsage.setText("1、对象的行为依赖于它的状态（属性）并且可以根据它的状态改变而改变它的相关行为；\n" +
-                "2、代码中包含大量与对象状态有关的条件语句，这些条件语句的出现，会导致代码的可维护性和灵活性变差，不能方便地增加和删除状态，使客户类与类库之间的耦合增强。；\n");
+
+        tvDefine.setText("当一个对象内在状态改变时允许其改变行为，这个对象看起来像改变了其类。");
+        tvAdvantage.setText("1、结构清晰，避免了switch...case或if...else使用，避免了程序的复杂程度，提高系统可维护性；\n" +
+                "2、遵循设计原则，体现开闭原则和单一职责原则，每个状态都是一个类，增加或改变状态都只要修改一个子类；\n" +
+                "3、封装性好，状态变换放置在类内部，外部调用不用知道内部状态和行为变换；");
+        tvUsage.setText("1、行为随状态改变而改变的场景；\n" +
+                "2、条件、分支判断语句的替代者；");
 
         //简单使用
         ElevatorController elevatorController = new ElevatorControllerImp();

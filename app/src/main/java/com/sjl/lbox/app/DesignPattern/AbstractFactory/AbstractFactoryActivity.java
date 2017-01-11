@@ -7,7 +7,7 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
 
 /**
- * 抽象工厂模式（Abstract AbstractFactory）
+ * 抽象工厂模式（Abstract Factory）
  *
  * @author SJL
  * @date 2017/1/4
@@ -15,23 +15,27 @@ import com.sjl.lbox.base.BaseActivity;
 public class AbstractFactoryActivity extends BaseActivity {
 
     private TextView tvDefine;
+    private TextView tvAdvantage;
     private TextView tvUsage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_abstract_factory);
+        setContentView(R.layout.activity_design_pattern_item);
 
         initView();
     }
 
     private void initView() {
         tvDefine = (TextView) findViewById(R.id.tvDefine);
+        tvAdvantage = (TextView) findViewById(R.id.tvAdvantage);
         tvUsage = (TextView) findViewById(R.id.tvUsage);
-        tvDefine.setText("提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。");
-        tvUsage.setText("1、一个系统不应依赖产品类如何被创建、组合和表达的细节；\n" +
-                "2、系统中有多个产品族，而每次只是用其中某一个产品族；\n" +
-                "3、系统提供一个产品类的库，所有产品以同样接口出现，使客户端不依赖于具体实现；");
+
+        tvDefine.setText("为创建一组相关或相互依赖的对象提供一个接口，而且无须制定他们的具体类。");
+        tvAdvantage.setText("1、抽象工厂模式隔离了具体类的生成，使得客户并不需要知道什么被创建，可实现；\n" +
+                "2、当一个产品族中的多个对象被设计成一起工作时，能保证客户端始终只使用同一个产品族中对象；\n" +
+                "3、增加新的具体工厂和产品族，无须修改已有系统，符合“开闭原则”；");
+        tvUsage.setText("1、一个产品族都有相同的约束；");
 
         //简单使用
         AbstractFactory abstractFactory = new AbstractFactory1();

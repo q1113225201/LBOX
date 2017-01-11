@@ -14,19 +14,25 @@ import com.sjl.lbox.base.BaseActivity;
  */
 public class BridgeActivity extends BaseActivity {
     private TextView tvDefine;
+    private TextView tvAdvantage;
     private TextView tvUsage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bridge);
+        setContentView(R.layout.activity_design_pattern_item);
 
         initView();
     }
 
     private void initView() {
         tvDefine = (TextView) findViewById(R.id.tvDefine);
+        tvAdvantage = (TextView) findViewById(R.id.tvAdvantage);
         tvUsage = (TextView) findViewById(R.id.tvUsage);
+
         tvDefine.setText("将抽象和实现解耦，使得两者可以独立地变化。");
+        tvAdvantage.setText("1、抽象和实现分离；\n" +
+                "2、优秀的扩充能力；\n" +
+                "3、实现细节对客户透明；");
         tvUsage.setText("1、不希望或不适用使用继承的场景；\n" +
                 "2、接口或抽象类不稳定的场景；\n" +
                 "3、重要性要求较高的场景；");

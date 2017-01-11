@@ -14,19 +14,23 @@ import com.sjl.lbox.base.BaseActivity;
  */
 public class IteratorActivity extends BaseActivity {
     private TextView tvDefine;
+    private TextView tvAdvantage;
     private TextView tvUsage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_iterator);
+        setContentView(R.layout.activity_design_pattern_item);
 
         initView();
     }
 
     private void initView() {
         tvDefine = (TextView) findViewById(R.id.tvDefine);
+        tvAdvantage = (TextView) findViewById(R.id.tvAdvantage);
         tvUsage = (TextView) findViewById(R.id.tvUsage);
+
         tvDefine.setText("它提供一种方法访问一个容器对象中各个元素，而又不暴露该对象的内部细节。");
+        tvAdvantage.setText("");
         tvUsage.setText("1、目前已经是一个没落的模式，基本没人会单独写一个迭代器，除非是产品性质的开发（JAVA最好直接用Iterator）；");
 
         //简单使用

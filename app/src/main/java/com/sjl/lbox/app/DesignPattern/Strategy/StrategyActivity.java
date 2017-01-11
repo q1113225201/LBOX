@@ -14,22 +14,27 @@ import com.sjl.lbox.base.BaseActivity;
  */
 public class StrategyActivity extends BaseActivity {
     private TextView tvDefine;
+    private TextView tvAdvantage;
     private TextView tvUsage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_strategy);
+        setContentView(R.layout.activity_design_pattern_item);
 
         initView();
     }
 
     private void initView() {
         tvDefine = (TextView) findViewById(R.id.tvDefine);
+        tvAdvantage = (TextView) findViewById(R.id.tvAdvantage);
         tvUsage = (TextView) findViewById(R.id.tvUsage);
-        tvDefine.setText("定义一系列算法，将每一个算法封装起来，并让它们可以相互替换。策略模式让算法独立于使用它的客户而变化，也称为政策模式(Policy)。");
-        tvUsage.setText("1、如果在一个系统里面有许多类，它们之间的区别仅在于它们的行为，那么使用策略模式可以动态地让一个对象在许多行为中选择一种行为；\n" +
-                "2、一个系统需要动态地在几种算法中选择一种；\n" +
-                "3、不希望客户端知道复杂的、与算法相关的数据结构，在具体策略类中封装算法和相关的数据结构，提高算法的保密性与安全性；");
+
+        tvDefine.setText("定义一系列算法，将每一个算法封装起来，并让它们可以相互替换。");
+        tvAdvantage.setText("1、策略模式提供了对“开闭原则”的完美支持，用户可以在不修改原有系统的基础上选择算法或行为，也可以灵活地增加新的算法或行为；\n" +
+                "2、使用策略模式可以避免使用多重条件转移语句；");
+        tvUsage.setText("1、对外提供算法可以自由切换的策略；\n" +
+                "2、避免使用多重条件判断；\n" +
+                "3、扩展性好，在现有策略上增加新策略不需要改变原有方法；");
 
         //简单使用
         ICalculator iCalculator = new Plus();

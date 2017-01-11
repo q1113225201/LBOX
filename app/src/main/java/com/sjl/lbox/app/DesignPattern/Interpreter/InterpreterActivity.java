@@ -13,20 +13,25 @@ import com.sjl.lbox.base.BaseActivity;
  */
 public class InterpreterActivity extends BaseActivity {
     private TextView tvDefine;
+    private TextView tvAdvantage;
     private TextView tvUsage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_interpreter);
+        setContentView(R.layout.activity_design_pattern_item);
 
         initView();
     }
 
     private void initView() {
         tvDefine = (TextView) findViewById(R.id.tvDefine);
+        tvAdvantage = (TextView) findViewById(R.id.tvAdvantage);
         tvUsage = (TextView) findViewById(R.id.tvUsage);
-        tvDefine.setText("给定一个语言，定义它的语法，并定义一个解释器，这个解释器用于解析语言。");
-        tvUsage.setText("1、一般主要应用在OOP开发中的编译器的开发中，所以适用面比较窄；");
+
+        tvDefine.setText("给定一门语言，定义它的文法的一种表示，并定义一个解释器，这个解释器用于解析语言。");
+        tvAdvantage.setText("1、扩展性，修改语法规则只要修改相应的非终结符表达式即可；");
+        tvUsage.setText("1、重复发生的问题可以使用解释其模式；\n" +
+                "2、一个简单语法需要解释的场景；");
 
         //简单使用
 

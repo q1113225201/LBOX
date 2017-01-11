@@ -15,22 +15,27 @@ import com.sjl.lbox.base.BaseActivity;
 public class PrototypeActivity extends BaseActivity {
 
     private TextView tvDefine;
+    private TextView tvAdvantage;
     private TextView tvUsage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prototype);
+        setContentView(R.layout.activity_design_pattern_item);
 
         initView();
     }
 
     private void initView() {
         tvDefine = (TextView) findViewById(R.id.tvDefine);
+        tvAdvantage = (TextView) findViewById(R.id.tvAdvantage);
         tvUsage = (TextView) findViewById(R.id.tvUsage);
-        tvDefine.setText("简单的说就是将一个对象进行拷贝。\n" +
-                "浅复制：将一个对象复制后，基本数据类型重新创建，引用类型的指向还是原对象所指的。\n" +
-                "深复制：将一个对象复制后，基本数据和引用类型都重新创建。简单说就是深复制是完全复制，浅复制不彻底。");
-        tvUsage.setText("1、可在类属性特别多，但又要经常对类进行拷贝的的时候使用；");
+
+        tvDefine.setText("用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。");
+        tvAdvantage.setText("1、性能优良；\n" +
+                "2、避免构造函数的约束；");
+        tvUsage.setText("1、资源优化场景，类的初始化需要使用较多资源；\n" +
+                "2、性能和安全要求的场景，通过new产生一个对象需要非常繁琐的数据准备或访问权限；\n" +
+                "3、一个对象多个修改者的场景，一个对象需要提供给其他对象访问，而且各个调用者可能都需要修改其值时；");
     }
 }

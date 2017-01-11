@@ -14,19 +14,23 @@ import com.sjl.lbox.base.BaseActivity;
  */
 public class MementoActivity extends BaseActivity {
     private TextView tvDefine;
+    private TextView tvAdvantage;
     private TextView tvUsage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_memento);
+        setContentView(R.layout.activity_design_pattern_item);
 
         initView();
     }
 
     private void initView() {
         tvDefine = (TextView) findViewById(R.id.tvDefine);
+        tvAdvantage = (TextView) findViewById(R.id.tvAdvantage);
         tvUsage = (TextView) findViewById(R.id.tvUsage);
+
         tvDefine.setText("在不破坏封闭的前提下，捕获一个对象的内部状态，并在对象之外保存这个状态，以后可将对象恢复到原先保存的状态中。");
+        tvAdvantage.setText("1、存储一份状态，可用于回滚；");
         tvUsage.setText("1、需要保存和恢复数据的相关状态场景；");
 
         //简单使用
