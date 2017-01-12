@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_hint_img_edit_text"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    tools:context="com.sjl.lbox.app.EditText.HintImgEditText.HintImgEditTextActivity">
+
+    <com.sjl.lbox.app.EditText.HintImgEditText.view.HintImgEditText
+        android:id="@+id/etHintImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="1"
+        app:hintImg="@drawable/frame1"
+        android:background="@drawable/corner" />
+</LinearLayout>

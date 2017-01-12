@@ -104,6 +104,7 @@ public class PwdEditText extends EditText {
         lineColor = typedArray.getColor(R.styleable.PwdEditText_lineColor, Color.GRAY);
         dotRadius = typedArray.getFloat(R.styleable.PwdEditText_dotRadius, 12f);
         dotColor = typedArray.getColor(R.styleable.PwdEditText_lineColor, Color.BLACK);
+        typedArray.recycle();
     }
 
     /**

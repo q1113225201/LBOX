@@ -63,4 +63,8 @@
         <!--节点宽度-->
         <attr name="nodeWidth" format="float" />
     </declare-styleable>
+    <!--背景提示图片-->
+    <declare-styleable name="HintImgEditText">
+        <attr name="hintImg" format="reference"/>
+    </declare-styleable>
 </resources>

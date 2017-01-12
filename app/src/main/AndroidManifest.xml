@@ -137,6 +137,7 @@
         <activity android:name=".app.DesignPattern.Facade.FacadeActivity" />
         <activity android:name=".app.DesignPattern.Bridge.BridgeActivity" />
         <activity android:name=".app.DesignPattern.DesignPatternPrincipleActivity" />
+        <activity android:name=".app.EditText.HintImgEditText.HintImgEditTextActivity"></activity>
     </application>
 
 </manifest>
