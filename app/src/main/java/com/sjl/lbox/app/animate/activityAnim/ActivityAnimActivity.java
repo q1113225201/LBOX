@@ -3,7 +3,10 @@ package com.sjl.lbox.app.animate.activityAnim;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ScrollView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
@@ -18,6 +21,8 @@ public class ActivityAnimActivity extends BaseActivity implements View.OnClickLi
 
     private Button btnFade;
     private Button btnSlide;
+    private Button btnSlideRight;
+    private ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,9 @@ public class ActivityAnimActivity extends BaseActivity implements View.OnClickLi
         btnFade.setOnClickListener(this);
         btnSlide = (Button) findViewById(R.id.btnSlide);
         btnSlide.setOnClickListener(this);
+        btnSlideRight = (Button) findViewById(R.id.btnSlideRight);
+        btnSlideRight.setOnClickListener(this);
+        scrollView = (ScrollView) findViewById(R.id.activity_anim);
     }
 
     @Override
@@ -44,6 +52,11 @@ public class ActivityAnimActivity extends BaseActivity implements View.OnClickLi
             case R.id.btnSlide:
                 startActivity(new Intent(mContext, AnotherActivity.class));
                 overridePendingTransition(R.anim.slide_enter, R.anim.slide_exit);
+                break;
+            case R.id.btnSlideRight:
+                Animation rightOutAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_out_right);
+                scrollView.startAnimation(rightOutAnimation);
+                startActivity(new Intent(mContext, AnotherActivity.class));
                 break;
         }
     }

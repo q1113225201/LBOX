@@ -9,23 +9,6 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.EditText.PwdEditText.PwdEditTextActivity;
-import com.sjl.lbox.app.FloatWindow.FloatWindowActivity;
-import com.sjl.lbox.app.Notification.NotificationActivity;
-import com.sjl.lbox.app.QRCode.QRCodeActivity;
-import com.sjl.lbox.app.animate.AnimateActivity;
-import com.sjl.lbox.app.compass.CompassActivity;
-import com.sjl.lbox.app.contact.ContactActivity;
-import com.sjl.lbox.app.gesture.GestureActivity;
-import com.sjl.lbox.app.http.HttpActivity;
-import com.sjl.lbox.app.image.ImageActivity;
-import com.sjl.lbox.app.music.MusicActivity;
-import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
-import com.sjl.lbox.app.pedometer.PedometerActivity;
-import com.sjl.lbox.app.progress.ProgressActivity;
-import com.sjl.lbox.app.signature.SignatureActivity;
-import com.sjl.lbox.app.viewpager.ViewPagerActivity;
-import com.sjl.lbox.app.webview.WebViewActivity;
-import com.sjl.lbox.app.zip.ZipActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 

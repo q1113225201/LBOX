@@ -136,7 +136,7 @@
         <activity android:name=".app.DesignPattern.Flyweight.FlyweightActivity" />
         <activity android:name=".app.DesignPattern.Facade.FacadeActivity" />
         <activity android:name=".app.DesignPattern.Bridge.BridgeActivity" />
-        <activity android:name=".app.DesignPattern.DesignPatternPrincipleActivity"></activity>
+        <activity android:name=".app.DesignPattern.DesignPatternPrincipleActivity" />
     </application>
 
 </manifest>

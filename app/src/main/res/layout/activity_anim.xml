@@ -20,5 +20,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="滑入滑出"/>
+        <Button
+            android:id="@+id/btnSlideRight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="右侧滑入滑出"/>
     </LinearLayout>
 </ScrollView>
