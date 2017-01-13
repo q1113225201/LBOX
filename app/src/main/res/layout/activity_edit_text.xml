@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sjl.lbox.app.EditText.EditTextActivity">
+    tools:context=".app.ui.CustomView.EditText.EditTextActivity">
     <ListView
         android:id="@+id/lv"
         android:layout_width="match_parent"

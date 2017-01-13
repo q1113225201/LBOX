@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sjl.lbox.app.compass.CompassActivity"
+    tools:context=".app.mobile.compass.CompassActivity"
     android:weightSum="1">
 
     <TextView
@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:src="@drawable/compass_background" />
 
-        <com.sjl.lbox.app.compass.view.CompassView
+        <com.sjl.lbox.app.mobile.compass.view.CompassView
             android:id="@+id/compassView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -4,7 +4,7 @@
     android:id="@+id/activity_repeat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sjl.lbox.app.repeat.RepeatActivity">
+    tools:context=".app.ui.CustomView.repeat.RepeatActivity">
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

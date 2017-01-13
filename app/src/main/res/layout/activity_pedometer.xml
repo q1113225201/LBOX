@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sjl.lbox.app.pedometer.PedometerActivity">
+    tools:context=".app.mobile.pedometer.PedometerActivity">
 
     <TextView
         android:id="@+id/tvCount"

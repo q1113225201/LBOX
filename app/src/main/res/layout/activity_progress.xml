@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sjl.lbox.app.progress.ProgressActivity">
+    tools:context=".app.ui.CustomView.progress.ProgressActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,12 +70,12 @@
                 android:layout_gravity="center"
                 android:gravity="center">
 
-                <com.sjl.lbox.app.progress.view.CircleProgress
+                <com.sjl.lbox.app.ui.CustomView.progress.view.CircleProgress
                     android:id="@+id/circleProgress"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     app:progressBackgroundColor="#CACACA"
-                    app:progressColor="#00FF00"></com.sjl.lbox.app.progress.view.CircleProgress>
+                    app:progressColor="#00FF00"></com.sjl.lbox.app.ui.CustomView.progress.view.CircleProgress>
 
             </RelativeLayout>
         </LinearLayout>
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <com.sjl.lbox.app.progress.view.NodeProgress
+                <com.sjl.lbox.app.ui.CustomView.progress.view.NodeProgress
                     android:id="@+id/nodeProgress"
                     android:layout_width="200dp"
                     android:layout_height="200dp"

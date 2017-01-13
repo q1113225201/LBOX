@@ -39,79 +39,80 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".app.ui.UIActivity" />
         <activity android:name=".app.MainActivity" />
-        <activity android:name=".app.webview.WebViewActivity" />
+        <activity android:name=".app.ui.webview.WebViewActivity" />
         <activity android:name=".app.network.monitor.NetworkMonitorActivity" />
-        <activity android:name=".app.image.ImageActivity" />
-        <activity android:name=".app.contact.ContactActivity" />
-        <activity android:name=".app.QRCode.QRCodeActivity" />
-        <activity android:name=".app.QRCode.BGAQRCode.BGAQRCodeActivity" />
+        <activity android:name=".app.mobile.image.ImageActivity" />
+        <activity android:name=".app.ui.CustomView.contact.ContactActivity" />
+        <activity android:name=".app.mobile.QRCode.QRCodeActivity" />
+        <activity android:name=".app.mobile.QRCode.BGAQRCode.BGAQRCodeActivity" />
         <activity
-            android:name=".app.QRCode.BGAQRCode.ScanActivity"
+            android:name=".app.mobile.QRCode.BGAQRCode.ScanActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".app.signature.SignatureActivity"
+            android:name=".app.mobile.signature.SignatureActivity"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity
-            android:name=".app.QRCode.MyQRCode.activity.CaptureActivity"
+            android:name=".app.mobile.QRCode.MyQRCode.activity.CaptureActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".app.QRCode.MyQRCode.MyQRCodeScanActivity" />
+        <activity android:name=".app.mobile.QRCode.MyQRCode.MyQRCodeScanActivity" />
         <activity
-            android:name=".app.progress.ProgressActivity"
+            android:name=".app.ui.CustomView.progress.ProgressActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name=".app.http.HttpActivity" />
-        <activity android:name=".app.http.NoHttp.NoHttpActivity" />
-        <activity android:name=".app.Notification.NotificationActivity" />
-        <activity android:name=".app.Notification.NotificationClickActivity" />
-        <activity android:name=".app.Notification.NotificationClickPictureActivity" />
-        <activity android:name=".app.zip.ZipActivity" />
-        <activity android:name=".app.compass.CompassActivity" />
-        <activity android:name=".app.pedometer.PedometerActivity" />
+        <activity android:name=".app.network.http.HttpActivity" />
+        <activity android:name=".app.network.http.NoHttp.NoHttpActivity" />
+        <activity android:name=".app.ui.Notification.NotificationActivity" />
+        <activity android:name=".app.ui.Notification.NotificationClickActivity" />
+        <activity android:name=".app.ui.Notification.NotificationClickPictureActivity" />
+        <activity android:name=".app.mobile.zip.ZipActivity" />
+        <activity android:name=".app.mobile.compass.CompassActivity" />
+        <activity android:name=".app.mobile.pedometer.PedometerActivity" />
 
         <service
-            android:name=".app.pedometer.service.StepService"
+            android:name=".app.mobile.pedometer.service.StepService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".app.gesture.GestureActivity" />
-        <activity android:name=".app.animate.AnimateActivity" />
-        <activity android:name=".app.animate.FrameAnimateActivity" />
-        <activity android:name=".app.animate.TweenAnimateActivity" />
-        <activity android:name=".app.animate.PropertyAnimateActivity" />
-        <activity android:name=".app.viewpager.ViewPagerActivity" />
-        <activity android:name=".app.viewpager.AdvertiseActivity" />
-        <activity android:name=".app.music.MusicActivity" />
-        <activity android:name=".app.FloatWindow.FloatWindowActivity" />
+        <activity android:name=".app.ui.CustomView.gesture.GestureActivity" />
+        <activity android:name=".app.ui.animate.AnimateActivity" />
+        <activity android:name=".app.ui.animate.FrameAnimateActivity" />
+        <activity android:name=".app.ui.animate.TweenAnimateActivity" />
+        <activity android:name=".app.ui.animate.PropertyAnimateActivity" />
+        <activity android:name=".app.ui.viewpager.ViewPagerActivity" />
+        <activity android:name=".app.ui.viewpager.AdvertiseActivity" />
+        <activity android:name=".app.mobile.music.MusicActivity" />
+        <activity android:name=".app.ui.FloatWindow.FloatWindowActivity" />
 
         <service
-            android:name=".app.FloatWindow.service.FloatWindowService"
+            android:name=".app.ui.FloatWindow.service.FloatWindowService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".app.EditText.EditTextActivity" />
-        <activity android:name=".app.EditText.PwdEditText.PwdEditTextActivity" />
+        <activity android:name=".app.ui.CustomView.EditText.EditTextActivity" />
+        <activity android:name=".app.ui.CustomView.EditText.PwdEditText.PwdEditTextActivity" />
         <activity android:name=".app.mode.ModeActivity" />
         <activity android:name=".app.mode.mvp.MVPActivity" />
         <activity android:name=".app.mode.mvp.login.MVPLoginActivity" />
         <activity android:name=".app.mode.mvp.main.MVPMainActivity" />
-        <activity android:name=".app.intentService.IntentServiceActivity" />
+        <activity android:name=".app.component.intentService.IntentServiceActivity" />
 
         <service
-            android:name=".app.intentService.service.CustomeIntentService"
+            android:name=".app.component.intentService.service.CustomeIntentService"
             android:exported="false" />
 
-        <activity android:name=".app.slideMenu.SlideMenuActivity" />
-        <activity android:name=".app.slideMenu.NavigationViewActivity" />
-        <activity android:name=".app.slideMenu.ListMenuActivity" />
-        <activity android:name=".app.repeat.listview.ListViewActivity" />
-        <activity android:name=".app.repeat.listview.RefreshListViewActivity" />
-        <activity android:name=".app.repeat.RepeatActivity" />
-        <activity android:name=".app.repeat.recyclerview.RecyclerViewActivity" />
-        <activity android:name=".app.repeat.SwipeItemLayout.SwipeItemLayoutActivity" />
-        <activity android:name=".app.repeat.SwipeItemLayout.SwipeRecyclerViewActivity" />
-        <activity android:name=".app.repeat.SwipeItemLayout.SwipeListViewActivity" />
-        <activity android:name=".app.animate.activityAnim.ActivityAnimActivity" />
-        <activity android:name=".app.animate.activityAnim.AnotherActivity" />
+        <activity android:name=".app.ui.slideMenu.SlideMenuActivity" />
+        <activity android:name=".app.ui.slideMenu.NavigationViewActivity" />
+        <activity android:name=".app.ui.slideMenu.ListMenuActivity" />
+        <activity android:name=".app.ui.CustomView.repeat.listview.ListViewActivity" />
+        <activity android:name=".app.ui.CustomView.repeat.listview.RefreshListViewActivity" />
+        <activity android:name=".app.ui.CustomView.repeat.RepeatActivity" />
+        <activity android:name=".app.ui.CustomView.repeat.recyclerview.RecyclerViewActivity" />
+        <activity android:name=".app.ui.CustomView.repeat.SwipeItemLayout.SwipeItemLayoutActivity" />
+        <activity android:name=".app.ui.CustomView.repeat.SwipeItemLayout.SwipeRecyclerViewActivity" />
+        <activity android:name=".app.ui.CustomView.repeat.SwipeItemLayout.SwipeListViewActivity" />
+        <activity android:name=".app.ui.animate.activityAnim.ActivityAnimActivity" />
+        <activity android:name=".app.ui.animate.activityAnim.AnotherActivity" />
         <activity android:name=".app.DesignPattern.DesignPatternActivity" />
         <activity android:name=".app.DesignPattern.Singleton.SingletonActivity" />
         <activity android:name=".app.DesignPattern.Builder.BuilderActivity" />
@@ -137,7 +138,11 @@
         <activity android:name=".app.DesignPattern.Facade.FacadeActivity" />
         <activity android:name=".app.DesignPattern.Bridge.BridgeActivity" />
         <activity android:name=".app.DesignPattern.DesignPatternPrincipleActivity" />
-        <activity android:name=".app.EditText.HintImgEditText.HintImgEditTextActivity"></activity>
+        <activity android:name=".app.ui.CustomView.EditText.HintImgEditText.HintImgEditTextActivity" />
+        <activity android:name=".app.ui.CustomView.CustomViewActivity" />
+        <activity android:name=".app.network.NetworkActivity" />
+        <activity android:name=".app.mobile.MobileActivity" />
+        <activity android:name=".app.component.ComponentActivity"></activity>
     </application>
 
 </manifest>

@@ -9,28 +9,11 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.DesignPattern.DesignPatternActivity;
-import com.sjl.lbox.app.EditText.EditTextActivity;
-import com.sjl.lbox.app.FloatWindow.FloatWindowActivity;
-import com.sjl.lbox.app.Notification.NotificationActivity;
-import com.sjl.lbox.app.QRCode.QRCodeActivity;
-import com.sjl.lbox.app.animate.AnimateActivity;
-import com.sjl.lbox.app.compass.CompassActivity;
-import com.sjl.lbox.app.contact.ContactActivity;
-import com.sjl.lbox.app.gesture.GestureActivity;
-import com.sjl.lbox.app.http.HttpActivity;
-import com.sjl.lbox.app.image.ImageActivity;
-import com.sjl.lbox.app.intentService.IntentServiceActivity;
+import com.sjl.lbox.app.component.ComponentActivity;
+import com.sjl.lbox.app.mobile.MobileActivity;
 import com.sjl.lbox.app.mode.ModeActivity;
-import com.sjl.lbox.app.music.MusicActivity;
-import com.sjl.lbox.app.network.monitor.NetworkMonitorActivity;
-import com.sjl.lbox.app.pedometer.PedometerActivity;
-import com.sjl.lbox.app.progress.ProgressActivity;
-import com.sjl.lbox.app.repeat.RepeatActivity;
-import com.sjl.lbox.app.signature.SignatureActivity;
-import com.sjl.lbox.app.slideMenu.SlideMenuActivity;
-import com.sjl.lbox.app.viewpager.ViewPagerActivity;
-import com.sjl.lbox.app.webview.WebViewActivity;
-import com.sjl.lbox.app.zip.ZipActivity;
+import com.sjl.lbox.app.network.NetworkActivity;
+import com.sjl.lbox.app.ui.UIActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -71,28 +54,11 @@ public class MainActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
-        list.add(new Module("列表、网状布局", RepeatActivity.class));
-        list.add(new Module("侧滑菜单", SlideMenuActivity.class));
+        list.add(new Module("UI效果", UIActivity.class));
         list.add(new Module("开发模式", ModeActivity.class));
         list.add(new Module("设计模式", DesignPatternActivity.class));
-        list.add(new Module("IntentService和LocalBroadcastManager", IntentServiceActivity.class));
-        list.add(new Module("动画", AnimateActivity.class));
-        list.add(new Module("悬浮窗", FloatWindowActivity.class));
-        list.add(new Module("手势密码", GestureActivity.class));
-        list.add(new Module("输入框", EditTextActivity.class));
-        list.add(new Module("图片选择", ImageActivity.class));
-        list.add(new Module("音乐选择", MusicActivity.class));
-        list.add(new Module("联系人列表", ContactActivity.class));
-        list.add(new Module("二维码扫描", QRCodeActivity.class));
-        list.add(new Module("App签名获取", SignatureActivity.class));
-        list.add(new Module("进度条", ProgressActivity.class));
-        list.add(new Module("通知", NotificationActivity.class));
-        list.add(new Module("webview", WebViewActivity.class));
-        list.add(new Module("网络信息及网络监听", NetworkMonitorActivity.class));
-        list.add(new Module("HTTP", HttpActivity.class));
-        list.add(new Module("Zip", ZipActivity.class));
-        list.add(new Module("指南针", CompassActivity.class));
-        list.add(new Module("计步器", PedometerActivity.class));
-        list.add(new Module("ViewPager", ViewPagerActivity.class));
+        list.add(new Module("网络", NetworkActivity.class));
+        list.add(new Module("组件", ComponentActivity.class));
+        list.add(new Module("手机功能", MobileActivity.class));
     }
 }

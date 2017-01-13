@@ -4,7 +4,7 @@
     android:id="@+id/dl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sjl.lbox.app.slideMenu.ListMenuActivity">
+    tools:context=".app.ui.slideMenu.ListMenuActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

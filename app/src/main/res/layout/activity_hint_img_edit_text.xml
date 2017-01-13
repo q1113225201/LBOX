@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:orientation="vertical"
-    tools:context="com.sjl.lbox.app.EditText.HintImgEditText.HintImgEditTextActivity">
+    tools:context=".app.ui.CustomView.EditText.HintImgEditText.HintImgEditTextActivity">
 
-    <com.sjl.lbox.app.EditText.HintImgEditText.view.HintImgEditText
+    <com.sjl.lbox.app.ui.CustomView.EditText.HintImgEditText.view.HintImgEditText
         android:id="@+id/etHintImg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

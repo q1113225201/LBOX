@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sjl.lbox.app.QRCode.MyQRCode.activity.CaptureActivity">
+    tools:context=".app.mobile.QRCode.MyQRCode.activity.CaptureActivity">
 
     <SurfaceView
         android:id="@+id/svPreview"
@@ -12,7 +12,7 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center" />
 
-    <com.sjl.lbox.app.QRCode.MyQRCode.view.CaptureView
+    <com.sjl.lbox.app.mobile.QRCode.MyQRCode.view.CaptureView
         android:id="@+id/captureView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sjl.lbox.app.contact.ContactActivity">
+    tools:context=".app.ui.CustomView.contact.ContactActivity">
 
     <EditText
         android:id="@+id/etKeyword"
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
 
-        <com.sjl.lbox.app.contact.view.SectionIndexBar
+        <com.sjl.lbox.app.ui.CustomView.contact.view.SectionIndexBar
             android:id="@+id/sectionIndexBar"
             android:layout_width="20dp"
             android:layout_height="match_parent"

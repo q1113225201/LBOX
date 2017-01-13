@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sjl.lbox.app.gesture.GestureActivity">
+    tools:context=".app.ui.CustomView.gesture.GestureActivity">
 
     <Button
         android:id="@+id/btnSetting"
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:gravity="center" />
 
-    <com.sjl.lbox.view.gesture.GestureView
+    <com.sjl.lbox.app.ui.CustomView.gesture.gesture.GestureView
         android:id="@+id/gestureView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

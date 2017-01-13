@@ -11,11 +11,11 @@ import android.widget.BaseAdapter;
 import com.sjl.lbox.R;
 import com.sjl.lbox.listener.BaseListener;
 import com.sjl.lbox.listener.ItemClickListener;
-import com.sjl.lbox.view.dialog.BaseDialog;
-import com.sjl.lbox.view.dialog.BaseProgressDialog;
-import com.sjl.lbox.view.dialog.BaseProgressImageDialog;
-import com.sjl.lbox.view.dialog.NetWorkErrorDialog;
-import com.sjl.lbox.view.dialog.ProgressDialog;
+import com.sjl.lbox.app.ui.CustomView.progress.view.dialog.BaseDialog;
+import com.sjl.lbox.app.ui.CustomView.progress.view.dialog.BaseProgressDialog;
+import com.sjl.lbox.app.ui.CustomView.progress.view.dialog.BaseProgressImageDialog;
+import com.sjl.lbox.app.ui.CustomView.progress.view.dialog.NetWorkErrorDialog;
+import com.sjl.lbox.app.ui.CustomView.progress.view.dialog.ProgressDialog;
 
 public class DialogUtil {
     private static BaseDialog baseDialog;

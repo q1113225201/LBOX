@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00ff00"
-    tools:context="com.sjl.lbox.app.animate.activityAnim.AnotherActivity">
+    tools:context=".app.ui.animate.activityAnim.AnotherActivity">
 
 </RelativeLayout>

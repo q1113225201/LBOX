@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sjl.lbox.app.http.NoHttp.NoHttpActivity">
+    tools:context=".app.network.http.NoHttp.NoHttpActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
