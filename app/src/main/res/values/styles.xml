@@ -3,9 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="android:activityOpenEnterAnimation">@anim/slide_in</item>
-        <item name="android:activityCloseEnterAnimation">@anim/slide_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/slide_out</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_left</item>
     </style>
     <!-- 弹出窗基本样式 -->
     <style name="baseDialogStyle" parent="android:style/Theme.Dialog">

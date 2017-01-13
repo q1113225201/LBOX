@@ -142,7 +142,7 @@
         <activity android:name=".app.ui.CustomView.CustomViewActivity" />
         <activity android:name=".app.network.NetworkActivity" />
         <activity android:name=".app.mobile.MobileActivity" />
-        <activity android:name=".app.component.ComponentActivity"></activity>
+        <activity android:name=".app.component.ComponentActivity" />
     </application>
 
 </manifest>

@@ -54,7 +54,7 @@ public class AnimateActivity extends BaseActivity {
         list.add(new Module("逐帧(Frame)动画", FrameAnimateActivity.class));
         list.add(new Module("补间(Tween)动画", TweenAnimateActivity.class));
         list.add(new Module("属性(Property)动画", PropertyAnimateActivity.class));
-        list.add(new Module("界面切换动画", ActivityAnimActivity.class));
+        list.add(new Module("过渡动画", ActivityAnimActivity.class));
         return list;
     }
 }

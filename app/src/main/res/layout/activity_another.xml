@@ -4,7 +4,51 @@
     android:id="@+id/activity_another"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00ff00"
+    android:background="#00FFFF"
     tools:context=".app.ui.animate.activityAnim.AnotherActivity">
 
+    <RelativeLayout
+        android:id="@+id/rlAnother"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView style="@style/TextViewCommonStyle"
+            android:text="点击悬浮按钮，扩散效果"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnFloat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/iv_play_white" />
+
+        <View
+            android:id="@+id/viewBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FF00"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llAnother"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/ivSharedElement1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/compass_background"
+            android:transitionName="sharedElement1" />
+
+        <ImageView
+            android:id="@+id/ivSharedElement2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/compass_front"
+            android:transitionName="sharedElement2" />
+    </LinearLayout>
 </RelativeLayout>

@@ -1,12 +1,14 @@
 package com.sjl.lbox.app.ui.animate.activityAnim;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ScrollView;
+import android.widget.ImageView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
@@ -19,10 +21,14 @@ import com.sjl.lbox.base.BaseActivity;
  */
 public class ActivityAnimActivity extends BaseActivity implements View.OnClickListener {
 
-    private Button btnFade;
-    private Button btnSlide;
-    private Button btnSlideRight;
-    private ScrollView scrollView;
+    private Button btnFade1;
+    private Button btnSlide1;
+    private Button btnFade2;
+    private Button btnSlide2;
+    private Button btnExplode2;
+    private Button btnSharedElement2;
+    private ImageView ivSharedElement1;
+    private ImageView ivSharedElement2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,30 +39,57 @@ public class ActivityAnimActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initView() {
-        btnFade = (Button) findViewById(R.id.btnFade);
-        btnFade.setOnClickListener(this);
-        btnSlide = (Button) findViewById(R.id.btnSlide);
-        btnSlide.setOnClickListener(this);
-        btnSlideRight = (Button) findViewById(R.id.btnSlideRight);
-        btnSlideRight.setOnClickListener(this);
-        scrollView = (ScrollView) findViewById(R.id.activity_anim);
+        btnSlide1 = (Button) findViewById(R.id.btnSlide1);
+        btnSlide1.setOnClickListener(this);
+        btnFade1 = (Button) findViewById(R.id.btnFade1);
+        btnFade1.setOnClickListener(this);
+        btnSlide2 = (Button) findViewById(R.id.btnSlide2);
+        btnSlide2.setOnClickListener(this);
+        btnFade2 = (Button) findViewById(R.id.btnFade2);
+        btnFade2.setOnClickListener(this);
+        btnExplode2 = (Button) findViewById(R.id.btnExplode2);
+        btnExplode2.setOnClickListener(this);
+        btnSharedElement2 = (Button) findViewById(R.id.btnSharedElement2);
+        btnSharedElement2.setOnClickListener(this);
+        ivSharedElement1 = (ImageView) findViewById(R.id.ivSharedElement1);
+        ivSharedElement2 = (ImageView) findViewById(R.id.ivSharedElement2);
     }
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
+        ActivityOptionsCompat activityOptionsCompat;
         switch (v.getId()) {
-            case R.id.btnFade:
+            case R.id.btnSlide1:
+                startActivity(new Intent(mContext, AnotherActivity.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                break;
+            case R.id.btnFade1:
                 startActivity(new Intent(mContext, AnotherActivity.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
-            case R.id.btnSlide:
-                startActivity(new Intent(mContext, AnotherActivity.class));
-                overridePendingTransition(R.anim.slide_enter, R.anim.slide_exit);
+            case R.id.btnSlide2:
+                intent.setClass(mContext, AnotherActivity.class);
+                intent.putExtra(AnotherActivity.EXTRA_NAME, R.transition.slide_left);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
-            case R.id.btnSlideRight:
-                Animation rightOutAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_out_right);
-                scrollView.startAnimation(rightOutAnimation);
-                startActivity(new Intent(mContext, AnotherActivity.class));
+            case R.id.btnFade2:
+                intent.setClass(mContext, AnotherActivity.class);
+                intent.putExtra(AnotherActivity.EXTRA_NAME, R.transition.fade);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                break;
+            case R.id.btnExplode2:
+                intent.setClass(mContext, AnotherActivity.class);
+                intent.putExtra(AnotherActivity.EXTRA_NAME, R.transition.explode);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                break;
+            case R.id.btnSharedElement2:
+                intent.setClass(mContext, AnotherActivity.class);
+                intent.putExtra(AnotherActivity.EXTRA_NAME, -1);
+                Pair pair1 = new Pair(ivSharedElement1, ViewCompat.getTransitionName(ivSharedElement1));
+                Pair pair2 = new Pair(ivSharedElement2, ViewCompat.getTransitionName(ivSharedElement2));
+                activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, pair1, pair2);
+                startActivity(intent, activityOptionsCompat.toBundle());
                 break;
         }
     }
