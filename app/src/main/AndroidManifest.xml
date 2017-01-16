@@ -143,6 +143,7 @@
         <activity android:name=".app.network.NetworkActivity" />
         <activity android:name=".app.mobile.MobileActivity" />
         <activity android:name=".app.component.ComponentActivity" />
+        <activity android:name=".app.ui.CustomView.EditText.FloatLableEditText.FloatLableEditTextActivity"></activity>
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.ui.CustomView.EditText.FloatLableEditText.FloatLableEditTextActivity;
 import com.sjl.lbox.app.ui.CustomView.EditText.HintImgEditText.HintImgEditTextActivity;
 import com.sjl.lbox.app.ui.CustomView.EditText.PwdEditText.PwdEditTextActivity;
 import com.sjl.lbox.base.BaseActivity;
@@ -46,5 +47,6 @@ public class EditTextActivity extends BaseActivity {
         list = new ArrayList<Module>();
         list.add(new Module("仿支付宝密码输入框", PwdEditTextActivity.class));
         list.add(new Module("图片提示输入框", HintImgEditTextActivity.class));
+        list.add(new Module("浮动提示输入框", FloatLableEditTextActivity.class));
     }
 }
