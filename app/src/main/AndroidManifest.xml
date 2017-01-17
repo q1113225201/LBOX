@@ -143,7 +143,9 @@
         <activity android:name=".app.network.NetworkActivity" />
         <activity android:name=".app.mobile.MobileActivity" />
         <activity android:name=".app.component.ComponentActivity" />
-        <activity android:name=".app.ui.CustomView.EditText.FloatLableEditText.FloatLableEditTextActivity"></activity>
+        <activity android:name=".app.ui.CustomView.EditText.FloatLableEditText.FloatLableEditTextActivity" />
+        <activity android:name=".app.ui.CustomView.repeat.CardView.CardViewActivity" />
+        <activity android:name=".app.ui.CustomView.repeat.CardView.CardViewDetailActivity"></activity>
     </application>
 
 </manifest>

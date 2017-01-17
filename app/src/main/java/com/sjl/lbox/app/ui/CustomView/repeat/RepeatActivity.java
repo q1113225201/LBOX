@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.ui.CustomView.repeat.CardView.CardViewActivity;
 import com.sjl.lbox.app.ui.CustomView.repeat.SwipeItemLayout.SwipeItemLayoutActivity;
 import com.sjl.lbox.app.ui.CustomView.repeat.listview.ListViewActivity;
 import com.sjl.lbox.app.ui.CustomView.repeat.recyclerview.RecyclerViewActivity;
@@ -55,5 +56,6 @@ public class RepeatActivity extends BaseActivity {
         list.add(new Module("ListView", ListViewActivity.class));
         list.add(new Module("RecyclerView", RecyclerViewActivity.class));
         list.add(new Module("SwipeItemLayout", SwipeItemLayoutActivity.class));
+        list.add(new Module("CardView", CardViewActivity.class));
     }
 }
