@@ -11,7 +11,7 @@ import android.view.View;
 import com.sjl.lbox.app.ui.animate.SceneAnim.snow.entity.SnowEntity;
 
 /**
- * SnowView
+ * 下雪场景
  *
  * @author SJL
  * @date 2017/1/17

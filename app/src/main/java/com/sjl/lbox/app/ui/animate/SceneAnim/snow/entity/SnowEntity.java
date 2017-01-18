@@ -7,7 +7,7 @@ import android.graphics.PointF;
 import java.util.Random;
 
 /**
- * SnowEntity
+ * 雪花实体
  *
  * @author SJL
  * @date 2017/1/17
@@ -60,14 +60,21 @@ public class SnowEntity {
         return new SnowEntity(scenePointF, radius, speed, angle, currentPointF, paint);
     }
 
+    /**
+     * 绘制雪花
+     *
+     * @param canvas
+     */
     public void draw(Canvas canvas) {
         canvas.drawCircle(currentPointF.x, currentPointF.y, radius, paint);
         move();
     }
 
+    /**
+     * 移动雪花
+     */
     private void move() {
-        //angle = new Random().nextFloat() * (ANGLE_MAX - ANGLE_MIN) + ANGLE_MIN;
-        currentPointF.set((float)(currentPointF.x + speed * Math.cos(Math.PI * (angle) / 180)), (float)(currentPointF.y + speed * Math.sin(Math.PI * (angle) / 180)));
+        currentPointF.set((float) (currentPointF.x + speed * Math.cos(Math.PI * (angle) / 180)), (float) (currentPointF.y + speed * Math.sin(Math.PI * (angle) / 180)));
         if (!inSide()) {
             reset();
         }
