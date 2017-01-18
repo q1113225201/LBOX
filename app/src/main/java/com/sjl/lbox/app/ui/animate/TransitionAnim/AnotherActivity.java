@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.animate.activityAnim;
+package com.sjl.lbox.app.ui.animate.TransitionAnim;
 
 import android.animation.Animator;
 import android.os.Bundle;

@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.ui.animate.SceneAnim.SceneAnimActivity;
-import com.sjl.lbox.app.ui.animate.activityAnim.ActivityAnimActivity;
+import com.sjl.lbox.app.ui.animate.TransitionAnim.TransitionAnimActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -55,7 +55,7 @@ public class AnimateActivity extends BaseActivity {
         list.add(new Module("逐帧(Frame)动画", FrameAnimateActivity.class));
         list.add(new Module("补间(Tween)动画", TweenAnimateActivity.class));
         list.add(new Module("属性(Property)动画", PropertyAnimateActivity.class));
-        list.add(new Module("过渡动画", ActivityAnimActivity.class));
+        list.add(new Module("过渡动画", TransitionAnimActivity.class));
         list.add(new Module("场景动画", SceneAnimActivity.class));
         return list;
     }

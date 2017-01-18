@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.animate.activityAnim;
+package com.sjl.lbox.app.ui.animate.TransitionAnim;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3d.Rotate3dActivity;
 import com.sjl.lbox.base.BaseActivity;
 
 /**
@@ -19,7 +20,7 @@ import com.sjl.lbox.base.BaseActivity;
  * @author SJL
  * @date 2017/1/3 22:06
  */
-public class ActivityAnimActivity extends BaseActivity implements View.OnClickListener {
+public class TransitionAnimActivity extends BaseActivity implements View.OnClickListener {
 
     private Button btnFade1;
     private Button btnSlide1;
@@ -29,11 +30,12 @@ public class ActivityAnimActivity extends BaseActivity implements View.OnClickLi
     private Button btnSharedElement2;
     private ImageView ivSharedElement1;
     private ImageView ivSharedElement2;
+    private Button btnRotate3D;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anim);
+        setContentView(R.layout.activity_transition_anim);
 
         initView();
     }
@@ -53,6 +55,8 @@ public class ActivityAnimActivity extends BaseActivity implements View.OnClickLi
         btnSharedElement2.setOnClickListener(this);
         ivSharedElement1 = (ImageView) findViewById(R.id.ivSharedElement1);
         ivSharedElement2 = (ImageView) findViewById(R.id.ivSharedElement2);
+        btnRotate3D = (Button) findViewById(R.id.btnRotate3D);
+        btnRotate3D.setOnClickListener(this);
     }
 
     @Override
@@ -90,6 +94,9 @@ public class ActivityAnimActivity extends BaseActivity implements View.OnClickLi
                 Pair pair2 = new Pair(ivSharedElement2, ViewCompat.getTransitionName(ivSharedElement2));
                 activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, pair1, pair2);
                 startActivity(intent, activityOptionsCompat.toBundle());
+                break;
+            case R.id.btnRotate3D:
+                startActivity(new Intent(mContext, Rotate3dActivity.class));
                 break;
         }
     }

@@ -111,8 +111,8 @@
         <activity android:name=".app.ui.CustomView.repeat.SwipeItemLayout.SwipeItemLayoutActivity" />
         <activity android:name=".app.ui.CustomView.repeat.SwipeItemLayout.SwipeRecyclerViewActivity" />
         <activity android:name=".app.ui.CustomView.repeat.SwipeItemLayout.SwipeListViewActivity" />
-        <activity android:name=".app.ui.animate.activityAnim.ActivityAnimActivity" />
-        <activity android:name=".app.ui.animate.activityAnim.AnotherActivity" />
+        <activity android:name=".app.ui.animate.TransitionAnim.TransitionAnimActivity" />
+        <activity android:name=".app.ui.animate.TransitionAnim.AnotherActivity" />
         <activity android:name=".app.DesignPattern.DesignPatternActivity" />
         <activity android:name=".app.DesignPattern.Singleton.SingletonActivity" />
         <activity android:name=".app.DesignPattern.Builder.BuilderActivity" />
@@ -147,7 +147,8 @@
         <activity android:name=".app.ui.CustomView.repeat.CardView.CardViewActivity" />
         <activity android:name=".app.ui.CustomView.repeat.CardView.CardViewDetailActivity" />
         <activity android:name=".app.ui.animate.SceneAnim.SceneAnimActivity" />
-        <activity android:name=".app.ui.animate.SceneAnim.snow.SnowActivity"></activity>
+        <activity android:name=".app.ui.animate.SceneAnim.snow.SnowActivity" />
+        <activity android:name=".app.ui.animate.TransitionAnim.Rotate3d.Rotate3dActivity"></activity>
     </application>
 
 </manifest>
