@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.component.AccessibilityService.AccessibilityServiceActivity;
 import com.sjl.lbox.app.component.intentService.IntentServiceActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
@@ -25,6 +26,7 @@ public class ComponentActivity extends BaseActivity {
     private ListView lv;
     private ArrayAdapter adapter;
     private List<Module> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,5 +51,6 @@ public class ComponentActivity extends BaseActivity {
     private void initData() {
         list = new ArrayList<Module>();
         list.add(new Module("IntentService和LocalBroadcastManager", IntentServiceActivity.class));
+        list.add(new Module("RobService", AccessibilityServiceActivity.class));
     }
 }
