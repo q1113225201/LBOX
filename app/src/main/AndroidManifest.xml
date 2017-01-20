@@ -149,7 +149,7 @@
         <activity android:name=".app.ui.animate.SceneAnim.SceneAnimActivity" />
         <activity android:name=".app.ui.animate.SceneAnim.snow.SnowActivity" />
         <activity android:name=".app.ui.animate.TransitionAnim.Rotate3d.Rotate3dActivity" />
-        <activity android:name=".app.component.AccessibilityService.AccessibilityServiceActivity"></activity>
+        <activity android:name=".app.component.AccessibilityService.AccessibilityServiceActivity" />
 
         <service
             android:name=".app.component.AccessibilityService.service.RobService"
@@ -160,10 +160,13 @@
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
+
             <meta-data
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
         </service>
+
+        <activity android:name=".app.ui.CustomView.wave.WaveActivity"></activity>
     </application>
 
 </manifest>

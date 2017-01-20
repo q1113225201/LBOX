@@ -9,11 +9,11 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.ui.CustomView.EditText.EditTextActivity;
-import com.sjl.lbox.app.mobile.compass.CompassActivity;
 import com.sjl.lbox.app.ui.CustomView.contact.ContactActivity;
 import com.sjl.lbox.app.ui.CustomView.gesture.GestureActivity;
 import com.sjl.lbox.app.ui.CustomView.progress.ProgressActivity;
 import com.sjl.lbox.app.ui.CustomView.repeat.RepeatActivity;
+import com.sjl.lbox.app.ui.CustomView.wave.WaveActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -58,5 +58,6 @@ public class CustomViewActivity extends BaseActivity {
         list.add(new Module("手势密码", GestureActivity.class));
         list.add(new Module("进度条", ProgressActivity.class));
         list.add(new Module("列表、网状布局", RepeatActivity.class));
+        list.add(new Module("波浪", WaveActivity.class));
     }
 }
