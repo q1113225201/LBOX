@@ -166,7 +166,8 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
-        <activity android:name=".app.ui.CustomView.wave.WaveActivity"></activity>
+        <activity android:name=".app.ui.CustomView.wave.WaveActivity" />
+        <activity android:name=".app.ui.CustomView.magnifier.MagnifierActivity"></activity>
     </application>
 
 </manifest>
