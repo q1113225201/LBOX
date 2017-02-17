@@ -33,6 +33,9 @@ public class Magnifier extends View {
 
     private PointF pointF;
     private Path path;
+    //控件宽高
+    private int mWidth;
+    private int mHeight;
 
     public Magnifier(Context context) {
         this(context, null);
@@ -58,14 +61,15 @@ public class Magnifier extends View {
     }
 
     private void initAttrs(AttributeSet attrs) {
-        radius = 100;
+        radius = 200;
         factor = 2;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+        mWidth = getMeasuredWidth();
+        mHeight = getMeasuredHeight();
         drawMagnifier(canvas);
     }
 
@@ -81,11 +85,15 @@ public class Magnifier extends View {
         }
         if(pointF!=null){
             //剪切
-            canvas.translate(pointF.x-radius,pointF.y-radius);
+            float dx = pointF.x-2*radius;
+            float dy = pointF.y-2*radius;
+            dx = dx<-radius?-radius:(dx>mWidth?mWidth:dx);
+            dy = dy<-radius?-radius:(dy>mHeight?mHeight:dy);
+            canvas.translate(dx,dy);
             canvas.clipPath(path);
 
             //画放大后的图
-            canvas.translate(radius-pointF.x*factor,radius-pointF.y*factor);
+            canvas.translate(radius-(pointF.x)*factor,radius-(pointF.y)*factor);
             canvas.drawBitmap(bitmap,matrix,paint);
         }
     }
@@ -99,7 +107,7 @@ public class Magnifier extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-                pointF = new PointF(event.getX(), event.getY());
+                pointF = new PointF(event.getRawX(), event.getRawY());
                 break;
             case MotionEvent.ACTION_UP:
                 pointF = null;

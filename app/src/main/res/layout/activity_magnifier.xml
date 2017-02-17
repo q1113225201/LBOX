@@ -32,7 +32,7 @@
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/compass_front" />
+        android:src="@drawable/saber" />
 
     <com.sjl.lbox.app.ui.CustomView.magnifier.view.Magnifier
         android:id="@+id/magnifier"
