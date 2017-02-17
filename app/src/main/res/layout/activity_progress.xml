@@ -75,6 +75,7 @@
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     app:progressBackgroundColor="#CACACA"
+                    app:progressWidth="30"
                     app:progressColor="#00FF00"></com.sjl.lbox.app.ui.CustomView.progress.view.CircleProgress>
 
             </RelativeLayout>

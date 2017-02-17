@@ -36,6 +36,7 @@ public class CircleProgress extends View {
         this.context = context;
         init(attrs);
     }
+
     //偏移角度
     private float offsetAngle;
     //进度条画笔
@@ -83,7 +84,7 @@ public class CircleProgress extends View {
         progressWidth = typedArray.getFloat(R.styleable.CircleProgress_progressWidth, 20.0f);
         progressMax = typedArray.getFloat(R.styleable.CircleProgress_progressMax, 100f);
         textColor = typedArray.getColor(R.styleable.CircleProgress_textColor, Color.BLACK);
-        textSize = DensityUtil.sp2px(context,18f);
+        textSize = DensityUtil.sp2px(context, 18f);
         typedArray.recycle();
     }
 
@@ -97,6 +98,7 @@ public class CircleProgress extends View {
         mPaintProgress.setFlags(Paint.ANTI_ALIAS_FLAG);
         mPaintProgress.setColor(progressColor);
         mPaintProgress.setStrokeWidth(progressWidth);
+        mPaintProgress.setStrokeCap(Paint.Cap.ROUND);//设置画笔边角是圆角
 
         mPaintText = new Paint();
         mPaintText.setColor(textColor);//设置颜色
@@ -131,21 +133,23 @@ public class CircleProgress extends View {
         RectF rectF = new RectF(mWidth / 2 - radius, mHeight / 2 - radius, mWidth / 2 + radius, mHeight / 2 + radius);
         canvas.drawArc(rectF, 0f, 360 * progressValue / progressMax, false, mPaintProgress);
 */
-
+        float startAngle = 0 + offsetAngle;
+        float sweepAngle = 360 * progressValue / progressMax;
+        mPaintProgress.setStrokeWidth(progressWidth);
         //绘制进度背景
         mPaintProgress.setColor(progressBackgroundColor);
-        canvas.drawArc(progressWidth,progressWidth,mWidth-progressWidth,mHeight-progressWidth,0f,360f,false,mPaintProgress);
+        canvas.drawArc(progressWidth, progressWidth, mWidth - progressWidth, mHeight - progressWidth, 0f, 360f, false, mPaintProgress);
         //绘制进度
         mPaintProgress.setColor(progressColor);
-        canvas.drawArc(progressWidth,progressWidth,mWidth-progressWidth,mHeight-progressWidth,0f+offsetAngle,360*progressValue/progressMax,false,mPaintProgress);
-
+        canvas.drawArc(progressWidth, progressWidth, mWidth - progressWidth, mHeight - progressWidth, startAngle, sweepAngle, false, mPaintProgress);
         //画字体
         Rect rect = new Rect();
         mPaintText.getTextBounds(text, 0, text.length(), rect);
         //居中绘制进度，文字基线高度位置=高度中心点-文字高度/2
         //descent()基线下方距离
         //ascent()基线上方距离
-        canvas.drawText(text, mWidth / 2, mHeight / 2-(mPaintText.descent()+mPaintText.ascent())/2,mPaintText);
+        canvas.drawText(text, mWidth / 2, mHeight / 2 - (mPaintText.descent() + mPaintText.ascent()) / 2, mPaintText);
+
     }
 
     /**

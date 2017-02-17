@@ -62,12 +62,10 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
                 case PROGRESS:
                     if (current < 360) {
                         current++;
-                        circleProgress.setProgressValue(current);
                         circleProgress.setText(current + "");
                         handler.sendEmptyMessageDelayed(PROGRESS, PROGRESS);
-                    } else {
-                        circleProgress.setProgressValue(0);
                     }
+                    circleProgress.setProgressValue(current);
                     break;
                 case NODE_PROGRESS:
                     if (currentNodeProgress < 100) {
