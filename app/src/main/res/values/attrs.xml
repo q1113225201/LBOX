@@ -16,6 +16,8 @@
         <attr name="dotRadius" format="float" />
         <!--点颜色-->
         <attr name="dotColor" format="color" />
+        <!--显示内容-->
+        <attr name="showContent" format="boolean" />
     </declare-styleable>
     <!--左滑删除控件-->
     <declare-styleable name="SwipeItemLayout">

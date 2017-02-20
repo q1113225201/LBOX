@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Build;
 import android.text.InputFilter;
 import android.util.AttributeSet;
@@ -52,6 +53,17 @@ public class PwdEditText extends EditText {
     private float dotRadius = 12f;
     //点颜色
     private int dotColor = Color.BLACK;
+
+    //画文字的笔
+    private Paint textPaint;
+    //点颜色
+    private int textColor = Color.BLACK;
+    //字体大小
+    private float textSize;
+
+    //是否显示内容
+    private boolean showContent = false;
+
     private OnTextEndListener onTextEndListener;
 
     public void setOnTextEndListener(OnTextEndListener onTextEndListener) {
@@ -104,6 +116,9 @@ public class PwdEditText extends EditText {
         lineColor = typedArray.getColor(R.styleable.PwdEditText_lineColor, Color.GRAY);
         dotRadius = typedArray.getFloat(R.styleable.PwdEditText_dotRadius, 12f);
         dotColor = typedArray.getColor(R.styleable.PwdEditText_lineColor, Color.BLACK);
+        textColor = dotColor;
+        textSize = getTextSize();
+        showContent = typedArray.getBoolean(R.styleable.PwdEditText_showContent, false);
         typedArray.recycle();
     }
 
@@ -138,6 +153,12 @@ public class PwdEditText extends EditText {
         dotPaint.setStrokeWidth(dotRadius);
         dotPaint.setAntiAlias(true);
         dotPaint.setColor(dotColor);
+
+        //画文字笔初始化
+        textPaint = new Paint();
+        textPaint.setTextSize(textSize);
+        textPaint.setAntiAlias(true);
+        textPaint.setColor(textColor);
     }
 
     @Override
@@ -145,13 +166,20 @@ public class PwdEditText extends EditText {
         super.onDraw(canvas);
         mWidth = getMeasuredWidth();
         mHeight = getMeasuredHeight();
+        textSize = getTextSize();
+        textPaint.setTextSize(textSize);
 
         //画边框
         drawBorder(canvas);
         //画分割线
         drawLines(canvas);
-        //画点
-        drawDots(canvas);
+        if (showContent) {
+            //画文字
+            drawText(canvas);
+        } else {
+            //画点
+            drawDots(canvas);
+        }
     }
 
     /**
@@ -202,6 +230,23 @@ public class PwdEditText extends EditText {
         }
     }
 
+    /**
+     * 画文字
+     *
+     * @param canvas
+     */
+    private void drawText(Canvas canvas) {
+        int length = getText().length();
+        String str = getText().toString();
+        //每个密码框宽度
+        int itemWidth = (int) ((mWidth - 2 * lineWidth - (passwordLength - 1) * lineWidth) / passwordLength);
+        for (int i = 0; i < length; i++) {
+            Rect rect = new Rect();
+            textPaint.getTextBounds(str, i, i + 1, rect);
+            canvas.drawText(str, i, i + 1, (i + 1) * (lineWidth + itemWidth) - 0.5f * itemWidth-rect.width()/2, mHeight / 2 + rect.height() / 2, textPaint);
+        }
+    }
+
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
@@ -223,7 +268,6 @@ public class PwdEditText extends EditText {
      * 代码设置属性后更新画笔工具
      */
     public void updateTools() {
-        clear();
         initTools();
         invalidate();
     }
@@ -297,6 +341,15 @@ public class PwdEditText extends EditText {
 
     public void setDotColor(int dotColor) {
         this.dotColor = dotColor;
+        updateTools();
+    }
+
+    public boolean isShowContent() {
+        return showContent;
+    }
+
+    public void setShowContent(boolean showContent) {
+        this.showContent = showContent;
         updateTools();
     }
 }

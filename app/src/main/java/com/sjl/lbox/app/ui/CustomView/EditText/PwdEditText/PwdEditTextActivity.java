@@ -2,7 +2,9 @@ package com.sjl.lbox.app.ui.CustomView.EditText.PwdEditText;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.ToggleButton;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.ui.CustomView.EditText.PwdEditText.view.PwdEditText;
@@ -22,6 +24,7 @@ public class PwdEditTextActivity extends BaseActivity implements SeekBar.OnSeekB
     private SeekBar seekBarLength;
     private SeekBar seekBarLine;
     private SeekBar seekRadius;
+    private ToggleButton tbShowText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,13 @@ public class PwdEditTextActivity extends BaseActivity implements SeekBar.OnSeekB
         seekRadius = (SeekBar) findViewById(R.id.seekRadius);
         seekRadius.setOnSeekBarChangeListener(this);
         seekRadius.setProgress((int) (etPwd.getDotRadius() * 10));
+        tbShowText = (ToggleButton) findViewById(R.id.tbShowText);
+        tbShowText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                etPwd.setShowContent(isChecked);
+            }
+        });
     }
 
     public void clear(View view) {
