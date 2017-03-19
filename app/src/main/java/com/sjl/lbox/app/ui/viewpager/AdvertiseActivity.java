@@ -96,7 +96,9 @@ public class AdvertiseActivity extends BaseActivity {
             ImageView imageView = new ImageView(mContext);
             imageView.setLayoutParams(lp);
             imageView.setImageResource(R.drawable.dot_normal);
+            //添加到指示器列表中
             dotList.add(imageView);
+            //添加到LinearLayout容器中
             llDot.addView(imageView);
         }
     }

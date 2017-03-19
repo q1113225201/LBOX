@@ -62,6 +62,7 @@ public class ViewPagerIndicator extends LinearLayout {
         initAttrs(attrs);
         //初始化工具
         initTools();
+        //不调用自身onDraw
         setWillNotDraw(false);
     }
 
@@ -95,12 +96,13 @@ public class ViewPagerIndicator extends LinearLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        //计算设置控件的宽高
         setMeasuredDimension(padding + (padding + 2 * radius) * num, (padding + radius) * 2);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        //super.onDraw(canvas);
+        super.onDraw(canvas);
         drawBackground(canvas);
     }
 
@@ -112,6 +114,7 @@ public class ViewPagerIndicator extends LinearLayout {
     private void drawBackground(Canvas canvas) {
         paint.setColor(colorNormal);
         for (int i = 0; i < num; i++) {
+            //绘制每个点的位置
             canvas.drawCircle(
                     padding + radius + i * (2 * radius + padding),
                     padding + radius,
@@ -134,12 +137,14 @@ public class ViewPagerIndicator extends LinearLayout {
     public void setPagerAndOffset(int pager, float offset) {
         this.pager = pager;
         this.offset = offset;
+        //调用会使View测量、布局、重绘
         requestLayout();
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
+        //设置选中点的位置
         selectView.layout(
                 (int) (padding + (padding + 2 * radius) * (pager + offset)),
                 padding,
