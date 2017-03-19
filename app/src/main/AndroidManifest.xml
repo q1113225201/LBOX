@@ -148,7 +148,7 @@
         <activity android:name=".app.ui.CustomView.repeat.CardView.CardViewDetailActivity" />
         <activity android:name=".app.ui.animate.SceneAnim.SceneAnimActivity" />
         <activity android:name=".app.ui.animate.SceneAnim.snow.SnowActivity" />
-        <activity android:name=".app.ui.animate.TransitionAnim.Rotate3d.Rotate3dActivity" />
+        <activity android:name=".app.ui.animate.TransitionAnim.Rotate3D.Rotate3dActivity" />
         <activity android:name=".app.component.AccessibilityService.AccessibilityServiceActivity" />
 
         <service
@@ -166,8 +166,9 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
-        <activity android:name=".app.ui.CustomView.wave.WaveActivity" />
+        <activity android:name=".app.ui.CustomView.wave.WaveActivity"></activity>
         <activity android:name=".app.ui.CustomView.magnifier.MagnifierActivity"></activity>
+        <activity android:name=".app.ui.CustomView.indicator.IndicatorActivity"></activity>
     </application>
 
 </manifest>

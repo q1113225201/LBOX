@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3d.Rotate3dActivity;
+import com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3D.Rotate3dActivity;
 import com.sjl.lbox.base.BaseActivity;
 
 /**

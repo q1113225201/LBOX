@@ -11,6 +11,7 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.app.ui.CustomView.EditText.EditTextActivity;
 import com.sjl.lbox.app.ui.CustomView.contact.ContactActivity;
 import com.sjl.lbox.app.ui.CustomView.gesture.GestureActivity;
+import com.sjl.lbox.app.ui.CustomView.indicator.IndicatorActivity;
 import com.sjl.lbox.app.ui.CustomView.magnifier.MagnifierActivity;
 import com.sjl.lbox.app.ui.CustomView.progress.ProgressActivity;
 import com.sjl.lbox.app.ui.CustomView.repeat.RepeatActivity;
@@ -61,5 +62,6 @@ public class CustomViewActivity extends BaseActivity {
         list.add(new Module("列表、网状布局", RepeatActivity.class));
         list.add(new Module("波浪", WaveActivity.class));
         list.add(new Module("放大镜", MagnifierActivity.class));
+        list.add(new Module("ViewPager指示器", IndicatorActivity.class));
     }
 }

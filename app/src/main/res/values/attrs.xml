@@ -67,6 +67,19 @@
     </declare-styleable>
     <!--背景提示图片-->
     <declare-styleable name="HintImgEditText">
-        <attr name="hintImg" format="reference"/>
+        <attr name="hintImg" format="reference" />
+    </declare-styleable>
+    <!--指示器-->
+    <declare-styleable name="ViewPagerIndicator">
+        <!--半径-->
+        <attr name="radius" format="integer" />
+        <!--普通颜色-->
+        <attr name="colorNormal" format="color" />
+        <!--选中颜色-->
+        <attr name="colorSelected" format="color" />
+        <!--间距-->
+        <attr name="padding" format="integer" />
+        <!--数量-->
+        <attr name="num" format="integer" />
     </declare-styleable>
 </resources>

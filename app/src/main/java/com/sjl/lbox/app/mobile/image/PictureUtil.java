@@ -19,7 +19,7 @@ import android.widget.PopupWindow.OnDismissListener;
 import com.sjl.lbox.R;
 import com.sjl.lbox.util.BitmapUtil;
 import com.sjl.lbox.util.FileUtil;
-import com.sjl.lbox.app.ui.CustomView.progress.view.dialog.BasePopBottom;
+import com.sjl.lbox.app.ui.CustomView.dialog.BasePopBottom;
 
 import java.io.File;
 /**

@@ -13,7 +13,7 @@ import com.sjl.lbox.app.ui.CustomView.progress.view.NodeProgress;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.util.DialogUtil;
 import com.sjl.lbox.util.ToastUtil;
-import com.sjl.lbox.app.ui.CustomView.progress.view.dialog.ProgressDialog;
+import com.sjl.lbox.app.ui.CustomView.dialog.ProgressDialog;
 
 /**
  * 自定义进度条显示Activity

@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.CustomView.progress.view.dialog;
+package com.sjl.lbox.app.ui.CustomView.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

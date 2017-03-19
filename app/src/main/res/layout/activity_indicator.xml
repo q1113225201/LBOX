@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_indicator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sjl.lbox.app.ui.CustomView.indicator.IndicatorActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:background="#cacaca"
+        android:layout_height="150dp"></android.support.v4.view.ViewPager>
+
+    <com.sjl.lbox.app.ui.CustomView.indicator.view.ViewPagerIndicator
+        android:id="@+id/viewPagerIndicator"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        app:colorNormal="#FFFFFF"
+        app:colorSelected="#333333"
+        app:radius="10"
+        app:padding="20"
+        android:layout_alignBottom="@+id/viewPager"></com.sjl.lbox.app.ui.CustomView.indicator.view.ViewPagerIndicator>
+</RelativeLayout>
