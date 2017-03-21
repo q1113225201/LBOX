@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".app.ui.FloatWindow.FloatWindowActivity">
+    tools:context=".app.component.FloatWindow.FloatWindowActivity">
 
     <Button
         android:id="@+id/btnStartService"

@@ -3,11 +3,10 @@ package com.sjl.lbox.app.ui.CustomView.indicator;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.ui.CustomView.indicator.view.ViewPagerIndicator;
-import com.sjl.lbox.app.ui.viewpager.adapter.ViewPagerAdapter;
+import com.sjl.lbox.app.component.viewpager.adapter.ViewPagerAdapter;
 import com.sjl.lbox.base.BaseActivity;
 
 import java.util.ArrayList;

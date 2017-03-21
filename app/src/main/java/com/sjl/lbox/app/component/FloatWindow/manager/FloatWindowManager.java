@@ -1,11 +1,11 @@
-package com.sjl.lbox.app.ui.FloatWindow.manager;
+package com.sjl.lbox.app.component.FloatWindow.manager;
 
 
 import android.content.Context;
 import android.view.WindowManager;
 
-import com.sjl.lbox.app.ui.FloatWindow.view.FloatWindowBig;
-import com.sjl.lbox.app.ui.FloatWindow.view.FloatWindowSmall;
+import com.sjl.lbox.app.component.FloatWindow.view.FloatWindowBig;
+import com.sjl.lbox.app.component.FloatWindow.view.FloatWindowSmall;
 
 /**
  * 悬浮窗管理类

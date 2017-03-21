@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.Notification;
+package com.sjl.lbox.app.component.Notification;
 
 import android.os.Bundle;
 

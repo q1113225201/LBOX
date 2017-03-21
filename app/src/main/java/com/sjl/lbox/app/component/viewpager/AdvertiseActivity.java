@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.viewpager;
+package com.sjl.lbox.app.component.viewpager;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.ui.viewpager.adapter.ViewPagerAdapter;
+import com.sjl.lbox.app.component.viewpager.adapter.ViewPagerAdapter;
 import com.sjl.lbox.base.BaseActivity;
 
 import java.util.ArrayList;

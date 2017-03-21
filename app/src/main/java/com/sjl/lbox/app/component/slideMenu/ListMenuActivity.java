@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.slideMenu;
+package com.sjl.lbox.app.component.slideMenu;
 
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;

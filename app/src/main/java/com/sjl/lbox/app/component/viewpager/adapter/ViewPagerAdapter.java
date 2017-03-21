@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.viewpager.adapter;
+package com.sjl.lbox.app.component.viewpager.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

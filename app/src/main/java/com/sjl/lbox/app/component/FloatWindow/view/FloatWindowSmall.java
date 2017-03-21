@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.FloatWindow.view;
+package com.sjl.lbox.app.component.FloatWindow.view;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.ui.FloatWindow.manager.FloatWindowManager;
+import com.sjl.lbox.app.component.FloatWindow.manager.FloatWindowManager;
 import com.sjl.lbox.util.AppUtil;
 import com.sjl.lbox.util.LogUtil;
 

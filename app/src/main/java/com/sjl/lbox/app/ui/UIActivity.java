@@ -8,13 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.ui.Notification.NotificationActivity;
 import com.sjl.lbox.app.ui.CustomView.CustomViewActivity;
-import com.sjl.lbox.app.ui.FloatWindow.FloatWindowActivity;
 import com.sjl.lbox.app.ui.animate.AnimateActivity;
-import com.sjl.lbox.app.ui.slideMenu.SlideMenuActivity;
-import com.sjl.lbox.app.ui.viewpager.ViewPagerActivity;
-import com.sjl.lbox.app.ui.webview.WebViewActivity;
+import com.sjl.lbox.app.component.slideMenu.SlideMenuActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -56,10 +52,5 @@ public class UIActivity extends BaseActivity {
         list = new ArrayList<Module>();
         list.add(new Module("动画", AnimateActivity.class));
         list.add(new Module("自定义View", CustomViewActivity.class));
-        list.add(new Module("悬浮窗", FloatWindowActivity.class));
-        list.add(new Module("侧滑菜单", SlideMenuActivity.class));
-        list.add(new Module("webview", WebViewActivity.class));
-        list.add(new Module("ViewPager", ViewPagerActivity.class));
-        list.add(new Module("通知", NotificationActivity.class));
     }
 }

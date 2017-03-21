@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.FloatWindow.service;
+package com.sjl.lbox.app.component.FloatWindow.service;
 
 import android.app.Service;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 
-import com.sjl.lbox.app.ui.FloatWindow.manager.FloatWindowManager;
+import com.sjl.lbox.app.component.FloatWindow.manager.FloatWindowManager;
 import com.sjl.lbox.util.AppUtil;
 import com.sjl.lbox.util.LogUtil;
 

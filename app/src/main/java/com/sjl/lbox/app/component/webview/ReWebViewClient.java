@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.webview;
+package com.sjl.lbox.app.component.webview;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="Y" />
 
-            <com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3D.view.Rotate3DView
+            <com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3d.view.Rotate3DView
                 android:id="@+id/rotate3DView"
                 android:layout_width="200dp"
                 android:layout_height="200dp" />

@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3D.anim;
+package com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3d.anim;
 
 import android.graphics.Camera;
 import android.graphics.Matrix;

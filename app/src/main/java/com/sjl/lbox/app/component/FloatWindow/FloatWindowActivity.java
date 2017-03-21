@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.FloatWindow;
+package com.sjl.lbox.app.component.FloatWindow;
 
 import android.annotation.TargetApi;
 import android.app.AppOpsManager;
@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.ui.FloatWindow.service.FloatWindowService;
+import com.sjl.lbox.app.component.FloatWindow.service.FloatWindowService;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.listener.BaseListener;
 import com.sjl.lbox.util.DialogUtil;

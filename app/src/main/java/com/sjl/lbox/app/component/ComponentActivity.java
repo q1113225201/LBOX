@@ -9,7 +9,12 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.component.AccessibilityService.AccessibilityServiceActivity;
+import com.sjl.lbox.app.component.FloatWindow.FloatWindowActivity;
+import com.sjl.lbox.app.component.Notification.NotificationActivity;
 import com.sjl.lbox.app.component.intentService.IntentServiceActivity;
+import com.sjl.lbox.app.component.slideMenu.SlideMenuActivity;
+import com.sjl.lbox.app.component.viewpager.ViewPagerActivity;
+import com.sjl.lbox.app.component.webview.WebViewActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -52,5 +57,10 @@ public class ComponentActivity extends BaseActivity {
         list = new ArrayList<Module>();
         list.add(new Module("IntentService和LocalBroadcastManager", IntentServiceActivity.class));
         list.add(new Module("RobService", AccessibilityServiceActivity.class));
+        list.add(new Module("通知", NotificationActivity.class));
+        list.add(new Module("webview", WebViewActivity.class));
+        list.add(new Module("悬浮窗", FloatWindowActivity.class));
+        list.add(new Module("ViewPager", ViewPagerActivity.class));
+        list.add(new Module("侧滑菜单", SlideMenuActivity.class));
     }
 }

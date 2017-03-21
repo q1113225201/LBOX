@@ -41,7 +41,7 @@
         </activity>
         <activity android:name=".app.ui.UIActivity" />
         <activity android:name=".app.MainActivity" />
-        <activity android:name=".app.ui.webview.WebViewActivity" />
+        <activity android:name=".app.component.webview.WebViewActivity" />
         <activity android:name=".app.network.monitor.NetworkMonitorActivity" />
         <activity android:name=".app.mobile.image.ImageActivity" />
         <activity android:name=".app.ui.CustomView.contact.ContactActivity" />
@@ -62,9 +62,9 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".app.network.http.HttpActivity" />
         <activity android:name=".app.network.http.NoHttp.NoHttpActivity" />
-        <activity android:name=".app.ui.Notification.NotificationActivity" />
-        <activity android:name=".app.ui.Notification.NotificationClickActivity" />
-        <activity android:name=".app.ui.Notification.NotificationClickPictureActivity" />
+        <activity android:name=".app.component.Notification.NotificationActivity" />
+        <activity android:name=".app.component.Notification.NotificationClickActivity" />
+        <activity android:name=".app.component.Notification.NotificationClickPictureActivity" />
         <activity android:name=".app.mobile.zip.ZipActivity" />
         <activity android:name=".app.mobile.compass.CompassActivity" />
         <activity android:name=".app.mobile.pedometer.PedometerActivity" />
@@ -79,13 +79,13 @@
         <activity android:name=".app.ui.animate.FrameAnimateActivity" />
         <activity android:name=".app.ui.animate.TweenAnimateActivity" />
         <activity android:name=".app.ui.animate.PropertyAnimateActivity" />
-        <activity android:name=".app.ui.viewpager.ViewPagerActivity" />
-        <activity android:name=".app.ui.viewpager.AdvertiseActivity" />
+        <activity android:name=".app.component.viewpager.ViewPagerActivity" />
+        <activity android:name=".app.component.viewpager.AdvertiseActivity" />
         <activity android:name=".app.mobile.music.MusicActivity" />
-        <activity android:name=".app.ui.FloatWindow.FloatWindowActivity" />
+        <activity android:name=".app.component.FloatWindow.FloatWindowActivity" />
 
         <service
-            android:name=".app.ui.FloatWindow.service.FloatWindowService"
+            android:name=".app.component.FloatWindow.service.FloatWindowService"
             android:enabled="true"
             android:exported="true" />
 
@@ -101,9 +101,9 @@
             android:name=".app.component.intentService.service.CustomeIntentService"
             android:exported="false" />
 
-        <activity android:name=".app.ui.slideMenu.SlideMenuActivity" />
-        <activity android:name=".app.ui.slideMenu.NavigationViewActivity" />
-        <activity android:name=".app.ui.slideMenu.ListMenuActivity" />
+        <activity android:name=".app.component.slideMenu.SlideMenuActivity" />
+        <activity android:name=".app.component.slideMenu.NavigationViewActivity" />
+        <activity android:name=".app.component.slideMenu.ListMenuActivity" />
         <activity android:name=".app.ui.CustomView.repeat.listview.ListViewActivity" />
         <activity android:name=".app.ui.CustomView.repeat.listview.RefreshListViewActivity" />
         <activity android:name=".app.ui.CustomView.repeat.RepeatActivity" />
@@ -148,7 +148,7 @@
         <activity android:name=".app.ui.CustomView.repeat.CardView.CardViewDetailActivity" />
         <activity android:name=".app.ui.animate.SceneAnim.SceneAnimActivity" />
         <activity android:name=".app.ui.animate.SceneAnim.snow.SnowActivity" />
-        <activity android:name=".app.ui.animate.TransitionAnim.Rotate3D.Rotate3dActivity" />
+        <activity android:name=".app.ui.animate.TransitionAnim.Rotate3d.Rotate3dActivity" />
         <activity android:name=".app.component.AccessibilityService.AccessibilityServiceActivity" />
 
         <service

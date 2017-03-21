@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.webview;
+package com.sjl.lbox.app.component.webview;
 
 import android.content.Context;
 import android.content.Intent;
