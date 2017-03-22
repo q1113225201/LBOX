@@ -18,11 +18,14 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by yanfa on 2016/11/3.
+ * 权限请求工具类
+ *
+ * @author SJL
+ * @date 2017/3/22
  */
-
 @TargetApi(Build.VERSION_CODES.M)
 public class PermisstionUtil {
+    private static final String TAG = "PermisstionUtil";
     //拍照权限
     public static String CAMERA = Manifest.permission.CAMERA;
     public static int CAMERA_CODE = 0x1101;
@@ -39,13 +42,27 @@ public class PermisstionUtil {
     public static String CALL_PHONE = Manifest.permission.CALL_PHONE;
     public static int CALL_PHONE_CODE = 0x1106;
 
-    private static HashMap<String,Object> map=new HashMap<String,Object>();
-    private static boolean checkSDK(){
+    private static HashMap<String, Object> map = new HashMap<String, Object>();
+
+    /**
+     * 版本检测
+     * @return
+     */
+    private static boolean checkSDK() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
 
+    /**
+     * 权限请求
+     *
+     * @param context
+     * @param permissions        需要请求的权限
+     * @param requestCode
+     * @param explainMsg         权限解释
+     * @param onPermissionResult
+     */
     public static void requestPermissions(@NonNull Context context, @NonNull String[] permissions, int requestCode, String explainMsg, OnPermissionResult onPermissionResult) {
-        onPermissionResult = initOnPermissionResult(onPermissionResult,permissions, requestCode, explainMsg);
+        onPermissionResult = initOnPermissionResult(onPermissionResult, permissions, requestCode, explainMsg);
         if (permissions.length == 0) {
             invokeOnRequestPermissionsResult(context, onPermissionResult);
         } else if (context instanceof Activity || (Object) context instanceof Fragment) {
@@ -65,9 +82,9 @@ public class PermisstionUtil {
                     }
                     invokeOnRequestPermissionsResult(context, onPermissionResult);
                 }
-            }else{
+            } else {
                 onPermissionResult.grantResults = getPermissionsResults(context, permissions);
-                invokeOnRequestPermissionsResult(context,onPermissionResult);
+                invokeOnRequestPermissionsResult(context, onPermissionResult);
             }
         }
     }
@@ -98,23 +115,24 @@ public class PermisstionUtil {
      */
     private static int[] getPermissionsResults(Context context, String[] permissions) {
         int[] results = new int[permissions.length];
-        for (int i = 0; i < results.length; i++)
+        for (int i = 0; i < results.length; i++) {
             results[i] = checkPermission(context, permissions[i]);
+        }
         return results;
     }
 
     private static String[] getRationalePermissions(Context context, String[] deniedPermissions) {
         List<String> list = new ArrayList<String>();
         for (String permission : deniedPermissions) {
-            if(context instanceof Activity){
-                if(((Activity) context).shouldShowRequestPermissionRationale(permission)){
+            if (context instanceof Activity) {
+                if (((Activity) context).shouldShowRequestPermissionRationale(permission)) {
                     list.add(permission);
                 }
-            }else if((Object) context instanceof Fragment){
-                if(((Fragment) (Object) context).shouldShowRequestPermissionRationale(permission)){
+            } else if ((Object) context instanceof Fragment) {
+                if (((Fragment) (Object) context).shouldShowRequestPermissionRationale(permission)) {
                     list.add(permission);
                 }
-            }else {
+            } else {
                 throw new IllegalArgumentException("context 只能是Activity或Fragment");
             }
         }
@@ -123,14 +141,15 @@ public class PermisstionUtil {
 
     /**
      * 调用权限请求方法
+     *
      * @param context
      * @param onPermissionResult
      */
     private static void invokeRequestPermissions(Context context, OnPermissionResult onPermissionResult) {
         if (context instanceof Activity)
             ((Activity) context).requestPermissions(onPermissionResult.deniedPermissions, onPermissionResult.requestCode);
-        else if ((Object)context instanceof Fragment)
-            ((Fragment)(Object)context).requestPermissions(onPermissionResult.deniedPermissions, onPermissionResult.requestCode);
+        else if ((Object) context instanceof Fragment)
+            ((Fragment) (Object) context).requestPermissions(onPermissionResult.deniedPermissions, onPermissionResult.requestCode);
     }
 
     /**
@@ -143,13 +162,13 @@ public class PermisstionUtil {
         if (context instanceof Activity) {
             if (checkSDK()) {
                 ((Activity) context).onRequestPermissionsResult(onPermissionResult.requestCode, onPermissionResult.permissions, onPermissionResult.grantResults);
-            }else if (context instanceof ActivityCompat.OnRequestPermissionsResultCallback) {
+            } else if (context instanceof ActivityCompat.OnRequestPermissionsResultCallback) {
                 ((ActivityCompat.OnRequestPermissionsResultCallback) context).onRequestPermissionsResult(onPermissionResult.requestCode, onPermissionResult.permissions, onPermissionResult.grantResults);
-            }else{
+            } else {
                 onRequestPermissionsResult(onPermissionResult.requestCode, onPermissionResult.permissions, onPermissionResult.grantResults);
             }
-        } else if ((Object)context instanceof Fragment) {
-            ((Fragment)(Object)context).onRequestPermissionsResult(onPermissionResult.requestCode, onPermissionResult.permissions, onPermissionResult.grantResults);
+        } else if ((Object) context instanceof Fragment) {
+            ((Fragment) (Object) context).onRequestPermissionsResult(onPermissionResult.requestCode, onPermissionResult.permissions, onPermissionResult.grantResults);
         }
     }
 
@@ -160,40 +179,29 @@ public class PermisstionUtil {
      * @param onPermissionResult
      */
     private static void shouldShowRequestPermissionRationale(final Context context, final OnPermissionResult onPermissionResult) {
-        new AlertDialog.Builder(context instanceof Activity?context:((Fragment)(Object)context).getActivity())
+        new AlertDialog.Builder(context instanceof Activity ? context : ((Fragment) (Object) context).getActivity())
                 .setTitle("提示")
                 .setMessage(onPermissionResult.explainMsg)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        invokeRequestPermissions(context,onPermissionResult);
+                        invokeRequestPermissions(context, onPermissionResult);
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        onPermissionResult.grantResults = getPermissionsResults(context,onPermissionResult.permissions);
-                        invokeOnRequestPermissionsResult(context,onPermissionResult);
+                        onPermissionResult.grantResults = getPermissionsResults(context, onPermissionResult.permissions);
+                        invokeOnRequestPermissionsResult(context, onPermissionResult);
                     }
                 }).show();
-//        DialogUtil.showConfirm(context, null, onPermissionResult.explainMsg, null, null, new BaseListener() {
-//            @Override
-//            public void baseListener(View v, String msg) {
-//                invokeRequestPermissions(context, onPermissionResult);
-//            }
-//        }, new BaseListener() {
-//            @Override
-//            public void baseListener(View v, String msg) {
-//                onPermissionResult.grantResults = getPermissionsResults(context,onPermissionResult.permissions);
-//                invokeOnRequestPermissionsResult(context,onPermissionResult);
-//            }
-//        },true);
     }
 
     /**
      * 检查权限
+     *
      * @param context
      * @param permission
      * @return
@@ -202,19 +210,26 @@ public class PermisstionUtil {
         return context.checkPermission(permission, Process.myPid(), Process.myUid());
     }
 
+    /**
+     * 权限请求结果
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     public static void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        synchronized (map){
+        synchronized (TAG) {
             OnPermissionResult onPermissionResult = (OnPermissionResult) map.get(String.valueOf(requestCode));
-            if(onPermissionResult!=null){
+            if (onPermissionResult != null) {
                 List<String> deniedPermissions = new ArrayList<String>();
-                for (int i=0;i<grantResults.length;i++){
-                    if(grantResults[i]!=PackageManager.PERMISSION_GRANTED){
+                for (int i = 0; i < grantResults.length; i++) {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                         deniedPermissions.add(permissions[i]);
                     }
                 }
-                if(deniedPermissions.size()>0){
+                if (deniedPermissions.size() > 0) {
                     onPermissionResult.denied(requestCode);
-                }else{
+                } else {
                     onPermissionResult.granted(requestCode);
                 }
                 map.remove(String.valueOf(requestCode));
@@ -224,13 +239,14 @@ public class PermisstionUtil {
 
     /**
      * 初始化权限请求回调
+     *
      * @param onPermissionResult
      * @param permissions
-     *@param requestCode
-     * @param explainMsg   @return
+     * @param requestCode
+     * @param explainMsg         @return
      */
     private static OnPermissionResult initOnPermissionResult(OnPermissionResult onPermissionResult, String[] permissions, int requestCode, String explainMsg) {
-        synchronized (map){
+        synchronized (TAG) {
             if (onPermissionResult == null) {
                 onPermissionResult = new OnPermissionResult() {
                     @Override
@@ -248,7 +264,7 @@ public class PermisstionUtil {
             onPermissionResult.requestCode = requestCode;
             onPermissionResult.explainMsg = explainMsg;
             onPermissionResult.grantResults = new int[0];
-            map.put(String.valueOf(requestCode),onPermissionResult);
+            map.put(String.valueOf(requestCode), onPermissionResult);
             return onPermissionResult;
         }
     }
