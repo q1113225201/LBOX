@@ -135,7 +135,7 @@ public class ViewPagerIndicator extends LinearLayout {
      * @param offset
      */
     public void setPagerAndOffset(int pager, float offset) {
-        this.pager = pager;
+        this.pager = pager % (num == 0 ? 1 : num);
         this.offset = offset;
         //调用会使View测量、布局、重绘
         requestLayout();

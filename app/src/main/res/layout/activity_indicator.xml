@@ -19,8 +19,8 @@
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         app:colorNormal="#FFFFFF"
-        app:colorSelected="#333333"
-        app:radius="10"
-        app:padding="20"
+        app:colorSelected="#acacac"
+        app:radius="5"
+        app:padding="10"
         android:layout_alignBottom="@+id/viewPager"></com.sjl.lbox.app.ui.CustomView.indicator.view.ViewPagerIndicator>
 </RelativeLayout>

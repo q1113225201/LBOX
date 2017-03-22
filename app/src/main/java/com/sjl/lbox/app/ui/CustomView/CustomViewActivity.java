@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.ui.CustomView.EditText.EditTextActivity;
+import com.sjl.lbox.app.ui.CustomView.ExpandMenu.ExpandMenuActivity;
 import com.sjl.lbox.app.ui.CustomView.contact.ContactActivity;
 import com.sjl.lbox.app.ui.CustomView.gesture.GestureActivity;
 import com.sjl.lbox.app.ui.CustomView.indicator.IndicatorActivity;
@@ -63,5 +64,6 @@ public class CustomViewActivity extends BaseActivity {
         list.add(new Module("波浪", WaveActivity.class));
         list.add(new Module("放大镜", MagnifierActivity.class));
         list.add(new Module("ViewPager指示器", IndicatorActivity.class));
+        list.add(new Module("展开菜单", ExpandMenuActivity.class));
     }
 }

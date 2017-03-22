@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_expand_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sjl.lbox.app.ui.CustomView.ExpandMenu.ExpandMenuActivity">
+
+    <com.sjl.lbox.app.ui.CustomView.ExpandMenu.view.ExpandMenu
+        android:id="@+id/expandMenu1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:menuDrawable="@drawable/ic_open_close"
+        app:menuGravity="BOTTOM">
+
+        <LinearLayout
+            android:id="@+id/menu11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iv_next_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上一曲" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iv_previous_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="播放" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iv_next_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下一曲" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iv_stop_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="停止" />
+        </LinearLayout>
+    </com.sjl.lbox.app.ui.CustomView.ExpandMenu.view.ExpandMenu>
+
+    <com.sjl.lbox.app.ui.CustomView.ExpandMenu.view.ExpandMenu
+        android:id="@+id/expandMenu2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        app:menuDrawable="@drawable/ic_open_close"
+        app:menuGravity="LEFT">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_previous_white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_play_white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_next_white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_stop_white" />
+    </com.sjl.lbox.app.ui.CustomView.ExpandMenu.view.ExpandMenu>
+
+    <com.sjl.lbox.app.ui.CustomView.ExpandMenu.view.ExpandMenu
+        android:id="@+id/expandMenu3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menuDrawable="@drawable/ic_open_close"
+        app:menuGravity="RIGHT">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_previous_white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_play_white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_next_white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_stop_white" />
+    </com.sjl.lbox.app.ui.CustomView.ExpandMenu.view.ExpandMenu>
+
+    <com.sjl.lbox.app.ui.CustomView.ExpandMenu.view.ExpandMenu
+        android:id="@+id/expandMenu4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:menuDrawable="@drawable/ic_open_close"
+        app:menuGravity="TOP">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_previous_white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_play_white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_next_white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/menu44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_stop_white" />
+    </com.sjl.lbox.app.ui.CustomView.ExpandMenu.view.ExpandMenu>
+</RelativeLayout>

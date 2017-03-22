@@ -1,6 +1,8 @@
 package com.sjl.lbox.app.ui.CustomView.indicator;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 
@@ -24,7 +26,18 @@ public class IndicatorActivity extends BaseActivity {
 
     private List<ImageView> list;
     private ViewPagerAdapter adapter;
-
+    private int SCOLLING = 1;
+    private int TIME = 3000;
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what==SCOLLING){
+                viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+                handler.sendEmptyMessageDelayed(SCOLLING,TIME);
+            }
+        }
+    };
     private int[] images = {R.drawable.frame1, R.drawable.frame2, R.drawable.frame3, R.drawable.frame4};
 
     @Override
@@ -45,7 +58,7 @@ public class IndicatorActivity extends BaseActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                viewPagerIndicator.setPagerAndOffset(position%list.size(),positionOffset);
+                viewPagerIndicator.setPagerAndOffset(position,positionOffset);
             }
 
             @Override
@@ -57,6 +70,7 @@ public class IndicatorActivity extends BaseActivity {
 
             }
         });
+        handler.sendEmptyMessageDelayed(SCOLLING,TIME);
     }
 
     private void initData() {
