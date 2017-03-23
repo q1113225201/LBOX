@@ -2,6 +2,7 @@ package com.sjl.lbox;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.yolanda.nohttp.NoHttp;
 
@@ -33,5 +34,6 @@ public class LBoxApp extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         //加载dex分包
+        MultiDex.install(this);
     }
 }
