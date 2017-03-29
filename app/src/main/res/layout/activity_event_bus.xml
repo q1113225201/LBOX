@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sjl.lbox.app.lib.EventBus.EventBusActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="value" />
+
+        <Button
+            android:id="@+id/btnJump"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="跳转" />
+
+        <Button
+            android:id="@+id/btnSendStrick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="发送粘性消息给未来用户" />
+
+        <Button
+            android:id="@+id/btnDestory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="销毁" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/event_bus" />
+
+        <TextView
+            style="@style/TextViewCommonStyle"
+            android:text="优点：" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1、简化了组件间的通讯\n（解耦了事件的发送者和接受者；\n在Activity、fragment和background中运行良好；\n避免了复杂和容易出错的依赖和生命周期问题；）\n\n
+2、使代码更简洁\n
+3、体积小\n
+4、拥有线程交付和用户优先级等功能"/>
+    </LinearLayout>
+</ScrollView>

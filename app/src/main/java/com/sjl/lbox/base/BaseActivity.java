@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import com.sjl.lbox.util.PermisstionUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 /**
  * Activity基类
  *
@@ -20,11 +23,12 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getRequestedOrientation()!= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
+        if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         mContext = this;
         requestPermission();
+        EventBus.getDefault().register(this);
     }
 
     private void requestPermission() {
@@ -35,5 +39,18 @@ public class BaseActivity extends Activity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         PermisstionUtil.onRequestPermissionsResult(requestCode, permissions, grantResults);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Subscribe
+    public void destory(String action) {
+        if ("destory".equals(action)) {
+            finish();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

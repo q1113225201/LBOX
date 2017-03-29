@@ -170,7 +170,10 @@
         <activity android:name=".app.ui.CustomView.magnifier.MagnifierActivity" />
         <activity android:name=".app.ui.CustomView.indicator.IndicatorActivity" />
         <activity android:name=".app.ui.animate.PathAnim.PathAnimActivity" />
-        <activity android:name=".app.ui.CustomView.ExpandMenu.ExpandMenuActivity"></activity>
+        <activity android:name=".app.ui.CustomView.ExpandMenu.ExpandMenuActivity" />
+        <activity android:name=".app.lib.LibActivity" />
+        <activity android:name=".app.lib.EventBus.EventBusActivity" />
+        <activity android:name=".app.lib.EventBus.EventBus2Activity"></activity>
     </application>
 
 </manifest>
