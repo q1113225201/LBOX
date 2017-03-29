@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3d;
+package com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3D;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3d.anim.Rotate3dAnim;
-import com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3d.view.Rotate3DView;
+import com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3D.anim.Rotate3dAnim;
+import com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3D.view.Rotate3DView;
 import com.sjl.lbox.base.BaseActivity;
 
 /**

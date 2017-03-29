@@ -26,18 +26,7 @@ import java.util.List;
  */
 
 public class ExpandMenu extends LinearLayout {
-    public ExpandMenu(Context context) {
-        this(context, null);
-    }
-
-    public ExpandMenu(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public ExpandMenu(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init(attrs);
-    }
+    private static final String TAG = "ExpandMenu";
 
     public static final int TOP = 0;
     public static final int BOTTOM = 1;
@@ -52,7 +41,7 @@ public class ExpandMenu extends LinearLayout {
 
     //显示的按钮
     private FloatingActionButton floatingActionButton;
-    //菜单列表
+    //菜单列表容器
     private LinearLayout menuLayout;
     //菜单列表
     private List<View> menuList;
@@ -63,7 +52,7 @@ public class ExpandMenu extends LinearLayout {
     private boolean isAnimating;
     //动画时间
     private int duration = 50;
-
+    //菜单点击事件
     private OnMenuItemClickListener onMenuItemClickListener;
 
     public interface OnMenuItemClickListener {
@@ -78,6 +67,19 @@ public class ExpandMenu extends LinearLayout {
         this.onMenuItemClickListener = onMenuItemClickListener;
     }
 
+    public ExpandMenu(Context context) {
+        this(context, null);
+    }
+
+    public ExpandMenu(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public ExpandMenu(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(attrs);
+    }
+
     /**
      * 初始化
      *
@@ -90,14 +92,22 @@ public class ExpandMenu extends LinearLayout {
         setOrientation((menuGravity == TOP || menuGravity == BOTTOM) ? VERTICAL : HORIZONTAL);
     }
 
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        //布局加载后初始化菜单
+        initMenuList();
+    }
+
     /**
      * 初始化菜单列表
      */
     private void initMenuList() {
         menuList = new ArrayList<>();
         for (int i = 0; i < getChildCount(); i++) {
-            menuList.add(getChildAt(i));
-            menuList.get(i).setOnClickListener(new OnClickListener() {
+            //将菜单添加进菜单列表
+            View childView = getChildAt(i);
+            childView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (onMenuItemClickListener != null) {
@@ -105,6 +115,7 @@ public class ExpandMenu extends LinearLayout {
                     }
                 }
             });
+            menuList.add(childView);
         }
         removeAllViews();
         //初始化菜单容器
@@ -126,31 +137,35 @@ public class ExpandMenu extends LinearLayout {
             addView(floatingActionButton);
             addView(menuLayout);
         }
+        //设置菜单容器透明
         ViewCompat.setAlpha(menuLayout, 0);
 
         floatingActionButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isAnimating) {
-                    return;
-                }
-                if (isExpanded) {
-                    closeMenu();
-                } else {
-                    openMenu();
-                }
-                requestFocus();
-                isExpanded = !isExpanded;
-                floatingActionButton.setSelected(isExpanded);
+                //切换菜单状态
+                toggle();
             }
         });
     }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        //初始化菜单列表
-        initMenuList();
+    /**
+     * 切换菜单状态
+     */
+    private void toggle() {
+        synchronized (TAG) {
+            if (isAnimating) {
+                return;
+            }
+            if (isExpanded) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+            requestFocus();
+            isExpanded = !isExpanded;
+            floatingActionButton.setSelected(isExpanded);
+        }
     }
 
     /**
@@ -197,26 +212,29 @@ public class ExpandMenu extends LinearLayout {
 
     /**
      * 单个菜单进入动画
+     *
      * @param view
      * @param index 第几个显示的菜单，可根据该值设置启动延迟
      */
     private void animateInMenuItem(View view, int index) {
+        //设置开始状态
         ViewCompat.setScaleX(view, 0.25f);
         ViewCompat.setScaleY(view, 0.25f);
         ViewCompat.setAlpha(view, 0);
 
+        //进入动画
         ViewCompat.animate(view)
                 .setDuration(duration * 4)
                 .scaleX(1f)
                 .scaleY(1f)
                 .alpha(1f)
-                .setStartDelay(duration * index)
+                .setStartDelay(duration * index)//动画启动延迟
                 .setInterpolator(new FastOutSlowInInterpolator())
                 .setListener(new ViewPropertyAnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(View view) {
                         super.onAnimationStart(view);
-                        ViewCompat.setAlpha(view, 1f);
+//                        ViewCompat.setAlpha(view, 1f);
                         isAnimating = true;
                     }
 
@@ -233,13 +251,7 @@ public class ExpandMenu extends LinearLayout {
      * 关闭菜单
      */
     private void closeMenu() {
-        animateOutMenuItems();
-    }
-
-    /**
-     * 菜单移除动画
-     */
-    private void animateOutMenuItems() {
+        //菜单透明度渐变
         ViewCompat.animate(menuLayout)
                 .setDuration(duration)
                 .setInterpolator(new FastOutLinearInInterpolator())
@@ -255,21 +267,10 @@ public class ExpandMenu extends LinearLayout {
                     public void onAnimationEnd(View view) {
                         super.onAnimationEnd(view);
                         isAnimating = false;
+                        //动画结束后移除
                         menuLayout.removeAllViews();
                     }
                 })
                 .start();
-    }
-
-    @Override
-    public boolean dispatchKeyEventPreIme(KeyEvent event) {
-        if(isExpanded
-                && event.getKeyCode() == KeyEvent.KEYCODE_BACK
-                && event.getAction() == KeyEvent.ACTION_UP
-                && event.getRepeatCount() == 0){
-            floatingActionButton.performClick();
-            return true;
-        }
-        return super.dispatchKeyEventPreIme(event);
     }
 }
