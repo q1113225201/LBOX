@@ -1,15 +1,19 @@
 package com.sjl.lbox.app.mobile.image;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,6 +26,7 @@ import com.sjl.lbox.util.FileUtil;
 import com.sjl.lbox.app.ui.CustomView.dialog.BasePopBottom;
 
 import java.io.File;
+
 /**
  * 图片选择类
  *
@@ -71,15 +76,19 @@ public class PictureUtil {
      */
     private static void chooseImage(int code) {
         if (code == REQUEST_CODE_CAMERA) {
-
-            File file = new File(path);
-            if (!file.exists()) {
-                file.mkdir();
+            File file = new File(cameraPath);
+            if (!new File(path).exists()) {
+                new File(path).mkdir();
             }
-
+            Uri imageUri;
+            if (isSdk24()) {
+                imageUri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", file);
+            } else {
+                imageUri = Uri.fromFile(new File(cameraPath));
+            }
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(cameraPath)));
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(intent, REQUEST_CODE_CAMERA);
         } else if (code == REQUEST_CODE_PHOTO) {
             Intent intent = new Intent(Intent.ACTION_PICK);
@@ -116,6 +125,9 @@ public class PictureUtil {
             startPhotoZoom(data.getData());
         } else if (requestCode == REQUEST_CODE_CAMERA) {
             Uri uri = Uri.fromFile(new File(cameraPath));
+            if (isSdk24()) {
+                uri = getImageContentUri(uri);
+            }
             startPhotoZoom(uri);
         } else if (requestCode == REQUEST_CODE_CROP) {
             Bitmap bitmap = null;
@@ -156,14 +168,45 @@ public class PictureUtil {
         intent.putExtra("outputX", outputX);
         intent.putExtra("outputY", outputY);
         intent.putExtra("return-data", true);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path + filename)));
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        // intent.putExtra("outputFormat",
+        // Bitmap.CompressFormat.PNG.toString());
         // 去黑边
         // intent.putExtra("scale", true);
         // intent.putExtra("scaleUpIfNeeded", true);
         // 关闭人脸识别
         // intent.putExtra("noFaceDetection", true);
-        // intent.putExtra("outputFormat",
-        // Bitmap.CompressFormat.PNG.toString());
         startActivityForResult(intent, REQUEST_CODE_CROP);
+    }
+
+    /**
+     * 安卓7.0裁剪根据文件路径获取uri
+     */
+    public static Uri getImageContentUri(Uri uri) {
+        File imageFile = new File(uri.getPath());
+        String filePath = imageFile.getAbsolutePath();
+        Cursor cursor = mContext.getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[]{MediaStore.Images.Media._ID},
+                MediaStore.Images.Media.DATA + "=? ",
+                new String[]{filePath}, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor
+                    .getColumnIndex(MediaStore.MediaColumns._ID));
+            Uri baseUri = Uri.parse("content://media/external/images/media");
+            return Uri.withAppendedPath(baseUri, "" + id);
+        } else {
+            if (imageFile.exists()) {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.DATA, filePath);
+                return mContext.getContentResolver().insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            } else {
+                return null;
+            }
+        }
     }
 
     private static String[] items = {"拍照", "从相册中选取"};
@@ -218,9 +261,14 @@ public class PictureUtil {
                 }
             }
         });
+        clearCache();
     }
 
     public static Boolean clearCache() {
         return FileUtil.deleteFile(path);
+    }
+
+    private static boolean isSdk24() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
     }
 }

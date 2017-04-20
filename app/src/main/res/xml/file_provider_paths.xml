@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <!--根目录: Environment.getExternalStorageDirectory()-->
+        <external-path path="cache" name="myFile"></external-path>
+    </paths>
+</resources>
