@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3D.view;
+package com.sjl.lbox.app.ui.animate.TransitionAnim.Rotate3d.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

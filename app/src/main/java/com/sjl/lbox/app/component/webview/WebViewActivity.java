@@ -15,6 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.sjl.lbox.base.BaseActivity;
+import com.sjl.lbox.util.BitmapUtil;
 import com.sjl.lbox.util.LogUtil;
 import com.sjl.lbox.util.NetWorkUtil;
 import com.sjl.lbox.app.mobile.image.PictureUtil;
@@ -53,8 +54,6 @@ public class WebViewActivity extends BaseActivity implements
         initView();
         setContentView(mWebView);
         isAlive = true;
-        PictureUtil.getInstance(this);
-        PictureUtil.clearCache();
         if (NetWorkUtil.isNetworkAvailable(mContext)) {
             clearWebViewCache();
         }
@@ -159,7 +158,8 @@ public class WebViewActivity extends BaseActivity implements
 
         try {
             if (requestCode == PictureUtil.REQUEST_CODE_CAMERA || requestCode == PictureUtil.REQUEST_CODE_CROP || requestCode == PictureUtil.REQUEST_CODE_PHOTO) {
-                PictureUtil.onActivityResult(requestCode, resultCode, data,
+                PictureUtil.onActivityResult(requestCode,resultCode,data);
+                /*PictureUtil.onActivityResult(requestCode, resultCode, data,
                         new PictureUtil.BitmapLoadCallBack() {
 
                             @Override
@@ -180,7 +180,7 @@ public class WebViewActivity extends BaseActivity implements
                                 }
                                 mUploadMsg.onReceiveValue(null);
                             }
-                        });
+                        });*/
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -198,7 +198,26 @@ public class WebViewActivity extends BaseActivity implements
     public void openFileChooserCallBack(ValueCallback<Uri> uploadMsg,
                                         String acceptType) {
         mUploadMsg = uploadMsg;
-        PictureUtil.showPop(new PictureUtil.OnPopDismiss() {
+        PictureUtil.choosePicture(this, new PictureUtil.PictureLoadCallBack() {
+            @Override
+            public void bitmapLoadSuccess(Bitmap bitmap, Uri uri) {
+                try {
+                    BitmapUtil.save(bitmap,uri.getPath());
+                    mUploadMsg.onReceiveValue(uri);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void bitmapLoadFailure(String error) {
+                if (mUploadMsg == null) {
+                    return;
+                }
+                mUploadMsg.onReceiveValue(null);
+            }
+        });
+       /* PictureUtil.showPop(new PictureUtil.OnPopDismiss() {
 
             @Override
             public void dismiss(Boolean isShow) {
@@ -209,7 +228,7 @@ public class WebViewActivity extends BaseActivity implements
                     }
                 }
             }
-        });
+        });*/
     }
 
     private final int scrollSize = 200;

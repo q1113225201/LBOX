@@ -15,25 +15,19 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.PopupWindow.OnDismissListener;
 
-import com.sjl.lbox.R;
+import com.sjl.lbox.app.ui.CustomView.popupwindow.listener.OnItemClickListener;
 import com.sjl.lbox.util.BitmapUtil;
 import com.sjl.lbox.util.FileUtil;
-import com.sjl.lbox.app.ui.CustomView.dialog.BasePopBottom;
+import com.sjl.lbox.util.LogUtil;
+import com.sjl.lbox.util.PopupWindowUtil;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * 图片选择类
- *
- * @author SJL
- * @date 2016/8/8 23:52
- */
 public class PictureUtil {
+    private static final String TAG = "PictureUtil";
     // 拍照
     public static int REQUEST_CODE_CAMERA = 0x101;
     // 相册
@@ -47,26 +41,54 @@ public class PictureUtil {
 
     private static String filename = System.currentTimeMillis() + ".png";
 
-    public interface BitmapLoadCallBack {
-        void bitmapLoadSuccess(Bitmap bitmap, Uri uri) throws Exception;
+    public interface PictureLoadCallBack {
+        void bitmapLoadSuccess(Bitmap bitmap, Uri uri);
 
-        void bitmapLoadFailure(String error) throws Exception;
+        void bitmapLoadFailure(String error);
     }
 
     private static Context mContext;
     private static Activity mActivity;
     private static Fragment mFragment;
+    private static PictureLoadCallBack mPictureLoadCallBack;
+    private static List<String> list;
 
-    public static void getInstance(Activity activity) {
+    public static void choosePicture(Activity activity, PictureLoadCallBack pictureLoadCallBack) {
         mContext = activity;
         mActivity = activity;
         mFragment = null;
+        mPictureLoadCallBack = pictureLoadCallBack;
+        showPopupWindow();
     }
 
-    public static void getInstance(Fragment fragment) {
+    public static void choosePicture(Fragment fragment, PictureLoadCallBack pictureLoadCallBack) {
         mContext = fragment.getActivity();
         mActivity = null;
         mFragment = fragment;
+        mPictureLoadCallBack = pictureLoadCallBack;
+        showPopupWindow();
+    }
+
+    /**
+     * 显示弹窗
+     */
+    private static void showPopupWindow() {
+        if (list == null) {
+            list = new ArrayList<String>();
+            list.add("拍照");
+            list.add("相册");
+        }
+        PopupWindowUtil.showSelectPopupWindow(mContext, list, new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (position == 0) {
+                    PictureUtil.chooseImage(PictureUtil.REQUEST_CODE_CAMERA);
+                } else if (position == 1) {
+                    PictureUtil.chooseImage(PictureUtil.REQUEST_CODE_PHOTO);
+                }
+            }
+        });
+        clearCache();
     }
 
     /**
@@ -76,15 +98,16 @@ public class PictureUtil {
      */
     private static void chooseImage(int code) {
         if (code == REQUEST_CODE_CAMERA) {
-            File file = new File(cameraPath);
-            if (!new File(path).exists()) {
-                new File(path).mkdir();
+            File file = new File(path);
+            if (!file.exists()) {
+                file.mkdir();
             }
+            File imageFile = new File(cameraPath);
             Uri imageUri;
             if (isSdk24()) {
-                imageUri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", file);
+                imageUri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", imageFile);
             } else {
-                imageUri = Uri.fromFile(new File(cameraPath));
+                imageUri = Uri.fromFile(imageFile);
             }
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -93,6 +116,9 @@ public class PictureUtil {
         } else if (code == REQUEST_CODE_PHOTO) {
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");//相片类型
+//			intent.setDataAndType(
+//					MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//					"image/*");
             startActivityForResult(intent, REQUEST_CODE_PHOTO);
         }
     }
@@ -111,13 +137,14 @@ public class PictureUtil {
      * @param requestCode
      * @param resultCode
      * @param data
-     * @param bitmapLoadCallBack
      * @throws Exception
      */
-    public static void onActivityResult(int requestCode, int resultCode, Intent data,
-                                        BitmapLoadCallBack bitmapLoadCallBack) throws Exception {
+    public static void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
-            bitmapLoadCallBack.bitmapLoadFailure("取消图片选择");
+            LogUtil.e(TAG, "取消图片选择");
+            if (mPictureLoadCallBack != null) {
+                mPictureLoadCallBack.bitmapLoadFailure("");
+            }
             return;
         }
 
@@ -140,15 +167,25 @@ public class PictureUtil {
                 bitmap = BitmapFactory.decodeFile(path + filename);
             }
             new File(cameraPath).delete();
-            BitmapUtil.save(bitmap, path + filename);
-            bitmapLoadCallBack.bitmapLoadSuccess(bitmap, Uri.fromFile(new File(path + filename)));
+            try {
+                BitmapUtil.save(bitmap, path + filename);
+            } catch (Exception e) {
+                e.printStackTrace();
+                LogUtil.e(TAG, "save e:" + e.getMessage());
+            }
+            if (mPictureLoadCallBack != null) {
+                mPictureLoadCallBack.bitmapLoadSuccess(bitmap, Uri.fromFile(new File(path + filename)));
+            }
         } else {
-            bitmapLoadCallBack.bitmapLoadFailure("取消图片选择");
+            LogUtil.e(TAG, "取消图片选择");
+            if (mPictureLoadCallBack != null) {
+                mPictureLoadCallBack.bitmapLoadFailure("");
+            }
         }
     }
 
-    public static int outputX = 350;
-    public static int outputY = 350;
+    private static final int outputX = 350;
+    private static final int outputY = 350;
 
     /**
      * 裁剪图片方法实现
@@ -208,66 +245,14 @@ public class PictureUtil {
             }
         }
     }
-
-    private static String[] items = {"拍照", "从相册中选取"};
-    private static BasePopBottom pop;
-    private static Boolean flag = true;
-
-    public interface OnPopDismiss {
-        /**
-         * flag=true，执行了系统dismiss
-         * flag=false，执行了BasePopBottom的dismiss
-         * 根据需求使用，可不用
-         *
-         * @param flag
-         */
-        void dismiss(Boolean flag);
-    }
-
     /**
-     * 弹出选择窗
+     * 删除缓存
      *
      * @return
      */
-    public static void showPop(final OnPopDismiss onPopDismiss) {
-        pop = new BasePopBottom(mContext, true);
-        pop.show();
-        flag = true;
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, R.layout.item_single_text, R.id.single_text, items);
-        pop.getLv().setAdapter(adapter);
-        pop.getLv().setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-//				Toast.makeText(getActivity(), items[position], Toast.LENGTH_SHORT).show();
-                if (position == 0) {
-                    PictureUtil.chooseImage(PictureUtil.REQUEST_CODE_CAMERA);
-                    flag = false;
-                } else if (position == 1) {
-                    PictureUtil.chooseImage(PictureUtil.REQUEST_CODE_PHOTO);
-                    flag = false;
-                }
-                pop.dismiss();
-            }
-        });
-        pop.setOnDismissListener(new OnDismissListener() {
-
-            @Override
-            public void onDismiss() {
-                pop.dismiss();
-                if (onPopDismiss != null) {
-                    onPopDismiss.dismiss(flag);
-                }
-            }
-        });
-        clearCache();
-    }
-
     public static Boolean clearCache() {
         return FileUtil.deleteFile(path);
     }
-
     private static boolean isSdk24() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
     }

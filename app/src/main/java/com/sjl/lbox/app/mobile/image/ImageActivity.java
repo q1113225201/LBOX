@@ -42,7 +42,7 @@ public class ImageActivity extends BaseActivity {
                 PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CAMERA}, PermisstionUtil.CAMERA_CODE, "图片选择需要拍照权限", new PermisstionUtil.OnPermissionResult() {
                     @Override
                     public void granted(int requestCode) {
-                        choosePicture();
+                        requestPermission();
                     }
 
                     @Override
@@ -59,30 +59,38 @@ public class ImageActivity extends BaseActivity {
                 PictureUtil.clearCache();
             }
         });
-        //初始化
-        PictureUtil.getInstance(this);
     }
 
     private void choosePicture() {
-        PictureUtil.showPop(new PictureUtil.OnPopDismiss() {
+        /*PictureUtil.showPop(new PictureUtil.OnPopDismiss() {
             @Override
             public void dismiss(Boolean flag) {
 
             }
+        });*/
+        PictureUtil.choosePicture(this, new PictureUtil.PictureLoadCallBack() {
+            @Override
+            public void bitmapLoadSuccess(Bitmap bitmap, Uri uri) {
+                iv.setImageBitmap(ImageUtil.getCircleBitmap(bitmap));
+            }
+
+            @Override
+            public void bitmapLoadFailure(String error) {
+                ToastUtil.showToast(mContext, error);
+            }
         });
-        requestPermission();
     }
 
     private void requestPermission() {
         PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CAMERA}, PermisstionUtil.CAMERA_CODE, "图片选择需要拍照权限", new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
-
+                choosePicture();
             }
 
             @Override
             public void denied(int requestCode) {
-
+                ToastUtil.showToast(mContext, "拍照权限被禁止");
             }
         });
     }
@@ -90,7 +98,8 @@ public class ImageActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try {
+        PictureUtil.onActivityResult(requestCode, resultCode, data);
+        /*try {
             PictureUtil.onActivityResult(requestCode, resultCode, data, new PictureUtil.BitmapLoadCallBack() {
                 @Override
                 public void bitmapLoadSuccess(Bitmap bitmap, Uri uri) throws Exception {
@@ -104,7 +113,7 @@ public class ImageActivity extends BaseActivity {
             });
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
