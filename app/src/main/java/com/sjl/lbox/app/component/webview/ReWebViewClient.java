@@ -1,7 +1,6 @@
 package com.sjl.lbox.app.component.webview;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +8,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.webkit.SslErrorHandler;
@@ -20,6 +21,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.sjl.lbox.app.network.http.NoHttp.http.SSLContextUtil;
 import com.sjl.lbox.listener.BaseListener;
 import com.sjl.lbox.util.DialogUtil;
 import com.sjl.lbox.util.LogUtil;
@@ -43,7 +45,6 @@ import javax.net.ssl.SSLHandshakeException;
  * @author SJL
  * @date 2016/8/11 23:39
  */
-@SuppressLint({"NewApi", "HandlerLeak"})
 public class ReWebViewClient extends WebViewClient {
     private final String tag = ReWebViewClient.class.getSimpleName();
 
@@ -60,26 +61,40 @@ public class ReWebViewClient extends WebViewClient {
         this.mWebView = webView;
         this.isHttps = isHttps;
         if (isHttps) {
-            //sslContext = SSLContextUtil.getSSLContext();
+            sslContext = SSLContextUtil.getSSLContext();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+        if (isHttps) {
+            return processRequest(view, request.getUrl().toString(), request.getMethod());
+        } else {
+            return super.shouldInterceptRequest(view, request);
         }
     }
 
     @Override
-    public WebResourceResponse shouldInterceptRequest(final WebView view, String url) {
+    public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
         if (isHttps) {
-            return processRequest(Uri.parse(url));
-        } else {
-            return super.shouldInterceptRequest(view, url);
+            return processRequest(view, url, getMethod(url));
         }
+        return super.shouldInterceptRequest(view, url);
     }
 
-    private WebResourceResponse processRequest(Uri uri) {
+    private String getMethod(String url) {
+        return url.contains(".action") ? "POST" : "GET";
+    }
+
+    private WebResourceResponse processRequest(WebView view, String uri, String method) {
         try {
-            URL url = new URL(uri.toString());
+            URL url = new URL(uri);
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 
             urlConnection.setSSLSocketFactory(sslContext.getSocketFactory());
             //urlConnection.setHostnameVerifier(SSLContextUtil.HOSTNAME_VERIFIER);
+            urlConnection.setRequestMethod(method);
 
             InputStream is = urlConnection.getInputStream();
             String contentType = urlConnection.getContentType();
@@ -114,8 +129,14 @@ public class ReWebViewClient extends WebViewClient {
     }
 
     @Override
+    public boolean shouldOverrideUrlLoading(WebView view, final WebResourceRequest request) {
+        return super.shouldOverrideUrlLoading(view, request);
+    }
+
+    @Override
     public boolean shouldOverrideUrlLoading(WebView view, final String url) {
-        if (url.startsWith("tel:")) {
+        LogUtil.i(tag, "shouldOverrideUrlLoading url:" + url);
+        if (url.toString().startsWith("tel:")) {
             PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CALL_PHONE}, PermisstionUtil.CALL_PHONE_CODE, "拨打电话需要拨号权限，是否继续？", new PermisstionUtil.OnPermissionResult() {
                 @Override
                 public void granted(int requestCode) {
@@ -136,26 +157,12 @@ public class ReWebViewClient extends WebViewClient {
             });
         } else if (url.startsWith("http:") || url.startsWith("https:")) {
             view.loadUrl(url);
-        } else {
-            LogUtil.i("url", url);
-            view.loadUrl(url);
         }
-        LogUtil.i(tag, "shouldOverrideUrlLoading:" + url);
-        return true;
+        return super.shouldOverrideUrlLoading(view, url);
     }
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
-//        if(!NetworkUtil.isNetworkAvailable(mContext)){
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    dismissDialog();
-//                    showNetworkError();
-//                }
-//            },2000);
-//            return;
-//        }
         super.onPageStarted(view, url, favicon);
         LogUtil.i(tag, "startTime:" + new SimpleDateFormat("HH:mm:ss").format(new Date()));
         LogUtil.i(tag, "onPageStarted:" + url);
@@ -208,51 +215,6 @@ public class ReWebViewClient extends WebViewClient {
     public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
         handler.proceed();  // 证书错误时，接受所有网站的证书
     }
-
-    //超时
-//    private int TIMEOUT = 5000;
-//    private Timer timer;
-//    private TimerTask timerTask = new TimerTask() {
-//
-//        @Override
-//        public void run() {
-//            mHandler.sendEmptyMessage(TIMEOUT);
-//        }
-//    };
-//    private Handler mHandler = new Handler() {
-//        public void handleMessage(Message msg) {
-//            if (TIMEOUT == msg.what) {
-//                LogUtil.i(tag, "计时超时");
-//                mWebView.stopLoading();
-//                LogUtil.i(tag, mWebView.getUrl() + "," + mWebView.getProgress());
-//                if (mWebView.getProgress() < 100) {
-//                    showNetworkError();
-//                }
-//            }
-//        }
-//    };
-//    private void startTime() {
-//        timer = new Timer();
-//        timerTask = new TimerTask() {
-//
-//            @Override
-//            public void run() {
-//                mHandler.sendEmptyMessage(TIMEOUT);
-//            }
-//        };
-//        timer.schedule(timerTask, TIMEOUT);
-//        LogUtil.i(tag, "计时开始");
-//    }
-//
-//    private void stopTime() {
-//        if (timer != null) {
-//            timer.cancel();
-//        }
-//
-//        timerTask.cancel();
-//
-//        LogUtil.i(tag, "计时结束");
-//    }
 
     private final int TIME_OUT = 10000;
     private Timer timer;
@@ -311,17 +273,6 @@ public class ReWebViewClient extends WebViewClient {
      * 显示网络错误
      */
     private void showNetworkError() {
-//        DialogUtil.showConfirm(mContext, null, "加载失败，重新加载？", null, null, new BaseListener() {
-//            @Override
-//            public void baseListener(View v, String msg) {
-//                mWebView.loadUrl(mUrl);
-//            }
-//        }, new BaseListener() {
-//            @Override
-//            public void baseListener(View v, String msg) {
-//                ((Activity)mContext).finish();
-//            }
-//        },false);
         LogUtil.i(tag, "showNetworkError");
         mWebView.stopLoading();
         isError = true;
