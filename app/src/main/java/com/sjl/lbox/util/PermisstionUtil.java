@@ -32,6 +32,9 @@ public class PermisstionUtil {
     //读取联系人权限
     public static String CONTACTS = Manifest.permission.READ_CONTACTS;
     public static int CONTACTS_CODE = 0x1102;
+    //读取联系人权限
+    public static String CONTACTS_WRITE = Manifest.permission.WRITE_CONTACTS;
+    public static int CONTACTS_WRITE_CODE = 0x1103;
     //读写权限
     public static String STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     public static int STORAGE_CODE = 0x1104;

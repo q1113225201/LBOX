@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,9 +30,12 @@ import java.util.List;
  * @author SJL
  * @date 2016/8/11 23:31
  */
-public class ContactActivity extends BaseActivity {
+public class ContactActivity extends BaseActivity implements View.OnClickListener {
     private String tag = ContactActivity.class.getSimpleName();
     private EditText etKeyword;
+    private EditText etName;
+    private EditText etMobile;
+    private Button btnAdd;
     private ListView lv;
     private TextView tvCenter;
 
@@ -54,6 +58,9 @@ public class ContactActivity extends BaseActivity {
 
     private void initView() {
         etKeyword = (EditText) findViewById(R.id.etKeyword);
+        etName = (EditText) findViewById(R.id.etName);
+        etMobile = (EditText) findViewById(R.id.etMobile);
+        btnAdd = (Button) findViewById(R.id.btnAdd);
         lv = (ListView) findViewById(R.id.lv);
         sectionIndexBar = (SectionIndexBar) findViewById(R.id.sectionIndexBar);
         tvCenter = (TextView) findViewById(R.id.tvCenter);
@@ -84,6 +91,8 @@ public class ContactActivity extends BaseActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
+        btnAdd.setOnClickListener(this);
 
         PermisstionUtil.requestPermissions(this, new String[]{PermisstionUtil.CONTACTS}, PermisstionUtil.CONTACTS_CODE, "读取联系人需要联系人读写权限", new PermisstionUtil.OnPermissionResult() {
             @Override
@@ -145,5 +154,37 @@ public class ContactActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnAdd:
+                addUser();
+                break;
+        }
+    }
+
+    private void addUser() {
+        PermisstionUtil.requestPermissions(this, new String[]{PermisstionUtil.CONTACTS_WRITE}, PermisstionUtil.CONTACTS_WRITE_CODE, "写联系人需要联系人读写权限", new PermisstionUtil.OnPermissionResult() {
+            @Override
+            public void granted(int requestCode) {
+                if(ContactUtil.addContacts(mContext,etName.getText().toString(),etMobile.getText().toString())){
+                    ToastUtil.showToast(mContext,"添加成功");
+                    initData();
+                }
+                /*for (int i=1000;i<3000;i++){
+                    ContactUtil.addContacts(mContext,etName.getText().toString()+i,etMobile.getText().toString()+i);
+                    ToastUtil.showToast(mContext,"添加成功"+i);
+                }
+                initData();*/
+            }
+
+            @Override
+            public void denied(int requestCode) {
+                ToastUtil.showToast(mContext, "联系人权限被拒绝");
+            }
+        });
+
     }
 }

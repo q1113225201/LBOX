@@ -1,6 +1,8 @@
 package com.sjl.lbox.util;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -43,9 +45,9 @@ public class ContactUtil {
         return phoneContactList;
     }
 
-    /*
+    /**
      * 某个联系人是否已经存在于联系人列表中
-    */
+     */
     public static boolean isContainObject(List<PhoneContact> phoneContactList, PhoneContact contact) {
         for (int i = 0; i < phoneContactList.size(); i++) {
             PhoneContact curContact = phoneContactList.get(i);
@@ -103,5 +105,36 @@ public class ContactUtil {
 
         }
         return list;
+    }
+
+    public static boolean addContacts(Context context, String name, String mobile) {
+        ContentValues contentValues = new ContentValues();
+
+        // 向RawContacts.CONTENT_URI空值插入，
+        // 先获取Android系统返回的rawContactId
+        // 后面要基于此id插入值
+        Uri rawContactUri = context.getContentResolver().insert(ContactsContract.RawContacts.CONTENT_URI, contentValues);
+        long rawContactId = ContentUris.parseId(rawContactUri);
+        contentValues.clear();
+
+        contentValues.put(ContactsContract.Data.RAW_CONTACT_ID, rawContactId);
+        // 内容类型
+        contentValues.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE);
+        // 联系人名字
+        contentValues.put(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME, name);
+        context.getContentResolver().insert(ContactsContract.Data.CONTENT_URI, contentValues);
+        contentValues.clear();
+
+        contentValues.put(ContactsContract.Data.RAW_CONTACT_ID, rawContactId);
+        contentValues.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+        // 联系人的电话号码
+        contentValues.put(ContactsContract.CommonDataKinds.Phone.NUMBER, mobile);
+        // 电话类型
+        contentValues.put(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE);
+        // 向联系人URI添加联系人名字
+        context.getContentResolver().insert(ContactsContract.Data.CONTENT_URI, contentValues);
+        contentValues.clear();
+
+        return true;
     }
 }

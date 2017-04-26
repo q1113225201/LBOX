@@ -11,10 +11,43 @@
         android:layout_height="wrap_content"
         android:hint="请输入关键字..." />
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/llAdd"
+        android:layout_below="@+id/etKeyword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etKeyword">
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入姓名" />
+
+            <EditText
+                android:id="@+id/etMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入手机号" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="添加" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/llAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <ListView
             android:id="@+id/lv"
