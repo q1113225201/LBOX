@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sjl.lbox.app.lib.Glide.GlideActivity">
+
+    <Button
+        android:id="@+id/btnLoadImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载图片" />
+    <Button
+        android:id="@+id/btnLoadGif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载动画" />
+
+    <ImageView
+        android:id="@+id/ivGlide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo" />
+</LinearLayout>

@@ -40,13 +40,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--7.0文件-->
+        <!-- 7.0文件 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <!--元数据-->
+
+            <!-- 元数据 -->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths" />
@@ -186,7 +187,8 @@
         <activity android:name=".app.ui.CustomView.ExpandMenu.ExpandMenuActivity" />
         <activity android:name=".app.lib.LibActivity" />
         <activity android:name=".app.lib.EventBus.EventBusActivity" />
-        <activity android:name=".app.lib.EventBus.EventBus2Activity"></activity>
+        <activity android:name=".app.lib.EventBus.EventBus2Activity" />
+        <activity android:name=".app.lib.Glide.GlideActivity"></activity>
     </application>
 
 </manifest>

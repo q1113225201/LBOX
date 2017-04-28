@@ -115,10 +115,9 @@ public class PictureUtil {
             startActivityForResult(intent, REQUEST_CODE_CAMERA);
         } else if (code == REQUEST_CODE_PHOTO) {
             Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");//相片类型
-//			intent.setDataAndType(
-//					MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//					"image/*");
+            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    "image");//相片类型
+//			intent.setType("image/*");
             startActivityForResult(intent, REQUEST_CODE_PHOTO);
         }
     }
@@ -162,6 +161,9 @@ public class PictureUtil {
                 Bundle extras = data.getExtras();
                 if (extras != null) {
                     bitmap = extras.getParcelable("data");
+                } else {
+                    //返回数据为时直接根据路径获取
+                    bitmap = BitmapFactory.decodeFile(path + filename);
                 }
             } else {
                 bitmap = BitmapFactory.decodeFile(path + filename);
@@ -193,6 +195,10 @@ public class PictureUtil {
      * @param uri
      */
     private static void startPhotoZoom(Uri uri) {
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
+        }
         filename = System.currentTimeMillis() + ".png";
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
@@ -204,7 +210,8 @@ public class PictureUtil {
         // outputX outputY 是裁剪图片宽高
         intent.putExtra("outputX", outputX);
         intent.putExtra("outputY", outputY);
-        intent.putExtra("return-data", true);
+        //不接受返回数据
+        intent.putExtra("return-data", false);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path + filename)));
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         // intent.putExtra("outputFormat",
@@ -245,6 +252,7 @@ public class PictureUtil {
             }
         }
     }
+
     /**
      * 删除缓存
      *
@@ -253,6 +261,7 @@ public class PictureUtil {
     public static Boolean clearCache() {
         return FileUtil.deleteFile(path);
     }
+
     private static boolean isSdk24() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
     }

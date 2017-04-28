@@ -61,6 +61,6 @@ public class MainActivity extends BaseActivity {
         list.add(new Module("网络", NetworkActivity.class));
         list.add(new Module("组件", ComponentActivity.class));
         list.add(new Module("手机功能", MobileActivity.class));
-        list.add(new Module("框架", LibActivity.class));
+        list.add(new Module("三方", LibActivity.class));
     }
 }
