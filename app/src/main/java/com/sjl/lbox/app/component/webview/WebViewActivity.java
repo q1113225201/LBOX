@@ -157,31 +157,7 @@ public class WebViewActivity extends BaseActivity implements
         super.onActivityResult(requestCode, resultCode, data);
 
         try {
-            if (requestCode == PictureUtil.REQUEST_CODE_CAMERA || requestCode == PictureUtil.REQUEST_CODE_CROP || requestCode == PictureUtil.REQUEST_CODE_PHOTO) {
-                PictureUtil.onActivityResult(requestCode,resultCode,data);
-                /*PictureUtil.onActivityResult(requestCode, resultCode, data,
-                        new PictureUtil.BitmapLoadCallBack() {
-
-                            @Override
-                            public void bitmapLoadSuccess(Bitmap bitmap, Uri uri)
-                                    throws Exception {
-                                try {
-                                    mUploadMsg.onReceiveValue(uri);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                            @Override
-                            public void bitmapLoadFailure(String error)
-                                    throws Exception {
-                                if (mUploadMsg == null) {
-                                    return;
-                                }
-                                mUploadMsg.onReceiveValue(null);
-                            }
-                        });*/
-            }
+            PictureUtil.onActivityResult(requestCode,resultCode,data);
         } catch (Exception e) {
             e.printStackTrace();
             if (mUploadMsg != null) {

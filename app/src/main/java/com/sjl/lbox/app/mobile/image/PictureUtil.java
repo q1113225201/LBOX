@@ -31,7 +31,7 @@ public class PictureUtil {
     // 拍照
     public static int REQUEST_CODE_CAMERA = 0x101;
     // 相册
-    public static int REQUEST_CODE_PHOTO = 0x102;
+    public static int REQUEST_CODE_ALBUM = 0x102;
     // 裁剪
     public static int REQUEST_CODE_CROP = 0x103;
 
@@ -84,7 +84,7 @@ public class PictureUtil {
                 if (position == 0) {
                     PictureUtil.chooseImage(PictureUtil.REQUEST_CODE_CAMERA);
                 } else if (position == 1) {
-                    PictureUtil.chooseImage(PictureUtil.REQUEST_CODE_PHOTO);
+                    PictureUtil.chooseImage(PictureUtil.REQUEST_CODE_ALBUM);
                 }
             }
         });
@@ -113,12 +113,12 @@ public class PictureUtil {
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(intent, REQUEST_CODE_CAMERA);
-        } else if (code == REQUEST_CODE_PHOTO) {
+        } else if (code == REQUEST_CODE_ALBUM) {
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    "image");//相片类型
+                    "image/*");//相片类型
 //			intent.setType("image/*");
-            startActivityForResult(intent, REQUEST_CODE_PHOTO);
+            startActivityForResult(intent, REQUEST_CODE_ALBUM);
         }
     }
 
@@ -147,7 +147,7 @@ public class PictureUtil {
             return;
         }
 
-        if (requestCode == REQUEST_CODE_PHOTO) {
+        if (requestCode == REQUEST_CODE_ALBUM) {
             startPhotoZoom(data.getData());
         } else if (requestCode == REQUEST_CODE_CAMERA) {
             Uri uri = Uri.fromFile(new File(cameraPath));
@@ -157,24 +157,25 @@ public class PictureUtil {
             startPhotoZoom(uri);
         } else if (requestCode == REQUEST_CODE_CROP) {
             Bitmap bitmap = null;
-            if (data != null) {
+            /*if (data != null) {
                 Bundle extras = data.getExtras();
                 if (extras != null) {
                     bitmap = extras.getParcelable("data");
                 } else {
-                    //返回数据为时直接根据路径获取
+                    //返回数据时直接根据路径获取
                     bitmap = BitmapFactory.decodeFile(path + filename);
                 }
             } else {
                 bitmap = BitmapFactory.decodeFile(path + filename);
-            }
+            }*/
+            bitmap = BitmapFactory.decodeFile(path + filename);
             new File(cameraPath).delete();
-            try {
+            /*try {
                 BitmapUtil.save(bitmap, path + filename);
             } catch (Exception e) {
                 e.printStackTrace();
                 LogUtil.e(TAG, "save e:" + e.getMessage());
-            }
+            }*/
             if (mPictureLoadCallBack != null) {
                 mPictureLoadCallBack.bitmapLoadSuccess(bitmap, Uri.fromFile(new File(path + filename)));
             }
