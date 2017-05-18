@@ -12,6 +12,7 @@ import com.sjl.lbox.app.ui.CustomView.repeat.CardView.CardViewActivity;
 import com.sjl.lbox.app.ui.CustomView.repeat.SwipeItemLayout.SwipeItemLayoutActivity;
 import com.sjl.lbox.app.ui.CustomView.repeat.listview.ListViewActivity;
 import com.sjl.lbox.app.ui.CustomView.repeat.recyclerview.RecyclerViewActivity;
+import com.sjl.lbox.app.ui.CustomView.repeat.recyclerview.RecyclerViewGalleryActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -55,6 +56,7 @@ public class RepeatActivity extends BaseActivity {
         list = new ArrayList<Module>();
         list.add(new Module("ListView", ListViewActivity.class));
         list.add(new Module("RecyclerView", RecyclerViewActivity.class));
+        list.add(new Module("RecyclerView Gallery", RecyclerViewGalleryActivity.class));
         list.add(new Module("SwipeItemLayout", SwipeItemLayoutActivity.class));
         list.add(new Module("CardView", CardViewActivity.class));
     }

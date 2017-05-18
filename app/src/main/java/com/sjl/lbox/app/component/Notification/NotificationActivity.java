@@ -3,17 +3,24 @@ package com.sjl.lbox.app.component.Notification;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v7.app.NotificationCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
@@ -21,6 +28,15 @@ import com.sjl.lbox.util.ToastUtil;
 
 /**
  * 多种通知样式
+ * 配置文件
+ * <service
+ * android:name=".app.component.Notification.service.ListenerNotificationService"
+ * android:label="@string/app_name"
+ * android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+ * <intent-filter>
+ * <action android:name="android.service.notification.NotificationListenerService" />
+ * </intent-filter>
+ * </service>
  *
  * @author SJL
  * @date 2016/8/29 23:03
@@ -44,6 +60,9 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
 
     private Button btnNotificationRemove;
 
+    private Button btnAuthorizationUsage;
+    private TextView tv;
+
     private NotificationManager manager;
 
     private Handler handler = new Handler() {
@@ -55,6 +74,13 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
                     progressNotification(msg.arg1 + 5);
                 }
             }
+        }
+    };
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String str = intent.getStringExtra("text");
+            tv.setText(TextUtils.isEmpty(str) ? "null" : str);
         }
     };
 
@@ -83,8 +109,35 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
         btnNotificationBanner.setOnClickListener(this);
         btnNotificationMedia = (Button) findViewById(R.id.btnNotificationMedia);
         btnNotificationMedia.setOnClickListener(this);
+        btnAuthorizationUsage = (Button) findViewById(R.id.btnAuthorizationUsage);
+        btnAuthorizationUsage.setOnClickListener(this);
+        tv = (TextView) findViewById(R.id.tv);
 
         manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(getPackageName());
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isNotificationServiceEnable();
+    }
+
+    private void isNotificationServiceEnable() {
+        if (NotificationManagerCompat.getEnabledListenerPackages(mContext).contains(getPackageName())) {
+            btnAuthorizationUsage.setText("用户授权 已开启");
+        } else {
+            btnAuthorizationUsage.setText("用户授权 已关闭");
+        }
     }
 
     @Override
@@ -113,6 +166,9 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.btnNotificationRemove:
                 removeNotification();
+                break;
+            case R.id.btnAuthorizationUsage:
+                startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
                 break;
         }
     }
