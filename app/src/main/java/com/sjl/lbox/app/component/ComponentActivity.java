@@ -11,6 +11,7 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.app.component.AccessibilityService.AccessibilityServiceActivity;
 import com.sjl.lbox.app.component.FloatWindow.FloatWindowActivity;
 import com.sjl.lbox.app.component.Notification.NotificationActivity;
+import com.sjl.lbox.app.component.broadcastreceiver.BroadcastActivity;
 import com.sjl.lbox.app.component.intentService.IntentServiceActivity;
 import com.sjl.lbox.app.component.slideMenu.SlideMenuActivity;
 import com.sjl.lbox.app.component.viewpager.ViewPagerActivity;
@@ -58,6 +59,7 @@ public class ComponentActivity extends BaseActivity {
         list.add(new Module("IntentService和LocalBroadcastManager", IntentServiceActivity.class));
         list.add(new Module("RobService", AccessibilityServiceActivity.class));
         list.add(new Module("通知", NotificationActivity.class));
+        list.add(new Module("广播", BroadcastActivity.class));
         list.add(new Module("webview", WebViewActivity.class));
         list.add(new Module("悬浮窗", FloatWindowActivity.class));
         list.add(new Module("ViewPager", ViewPagerActivity.class));
