@@ -25,7 +25,6 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!--电话监听-->
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
@@ -211,7 +210,6 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
