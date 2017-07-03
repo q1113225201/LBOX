@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/tvNetworkState"
-            style="@style/TextViewCommonStyle"/>
+            style="@style/TextViewCommonStyle" />
     </LinearLayout>
 
     <LinearLayout
@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/tvNetworkType"
-            style="@style/TextViewCommonStyle"/>
+            style="@style/TextViewCommonStyle" />
     </LinearLayout>
 
     <LinearLayout
@@ -87,4 +87,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="打开WIFI设置" />
+
+    <EditText
+        android:id="@+id/etSSID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="SSID"
+        android:text="Xiaomi_89E6"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:text="qazwsx2016"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置WIFI"
+        android:id="@+id/btnSettingWifi"/>
 </LinearLayout>

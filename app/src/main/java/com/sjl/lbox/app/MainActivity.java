@@ -17,6 +17,7 @@ import com.sjl.lbox.app.network.NetworkActivity;
 import com.sjl.lbox.app.ui.UIActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
+import com.sjl.lbox.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,5 +63,6 @@ public class MainActivity extends BaseActivity {
         list.add(new Module("组件", ComponentActivity.class));
         list.add(new Module("手机功能", MobileActivity.class));
         list.add(new Module("三方", LibActivity.class));
+        LogUtil.delFile();
     }
 }

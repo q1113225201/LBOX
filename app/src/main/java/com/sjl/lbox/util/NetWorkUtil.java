@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 
 /**
  * 网络工具类
@@ -166,5 +168,41 @@ public class NetWorkUtil {
             throws UnknownHostException {
         InetAddress address = InetAddress.getByName(domainName);
         return address.getHostAddress();
+    }
+
+    public static WifiConfiguration getWifiConfiguration(Context context, String ssid) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+        int i;
+        for (i = 0; list != null && i < list.size(); i++) {
+            LogUtil.i(tag, list.get(i));
+            if (list.get(i).SSID.equals(ssid)) {
+                return list.get(i);
+            }
+        }
+        return null;
+    }
+
+    public static void settingWifi(Context context, String ssid, String password) {
+        ssid = "\"" + ssid + "\"";
+        password = "\"" + password + "\"";
+        WifiConfiguration wifiConfiguration = getWifiConfiguration(context, ssid);
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        //移除本地wifi记录
+        if (wifiConfiguration != null) {
+            LogUtil.e(tag, "wifiConfiguration == null");
+            wifiManager.removeNetwork(wifiConfiguration.networkId);
+        }
+        WifiConfiguration config = new WifiConfiguration();
+        config.SSID = ssid;
+        config.preSharedKey = password;
+        config.hiddenSSID = false;
+        config.status = WifiConfiguration.Status.ENABLED;
+        int wifiId = wifiManager.addNetwork(config);
+        LogUtil.e(tag, "wifiId="+wifiId);
+        if (wifiId == -1) {
+            return;
+        }
+        wifiManager.enableNetwork(wifiId, true);
     }
 }

@@ -24,7 +24,7 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <!--电话监听-->
+    <!-- 电话监听 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
@@ -213,6 +213,8 @@
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".app.mobile.share.ShareActivity"></activity>
     </application>
 
 </manifest>

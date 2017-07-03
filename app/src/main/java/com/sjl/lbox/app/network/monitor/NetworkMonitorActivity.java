@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.sjl.lbox.R;
@@ -33,6 +34,9 @@ public class NetworkMonitorActivity extends BaseActivity implements View.OnClick
     private TextView tvLinkSpeed;
     private Button btnRefresh;
     private Button btnOpenSetting;
+    private EditText etSSID;
+    private EditText etPassword;
+    private Button btnSettingWifi;
 
     private BroadcastReceiver networkReceiver = new BroadcastReceiver() {
         @Override
@@ -58,9 +62,13 @@ public class NetworkMonitorActivity extends BaseActivity implements View.OnClick
         tvLinkSpeed = (TextView) findViewById(R.id.tvLinkSpeed);
         btnRefresh = (Button) findViewById(R.id.btnRefresh);
         btnOpenSetting = (Button) findViewById(R.id.btnOpenSetting);
+        etSSID = (EditText) findViewById(R.id.etSSID);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        btnSettingWifi = (Button) findViewById(R.id.btnSettingWifi);
 
         btnRefresh.setOnClickListener(this);
         btnOpenSetting.setOnClickListener(this);
+        btnSettingWifi.setOnClickListener(this);
 
         initData();
         registerNetworkReceiver();
@@ -93,6 +101,9 @@ public class NetworkMonitorActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.btnOpenSetting:
                 NetWorkUtil.openSetting(mContext);
+                break;
+            case R.id.btnSettingWifi:
+                NetWorkUtil.settingWifi(mContext,etSSID.getText().toString(),etPassword.getText().toString());
                 break;
         }
     }

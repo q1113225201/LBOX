@@ -13,6 +13,7 @@ import com.sjl.lbox.app.mobile.compass.CompassActivity;
 import com.sjl.lbox.app.mobile.image.ImageActivity;
 import com.sjl.lbox.app.mobile.music.MusicActivity;
 import com.sjl.lbox.app.mobile.pedometer.PedometerActivity;
+import com.sjl.lbox.app.mobile.share.ShareActivity;
 import com.sjl.lbox.app.mobile.signature.SignatureActivity;
 import com.sjl.lbox.app.mobile.zip.ZipActivity;
 import com.sjl.lbox.base.BaseActivity;
@@ -31,6 +32,7 @@ public class MobileActivity extends BaseActivity {
     private ListView lv;
     private ArrayAdapter adapter;
     private List<Module> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,5 +63,6 @@ public class MobileActivity extends BaseActivity {
         list.add(new Module("音乐选择", MusicActivity.class));
         list.add(new Module("App签名获取", SignatureActivity.class));
         list.add(new Module("Zip", ZipActivity.class));
+        list.add(new Module("分享", ShareActivity.class));
     }
 }
