@@ -214,7 +214,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".app.mobile.share.ShareActivity"></activity>
+        <activity android:name=".app.mobile.share.ShareActivity" />
+        <activity android:name=".app.lib.Router.RouterActivity"></activity>
     </application>
 
 </manifest>
