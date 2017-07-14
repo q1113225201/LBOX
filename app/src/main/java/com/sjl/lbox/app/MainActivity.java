@@ -38,12 +38,10 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        //主分支
-        //1018分支1
-        //1033分支1
     }
 
     private void initView() {
+        //诛仙
         initData();
         lv = (ListView) findViewById(R.id.lv);
         adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, list);
