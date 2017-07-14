@@ -39,10 +39,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         initView();
         //主分支
-        //1018分支1
-        //1033分支1
-        //1034分支1
-        //1036分支1
         //1037分支1
     }
 
