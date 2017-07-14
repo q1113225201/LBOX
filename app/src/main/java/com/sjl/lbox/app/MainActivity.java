@@ -38,8 +38,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        //分支
-        //branch2
     }
 
     private void initView() {
