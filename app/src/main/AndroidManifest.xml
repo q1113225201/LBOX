@@ -215,7 +215,14 @@
         </receiver>
 
         <activity android:name=".app.mobile.share.ShareActivity" />
-        <activity android:name=".app.lib.Router.RouterActivity"></activity>
+        <activity android:name=".app.lib.Router.RouterActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="lboxapp" android:host="lbox.app" android:pathPrefix="/open"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
