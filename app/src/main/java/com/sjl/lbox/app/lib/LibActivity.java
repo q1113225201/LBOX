@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.lib.EventBus.EventBusActivity;
 import com.sjl.lbox.app.lib.Glide.GlideActivity;
+import com.sjl.lbox.app.lib.Picasso.PicassoActivity;
 import com.sjl.lbox.app.lib.Router.RouterActivity;
 import com.sjl.lbox.app.lib.RxJava.RxJavaActivity;
 import com.sjl.lbox.base.BaseActivity;
@@ -50,6 +51,7 @@ public class LibActivity extends BaseActivity {
         list.add(new Module("EventBus", EventBusActivity.class));
         list.add(new Module("RxJava2.0", RxJavaActivity.class));
         list.add(new Module("Glide", GlideActivity.class));
+        list.add(new Module("Picasso", PicassoActivity.class));
         list.add(new Module("Router（路由）", RouterActivity.class));
     }
 }

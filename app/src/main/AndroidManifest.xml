@@ -228,7 +228,8 @@
                     android:scheme="lboxapp" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.lib.RxJava.RxJavaActivity"></activity>
+        <activity android:name=".app.lib.RxJava.RxJavaActivity" />
+        <activity android:name=".app.lib.Picasso.PicassoActivity"></activity>
     </application>
 
 </manifest>
