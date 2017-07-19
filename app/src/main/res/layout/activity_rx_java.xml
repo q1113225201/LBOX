@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sjl.lbox.app.lib.RxJava.RxJavaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSimpleUse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="简单使用" />
+
+        <Button
+            android:id="@+id/btnThread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="线程调度" />
+
+        <Button
+            android:id="@+id/btnOperatorMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="操作符map" />
+
+        <Button
+            android:id="@+id/btnRxBusRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RxBus 注册" />
+
+        <Button
+            android:id="@+id/btnRxBusDoPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RxBus 发送" />
+
+        <Button
+            android:id="@+id/btnRxBusDestory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RxBus 销毁&amp;启动" />
+    </LinearLayout>
+</ScrollView>

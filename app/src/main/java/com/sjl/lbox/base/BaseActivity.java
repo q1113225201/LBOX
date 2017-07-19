@@ -5,10 +5,15 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import com.sjl.lbox.app.lib.RxJava.RxBus;
+import com.sjl.lbox.util.LogUtil;
 import com.sjl.lbox.util.PermisstionUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 
 /**
  * Activity基类
@@ -17,7 +22,7 @@ import org.greenrobot.eventbus.Subscribe;
  * @date 2016/8/6 14:19
  */
 public class BaseActivity extends Activity {
-
+    private static final String TAG = "BaseActivity";
     public Context mContext;
 
     @Override
@@ -29,6 +34,19 @@ public class BaseActivity extends Activity {
         mContext = this;
         requestPermission();
         EventBus.getDefault().register(this);
+        RxBus.getInstance().subscribe(this, String.class, new Consumer<String>() {
+            @Override
+            public void accept(@NonNull String s) throws Exception {
+                if ("destory".equalsIgnoreCase(s)) {
+                    finish();
+                }
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable throwable) throws Exception {
+                LogUtil.e(TAG, "RxBus accept error:" + throwable.getMessage());
+            }
+        });
     }
 
     private void requestPermission() {
@@ -52,5 +70,6 @@ public class BaseActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        RxBus.getInstance().unSubscribe(this);
     }
 }

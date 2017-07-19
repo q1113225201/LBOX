@@ -11,6 +11,7 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.app.lib.EventBus.EventBusActivity;
 import com.sjl.lbox.app.lib.Glide.GlideActivity;
 import com.sjl.lbox.app.lib.Router.RouterActivity;
+import com.sjl.lbox.app.lib.RxJava.RxJavaActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -47,6 +48,7 @@ public class LibActivity extends BaseActivity {
     private void initData() {
         list = new ArrayList<Module>();
         list.add(new Module("EventBus", EventBusActivity.class));
+        list.add(new Module("RxJava2.0", RxJavaActivity.class));
         list.add(new Module("Glide", GlideActivity.class));
         list.add(new Module("Router（路由）", RouterActivity.class));
     }

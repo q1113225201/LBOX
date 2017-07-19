@@ -11,6 +11,7 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.app.DesignPattern.DesignPatternActivity;
 import com.sjl.lbox.app.component.ComponentActivity;
 import com.sjl.lbox.app.lib.LibActivity;
+import com.sjl.lbox.app.lib.RxJava.RxBus;
 import com.sjl.lbox.app.mobile.MobileActivity;
 import com.sjl.lbox.app.mode.ModeActivity;
 import com.sjl.lbox.app.network.NetworkActivity;
@@ -21,6 +22,9 @@ import com.sjl.lbox.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 
 /**
  * MainActivity
@@ -41,7 +45,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
-        //诛仙
         initData();
         lv = (ListView) findViewById(R.id.lv);
         adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, list);

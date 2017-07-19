@@ -217,12 +217,18 @@
         <activity android:name=".app.mobile.share.ShareActivity" />
         <activity android:name=".app.lib.Router.RouterActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="lboxapp" android:host="lbox.app" android:pathPrefix="/open"/>
+
+                <data
+                    android:host="lbox.app"
+                    android:pathPrefix="/open"
+                    android:scheme="lboxapp" />
             </intent-filter>
         </activity>
+        <activity android:name=".app.lib.RxJava.RxJavaActivity"></activity>
     </application>
 
 </manifest>

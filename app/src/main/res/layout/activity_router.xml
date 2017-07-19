@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="<a href='lboxapp://lbox.app/open'>跳转</a>可进入当前页面" />
+        android:text="默认浏览器链接lboxapp://lbox.app/open可进入当前页面" />
 
     <Button
         android:id="@+id/btnMyRouter"
