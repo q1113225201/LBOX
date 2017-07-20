@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * Glide图片加载
+ * 支持加载动图
  *
  * @author SJL
  * @date 2017/4/28
@@ -87,13 +88,13 @@ public class GlideActivity extends BaseActivity implements View.OnClickListener 
                             @Override
                             protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
                                 Matrix matrix = new Matrix();
-                                matrix.setRotate(index*90);//旋转
+                                matrix.setRotate(index * 90);//旋转
                                 return Bitmap.createBitmap(toTransform, 0, 0, toTransform.getWidth(), toTransform.getHeight(), matrix, true);
                             }
 
                             @Override
                             public String getId() {
-                                return "transform:"+index;
+                                return "transform:" + index;
                             }
                         })//图片变换效果
                         .into(ivGlide);
@@ -105,7 +106,7 @@ public class GlideActivity extends BaseActivity implements View.OnClickListener 
                         .asGif()
                         .placeholder(R.drawable.loading)
                         .error(R.drawable.network_error)
-                        .override(300,200)//重写图片宽高
+                        .override(300, 200)//重写图片宽高
                         .into(ivGlide);
                 break;
             case R.id.btnLoadList:

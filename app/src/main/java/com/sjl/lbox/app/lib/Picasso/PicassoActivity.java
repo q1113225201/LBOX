@@ -10,26 +10,30 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.lib.Glide.adapter.GlideAdapter;
 import com.sjl.lbox.base.BaseActivity;
+import com.sjl.lbox.base.adapter.CommonRVAdapter;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Picasso演示
+ * 不支持加载动图
+ *
+ * @author SJL
+ * @date 2017/7/20
+ */
 public class PicassoActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView ivShow;
     private Button btnLoadImg;
-    private Button btnLoadGif;
     private Button btnLoadList;
 
     private List<String> imageList;
-    private GlideAdapter glideAdapter;
+    private CommonRVAdapter<String> adapter;
     private RecyclerView rv;
-
-    private int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +47,6 @@ public class PicassoActivity extends BaseActivity implements View.OnClickListene
         ivShow = (ImageView) findViewById(R.id.ivShow);
         btnLoadImg = (Button) findViewById(R.id.btnLoadImg);
         btnLoadImg.setOnClickListener(this);
-        btnLoadGif = (Button) findViewById(R.id.btnLoadGif);
-        btnLoadGif.setOnClickListener(this);
         btnLoadList = (Button) findViewById(R.id.btnLoadList);
         btnLoadList.setOnClickListener(this);
         rv = (RecyclerView) findViewById(R.id.rv);
@@ -62,9 +64,24 @@ public class PicassoActivity extends BaseActivity implements View.OnClickListene
         imageList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=905012644,2707244964&fm=23&gp=0.jpg");
         imageList.add("http://img.zcool.cn/community/01033456f114f932f875a94467912f.jpg@900w_1l_2o_100sh.jpg");
 
-        glideAdapter = new GlideAdapter(mContext, imageList);
+        adapter = new CommonRVAdapter<String>(mContext, imageList, R.layout.item_single_image, R.layout.item_empty) {
+            @Override
+            protected void onBindNullViewHolder(RecyclerView.Adapter adapter, CommonRVAdapter<String>.RVViewHolder viewHolder, int position, String item, List<String> list) {
+
+            }
+
+            @Override
+            protected void onBindViewHolder(RecyclerView.Adapter adapter, CommonRVAdapter<String>.RVViewHolder viewHolder, int position, String item, List<String> list) {
+                Picasso.with(mContext)
+                        .load(item)
+                        .fit()
+                        .placeholder(R.drawable.loading)
+                        .error(R.drawable.network_error)
+                        .into((ImageView) viewHolder.findViewById(R.id.ivImage));
+            }
+        };
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(glideAdapter);
+        rv.setAdapter(adapter);
     }
 
 
@@ -80,7 +97,8 @@ public class PicassoActivity extends BaseActivity implements View.OnClickListene
                             @Override
                             public Bitmap transform(Bitmap source) {
                                 Matrix matrix = new Matrix();
-                                matrix.setRotate(index * 90);//旋转
+                                matrix.setRotate(60);//旋转
+                                matrix.setScale(1, 0.5f);
                                 Bitmap result = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
                                 //转换后需要回收原图
                                 source.recycle();
@@ -92,15 +110,6 @@ public class PicassoActivity extends BaseActivity implements View.OnClickListene
                                 return "picasso";
                             }
                         })
-                        .into(ivShow);
-                index++;
-                break;
-            case R.id.btnLoadGif:
-                Picasso.with(mContext)
-                        .load("http://s1.dwstatic.com/group1/M00/6A/99/020c07fb5680156e67e22c8056b2d699.gif")
-                        .placeholder(R.drawable.loading)
-                        .error(R.drawable.network_error)
-                        .resize(300,200)
                         .into(ivShow);
                 break;
             case R.id.btnLoadList:

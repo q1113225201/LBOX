@@ -9,18 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Picasso不支持加载动图"/>
         <Button
             android:id="@+id/btnLoadImg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="加载图片" />
-
-        <Button
-            android:id="@+id/btnLoadGif"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="加载动画" />
 
         <ImageView
             android:id="@+id/ivShow"
