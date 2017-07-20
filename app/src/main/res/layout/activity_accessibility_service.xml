@@ -11,5 +11,11 @@
         android:id="@+id/btnStartService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="开启服务" />
+        android:text="开启Rob服务" />
+
+    <Button
+        android:id="@+id/btnFloatWindow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="悬浮窗显示当前Activity" />
 </LinearLayout>

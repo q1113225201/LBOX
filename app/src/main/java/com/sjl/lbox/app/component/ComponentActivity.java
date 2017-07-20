@@ -57,7 +57,7 @@ public class ComponentActivity extends BaseActivity {
     private void initData() {
         list = new ArrayList<Module>();
         list.add(new Module("IntentService和LocalBroadcastManager", IntentServiceActivity.class));
-        list.add(new Module("RobService", AccessibilityServiceActivity.class));
+        list.add(new Module("无障碍服务", AccessibilityServiceActivity.class));
         list.add(new Module("通知", NotificationActivity.class));
         list.add(new Module("广播", BroadcastActivity.class));
         list.add(new Module("webview", WebViewActivity.class));
