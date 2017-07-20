@@ -64,6 +64,8 @@ public class AccessibilityServiceActivity extends BaseActivity implements View.O
                             }
                         }, true);
                     }
+                }else{
+                    startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
                 }
                 break;
         }
