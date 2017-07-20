@@ -130,7 +130,7 @@ public class SignatureActivity extends BaseActivity implements View.OnClickListe
                 list = new ArrayList<AppInfo>();
                 PackageManager pm = getPackageManager();
 
-                List<ApplicationInfo> applicationInfoList = pm.getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);
+                List<ApplicationInfo> applicationInfoList = pm.getInstalledApplications(PackageManager.MATCH_UNINSTALLED_PACKAGES);
                 for (ApplicationInfo info : applicationInfoList) {
                     AppInfo appInfo = new AppInfo();
                     appInfo.setIcon(info.loadIcon(pm));

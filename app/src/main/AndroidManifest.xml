@@ -181,7 +181,6 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_rob_service_config" />
         </service>
-
         <service
             android:name=".app.component.AccessibilityService.service.WatchService"
             android:enabled="true"
@@ -244,7 +243,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".app.lib.RxJava.RxJavaActivity" />
-        <activity android:name=".app.lib.Picasso.PicassoActivity"></activity>
+        <activity android:name=".app.lib.Picasso.PicassoActivity" />
+        <activity android:name=".app.mobile.AppInfo.AppInfoActivity"></activity>
     </application>
 
 </manifest>
