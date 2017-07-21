@@ -67,9 +67,6 @@
             android:name=".app.mobile.QRCode.BGAQRCode.ScanActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".app.mobile.signature.SignatureActivity"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
-        <activity
             android:name=".app.mobile.QRCode.MyQRCode.activity.CaptureActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".app.mobile.QRCode.MyQRCode.MyQRCodeScanActivity" />
@@ -244,7 +241,9 @@
         </activity>
         <activity android:name=".app.lib.RxJava.RxJavaActivity" />
         <activity android:name=".app.lib.Picasso.PicassoActivity" />
-        <activity android:name=".app.mobile.AppInfo.AppInfoActivity"></activity>
+        <activity android:name=".app.mobile.AppInfo.AppInfoActivity"/>
+        <activity android:name=".app.mobile.AppInfo.AppInfoListActivity"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" ></activity>
     </application>
 
 </manifest>

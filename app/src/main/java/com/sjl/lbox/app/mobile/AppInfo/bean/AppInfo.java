@@ -1,5 +1,7 @@
 package com.sjl.lbox.app.mobile.AppInfo.bean;
 
+import android.content.pm.ActivityInfo;
+import android.content.pm.ServiceInfo;
 import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
@@ -36,9 +38,21 @@ public class AppInfo implements Serializable {
      */
     private Long lastModifyTime;
     /**
-     * 空间大小
+     * Activitys
      */
-    private Long totalSpace;
+    private ActivityInfo[] activitys;
+    /**
+     * 广播
+     */
+    private ActivityInfo[] receivers;
+    /**
+     * 服务
+     */
+    private ServiceInfo[] services;
+    /**
+     * 权限
+     */
+    private String[] permissions;
     /**
      * 是否是系统app
      */
@@ -92,19 +106,43 @@ public class AppInfo implements Serializable {
         this.lastModifyTime = lastModifyTime;
     }
 
-    public Long getTotalSpace() {
-        return totalSpace;
-    }
-
-    public void setTotalSpace(Long totalSpace) {
-        this.totalSpace = totalSpace;
-    }
-
     public Boolean getSystemApp() {
         return isSystemApp;
     }
 
     public void setSystemApp(Boolean systemApp) {
         isSystemApp = systemApp;
+    }
+
+    public ActivityInfo[] getActivitys() {
+        return activitys;
+    }
+
+    public void setActivitys(ActivityInfo[] activitys) {
+        this.activitys = activitys;
+    }
+
+    public ActivityInfo[] getReceivers() {
+        return receivers;
+    }
+
+    public void setReceivers(ActivityInfo[] receivers) {
+        this.receivers = receivers;
+    }
+
+    public ServiceInfo[] getServices() {
+        return services;
+    }
+
+    public void setServices(ServiceInfo[] services) {
+        this.services = services;
+    }
+
+    public String[] getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(String[] permissions) {
+        this.permissions = permissions;
     }
 }

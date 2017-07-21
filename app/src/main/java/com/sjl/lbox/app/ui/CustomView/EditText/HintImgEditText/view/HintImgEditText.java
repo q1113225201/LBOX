@@ -7,8 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
-import android.widget.EditText;
 
 import com.sjl.lbox.R;
 
@@ -19,7 +19,7 @@ import com.sjl.lbox.R;
  * @date 2017/1/12
  */
 
-public class HintImgEditText extends EditText {
+public class HintImgEditText extends AppCompatEditText {
     private Context context;
 
     public HintImgEditText(Context context) {

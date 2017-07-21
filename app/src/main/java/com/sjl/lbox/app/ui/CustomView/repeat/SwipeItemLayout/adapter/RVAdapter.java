@@ -97,7 +97,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
      * @param refreshList
      */
     public void refresh(List<String> refreshList) {
-        list.removeAll(list);
+        list.clear();
         list.addAll(refreshList);
         notifyDataSetChanged();
     }

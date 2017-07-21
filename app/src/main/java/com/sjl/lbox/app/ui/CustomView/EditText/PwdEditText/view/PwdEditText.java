@@ -8,9 +8,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.InputFilter;
 import android.util.AttributeSet;
-import android.widget.EditText;
 
 import com.sjl.lbox.R;
 
@@ -21,7 +21,7 @@ import com.sjl.lbox.R;
  * @author SJL
  * @date 2016/11/29 21:30
  */
-public class PwdEditText extends EditText {
+public class PwdEditText extends AppCompatEditText {
 
     private Context context;
 
@@ -243,7 +243,7 @@ public class PwdEditText extends EditText {
         for (int i = 0; i < length; i++) {
             Rect rect = new Rect();
             textPaint.getTextBounds(str, i, i + 1, rect);
-            canvas.drawText(str, i, i + 1, (i + 1) * (lineWidth + itemWidth) - 0.5f * itemWidth-rect.width()/2, mHeight / 2 + rect.height() / 2, textPaint);
+            canvas.drawText(str, i, i + 1, (i + 1) * (lineWidth + itemWidth) - 0.5f * itemWidth - rect.width() / 2, mHeight / 2 + rect.height() / 2, textPaint);
         }
     }
 

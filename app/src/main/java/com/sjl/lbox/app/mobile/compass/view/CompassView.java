@@ -3,8 +3,8 @@ package com.sjl.lbox.app.mobile.compass.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 /**
  * 指南针View
@@ -12,7 +12,7 @@ import android.widget.ImageView;
  * @author SJL
  * @date 2016/9/20 22:05
  */
-public class CompassView extends ImageView {
+public class CompassView extends AppCompatImageView {
     private float direction;
     private Drawable compass;
 
@@ -32,21 +32,22 @@ public class CompassView extends ImageView {
     protected void onDraw(Canvas canvas) {
 //        super.onDraw(canvas);
 
-        if(compass==null){
+        if (compass == null) {
             compass = getDrawable();
             //compass.setBounds(0,0,getWidth(),getWidth());
         }
         canvas.save();
-        canvas.rotate(direction,getWidth()/2,getWidth()/2);
+        canvas.rotate(direction, getWidth() / 2, getWidth() / 2);
         compass.draw(canvas);
         canvas.restore();
     }
 
     /**
      * 同步方向
+     *
      * @param direction
      */
-    public void updateDirection(float direction){
+    public void updateDirection(float direction) {
         this.direction = direction;
         invalidate();
     }

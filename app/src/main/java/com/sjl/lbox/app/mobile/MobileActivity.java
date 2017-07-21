@@ -8,14 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.mobile.AppInfo.AppInfoActivity;
+import com.sjl.lbox.app.mobile.AppInfo.AppInfoListActivity;
 import com.sjl.lbox.app.mobile.QRCode.QRCodeActivity;
 import com.sjl.lbox.app.mobile.compass.CompassActivity;
 import com.sjl.lbox.app.mobile.image.ImageActivity;
 import com.sjl.lbox.app.mobile.music.MusicActivity;
 import com.sjl.lbox.app.mobile.pedometer.PedometerActivity;
 import com.sjl.lbox.app.mobile.share.ShareActivity;
-import com.sjl.lbox.app.mobile.signature.SignatureActivity;
 import com.sjl.lbox.app.mobile.zip.ZipActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
@@ -62,8 +61,7 @@ public class MobileActivity extends BaseActivity {
         list.add(new Module("二维码扫描", QRCodeActivity.class));
         list.add(new Module("图片选择", ImageActivity.class));
         list.add(new Module("音乐选择", MusicActivity.class));
-        list.add(new Module("App签名获取", SignatureActivity.class));
-        list.add(new Module("App信息", AppInfoActivity.class));
+        list.add(new Module("App信息", AppInfoListActivity.class));
         list.add(new Module("Zip", ZipActivity.class));
         list.add(new Module("分享", ShareActivity.class));
     }

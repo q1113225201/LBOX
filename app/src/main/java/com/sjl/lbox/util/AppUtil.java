@@ -5,6 +5,7 @@ import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
@@ -167,5 +168,22 @@ public class AppUtil {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getSize(point);
         return point;
+    }
+
+    /**
+     * 判断是否是系统app
+     *
+     * @param info
+     * @return
+     */
+    public static Boolean isSystemApp(ApplicationInfo info) {
+        if ((info.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0) {
+            //原来是系统应用，用户手动升级
+            return false;
+        } else if ((info.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+            //用户自己安装的应用程序
+            return false;
+        }
+        return true;
     }
 }
