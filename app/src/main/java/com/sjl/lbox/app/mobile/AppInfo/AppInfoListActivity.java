@@ -118,7 +118,6 @@ public class AppInfoListActivity extends BaseActivity {
         adapter.flush(list);
     }
 
-
     private void initAdapter() {
         adapter = new CommonRVAdapter<AppInfo>(mContext, list, R.layout.item_appinfo, R.layout.item_empty) {
             @Override

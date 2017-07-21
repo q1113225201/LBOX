@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.mobile.image;
+package com.sjl.lbox.util;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -9,29 +9,26 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
-import android.view.View;
-
-import com.sjl.lbox.app.ui.CustomView.popupwindow.listener.OnItemClickListener;
-import com.sjl.lbox.util.BitmapUtil;
-import com.sjl.lbox.util.FileUtil;
-import com.sjl.lbox.util.LogUtil;
-import com.sjl.lbox.util.PopupWindowUtil;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * 只涉及拍照和相册选择图片
+ * PictureUtil.chooseImage 选择
+ * PictureUtil.onActivityResult 回调
+ * @author SJL
+ * @date 2017/7/10
+ */
 public class PictureUtil {
     private static final String TAG = "PictureUtil";
     // 拍照
     public static int REQUEST_CODE_CAMERA = 0x101;
     // 相册
-    public static int REQUEST_CODE_ALBUM = 0x102;
+    public static int REQUEST_CODE_PHOTO = 0x102;
     // 裁剪
     public static int REQUEST_CODE_CROP = 0x103;
 
@@ -51,44 +48,20 @@ public class PictureUtil {
     private static Activity mActivity;
     private static Fragment mFragment;
     private static PictureLoadCallBack mPictureLoadCallBack;
-    private static List<String> list;
-
-    public static void choosePicture(Activity activity, PictureLoadCallBack pictureLoadCallBack) {
+    public static void chooseImage(Activity activity,int code,PictureLoadCallBack pictureLoadCallBack){
         mContext = activity;
         mActivity = activity;
         mFragment = null;
         mPictureLoadCallBack = pictureLoadCallBack;
-        showPopupWindow();
+        chooseImage(code);
     }
 
-    public static void choosePicture(Fragment fragment, PictureLoadCallBack pictureLoadCallBack) {
+    public static void chooseImage(Fragment fragment,int code,PictureLoadCallBack pictureLoadCallBack){
         mContext = fragment.getActivity();
         mActivity = null;
         mFragment = fragment;
         mPictureLoadCallBack = pictureLoadCallBack;
-        showPopupWindow();
-    }
-
-    /**
-     * 显示弹窗
-     */
-    private static void showPopupWindow() {
-        if (list == null) {
-            list = new ArrayList<String>();
-            list.add("拍照");
-            list.add("相册");
-        }
-        PopupWindowUtil.showSelectPopupWindow(mContext, list, new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                if (position == 0) {
-                    PictureUtil.chooseImage(PictureUtil.REQUEST_CODE_CAMERA);
-                } else if (position == 1) {
-                    PictureUtil.chooseImage(PictureUtil.REQUEST_CODE_ALBUM);
-                }
-            }
-        });
-        clearCache();
+        chooseImage(code);
     }
 
     /**
@@ -113,12 +86,13 @@ public class PictureUtil {
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(intent, REQUEST_CODE_CAMERA);
-        } else if (code == REQUEST_CODE_ALBUM) {
+        } else if (code == REQUEST_CODE_PHOTO) {
             Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//            intent.setType("image/*");
+            intent.setDataAndType(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     "image/*");//相片类型
-//			intent.setType("image/*");
-            startActivityForResult(intent, REQUEST_CODE_ALBUM);
+            startActivityForResult(intent, REQUEST_CODE_PHOTO);
         }
     }
 
@@ -147,7 +121,7 @@ public class PictureUtil {
             return;
         }
 
-        if (requestCode == REQUEST_CODE_ALBUM) {
+        if (requestCode == REQUEST_CODE_PHOTO) {
             startPhotoZoom(data.getData());
         } else if (requestCode == REQUEST_CODE_CAMERA) {
             Uri uri = Uri.fromFile(new File(cameraPath));
@@ -156,26 +130,27 @@ public class PictureUtil {
             }
             startPhotoZoom(uri);
         } else if (requestCode == REQUEST_CODE_CROP) {
-            Bitmap bitmap = null;
-            /*if (data != null) {
+            /*Bitmap bitmap = null;
+            if (data != null) {
                 Bundle extras = data.getExtras();
                 if (extras != null) {
                     bitmap = extras.getParcelable("data");
                 } else {
-                    //返回数据时直接根据路径获取
                     bitmap = BitmapFactory.decodeFile(path + filename);
                 }
             } else {
                 bitmap = BitmapFactory.decodeFile(path + filename);
-            }*/
-            bitmap = BitmapFactory.decodeFile(path + filename);
+            }
             new File(cameraPath).delete();
-            /*try {
+            try {
                 BitmapUtil.save(bitmap, path + filename);
             } catch (Exception e) {
                 e.printStackTrace();
                 LogUtil.e(TAG, "save e:" + e.getMessage());
             }*/
+            //已改为不回传数据
+            Bitmap bitmap = BitmapFactory.decodeFile(path + filename);
+            new File(cameraPath).delete();
             if (mPictureLoadCallBack != null) {
                 mPictureLoadCallBack.bitmapLoadSuccess(bitmap, Uri.fromFile(new File(path + filename)));
             }
@@ -196,11 +171,11 @@ public class PictureUtil {
      * @param uri
      */
     private static void startPhotoZoom(Uri uri) {
+        filename = System.currentTimeMillis() + ".png";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdir();
         }
-        filename = System.currentTimeMillis() + ".png";
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         // crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
@@ -211,7 +186,6 @@ public class PictureUtil {
         // outputX outputY 是裁剪图片宽高
         intent.putExtra("outputX", outputX);
         intent.putExtra("outputY", outputY);
-        //不接受返回数据
         intent.putExtra("return-data", false);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path + filename)));
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
@@ -228,7 +202,7 @@ public class PictureUtil {
     /**
      * 安卓7.0裁剪根据文件路径获取uri
      */
-    public static Uri getImageContentUri(Uri uri) {
+    private static Uri getImageContentUri(Uri uri) {
         File imageFile = new File(uri.getPath());
         String filePath = imageFile.getAbsolutePath();
         Cursor cursor = mContext.getContentResolver().query(
@@ -241,6 +215,7 @@ public class PictureUtil {
             int id = cursor.getInt(cursor
                     .getColumnIndex(MediaStore.MediaColumns._ID));
             Uri baseUri = Uri.parse("content://media/external/images/media");
+            cursor.close();
             return Uri.withAppendedPath(baseUri, "" + id);
         } else {
             if (imageFile.exists()) {

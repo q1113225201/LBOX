@@ -1,5 +1,6 @@
 package com.sjl.lbox.app.component.webview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,13 +15,21 @@ import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.sjl.lbox.app.mobile.image.ImageActivity;
+import com.sjl.lbox.app.ui.CustomView.popupwindow.listener.OnItemClickListener;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.util.BitmapUtil;
+import com.sjl.lbox.util.ImageUtil;
 import com.sjl.lbox.util.LogUtil;
 import com.sjl.lbox.util.NetWorkUtil;
-import com.sjl.lbox.app.mobile.image.PictureUtil;
+import com.sjl.lbox.util.PictureUtil;
+import com.sjl.lbox.util.PopupWindowUtil;
+import com.sjl.lbox.util.ToastUtil;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * WebView控件
  *
@@ -174,23 +183,36 @@ public class WebViewActivity extends BaseActivity implements
     public void openFileChooserCallBack(ValueCallback<Uri> uploadMsg,
                                         String acceptType) {
         mUploadMsg = uploadMsg;
-        PictureUtil.choosePicture(this, new PictureUtil.PictureLoadCallBack() {
+        List<String> list = new ArrayList<>();
+        list.add("拍照");
+        list.add("相册");
+        PopupWindowUtil.showSelectPopupWindow(mContext, list, new OnItemClickListener() {
             @Override
-            public void bitmapLoadSuccess(Bitmap bitmap, Uri uri) {
-                try {
-                    BitmapUtil.save(bitmap,uri.getPath());
-                    mUploadMsg.onReceiveValue(uri);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+            public void onItemClick(View view, int position) {
+                PictureUtil.PictureLoadCallBack pictureLoadCallBack = new PictureUtil.PictureLoadCallBack() {
+                    @Override
+                    public void bitmapLoadSuccess(Bitmap bitmap, Uri uri) {
+                        try {
+                            BitmapUtil.save(bitmap,uri.getPath());
+                            mUploadMsg.onReceiveValue(uri);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-            @Override
-            public void bitmapLoadFailure(String error) {
-                if (mUploadMsg == null) {
-                    return;
+                    @Override
+                    public void bitmapLoadFailure(String error) {
+                        if (mUploadMsg == null) {
+                            return;
+                        }
+                        mUploadMsg.onReceiveValue(null);
+                    }
+                };
+                if(position==0){
+                    PictureUtil.chooseImage((Activity) mContext,PictureUtil.REQUEST_CODE_CAMERA,pictureLoadCallBack);
+                }else if(position==1){
+                    PictureUtil.chooseImage((Activity) mContext,PictureUtil.REQUEST_CODE_PHOTO,pictureLoadCallBack);
                 }
-                mUploadMsg.onReceiveValue(null);
             }
         });
        /* PictureUtil.showPop(new PictureUtil.OnPopDismiss() {
