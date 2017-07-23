@@ -1,7 +1,9 @@
 package com.sjl.lbox.app.mobile.AppInfo.bean;
 
 import android.content.pm.ActivityInfo;
+import android.content.pm.ProviderInfo;
 import android.content.pm.ServiceInfo;
+import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
@@ -50,9 +52,17 @@ public class AppInfo implements Serializable {
      */
     private ServiceInfo[] services;
     /**
+     * 内容提供者
+     */
+    private ProviderInfo[] providers;
+    /**
      * 权限
      */
     private String[] permissions;
+    /**
+     * 签名
+     */
+    private Signature[] signatures;
     /**
      * 是否是系统app
      */
@@ -106,14 +116,6 @@ public class AppInfo implements Serializable {
         this.lastModifyTime = lastModifyTime;
     }
 
-    public Boolean getSystemApp() {
-        return isSystemApp;
-    }
-
-    public void setSystemApp(Boolean systemApp) {
-        isSystemApp = systemApp;
-    }
-
     public ActivityInfo[] getActivitys() {
         return activitys;
     }
@@ -138,11 +140,35 @@ public class AppInfo implements Serializable {
         this.services = services;
     }
 
+    public ProviderInfo[] getProviders() {
+        return providers;
+    }
+
+    public void setProviders(ProviderInfo[] providers) {
+        this.providers = providers;
+    }
+
     public String[] getPermissions() {
         return permissions;
     }
 
     public void setPermissions(String[] permissions) {
         this.permissions = permissions;
+    }
+
+    public Signature[] getSignatures() {
+        return signatures;
+    }
+
+    public void setSignatures(Signature[] signatures) {
+        this.signatures = signatures;
+    }
+
+    public Boolean getSystemApp() {
+        return isSystemApp;
+    }
+
+    public void setSystemApp(Boolean systemApp) {
+        isSystemApp = systemApp;
     }
 }

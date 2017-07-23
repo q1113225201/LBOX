@@ -26,6 +26,7 @@ import java.util.List;
 
 /**
  * App列表
+ * http://blog.csdn.net/q1113225201/article/details/75892115
  *
  * @author SJL
  * @date 2017/7/21

@@ -108,7 +108,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Permissions" />
+                android:text="Permissions\n" />
 
             <TextView
                 android:id="@+id/tvPermissions"
@@ -120,7 +120,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Activitys" />
+                android:text="Activitys\n" />
 
             <TextView
                 android:id="@+id/tvActivitys"
@@ -132,7 +132,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Receivers" />
+                android:text="Receivers\n" />
 
             <TextView
                 android:id="@+id/tvReceivers"
@@ -144,10 +144,22 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Services" />
+                android:text="Services\n" />
 
             <TextView
                 android:id="@+id/tvServices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <include layout="@layout/devider_vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Providers\n" />
+
+            <TextView
+                android:id="@+id/tvProviders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

@@ -1,16 +1,20 @@
 package com.sjl.lbox.app.mobile.AppInfo;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ProviderInfo;
 import android.content.pm.ServiceInfo;
 import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +24,7 @@ import android.widget.TextView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.mobile.AppInfo.bean.AppInfo;
 import com.sjl.lbox.base.BaseActivity;
-import com.sjl.lbox.config.CacheConfig;
-import com.sjl.lbox.listener.BaseListener;
 import com.sjl.lbox.util.AppUtil;
-import com.sjl.lbox.util.DialogUtil;
 import com.sjl.lbox.util.FileUtil;
 import com.sjl.lbox.util.LogUtil;
 import com.sjl.lbox.util.StringUtil;
@@ -60,6 +61,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
     private TextView tvActivitys;
     private TextView tvReceivers;
     private TextView tvServices;
+    private TextView tvProviders;
     private AppInfo appInfo;
 
     @Override
@@ -68,6 +70,12 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_app_info);
 
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
     }
 
     private void initView() {
@@ -88,50 +96,60 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         tvActivitys = (TextView) findViewById(R.id.tvActivitys);
         tvReceivers = (TextView) findViewById(R.id.tvReceivers);
         tvServices = (TextView) findViewById(R.id.tvServices);
+        tvProviders = (TextView) findViewById(R.id.tvProviders);
 
         btnCopy.setOnClickListener(this);
-        initData();
     }
 
     private void initData() {
         String packageName = getIntent().getStringExtra("packageName");
         appInfo = getAppInfo(packageName);
         if (appInfo == null) {
-            ToastUtil.showToast(mContext, "App信息获取失败");
             finish();
             return;
         }
         ivIcon.setImageDrawable(appInfo.getIcon());
         tvName.setText(String.format("%s%s", appInfo.getName(), appInfo.getSystemApp() ? "(系统应用)" : ""));
         tvVersion.setText(String.format("%s(%s)", appInfo.getVersion(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(appInfo.getLastModifyTime()))));
-        tvSignature.setText(getSignature(appInfo.getPackageName()));
+        tvSignature.setText(parseSignature(appInfo.getSignatures()[0].toByteArray()));
         LogUtil.i(TAG, "Permissions");
         for (String permissionInfo : appInfo.getPermissions()) {
-            tvPermissions.append("\n" + permissionInfo);
+            tvPermissions.append(permissionInfo + "\n");
             LogUtil.i(TAG, permissionInfo.toString());
         }
         LogUtil.i(TAG, "Activitys");
         for (ActivityInfo activityInfo : appInfo.getActivitys()) {
-            tvActivitys.append("\n" + activityInfo.name);
+            tvActivitys.append(activityInfo.name + "\n");
             LogUtil.i(TAG, activityInfo.toString());
         }
         LogUtil.i(TAG, "Receivers");
         for (ActivityInfo activityInfo : appInfo.getReceivers()) {
-            tvReceivers.append("\n" + activityInfo.name);
+            tvReceivers.append(activityInfo.name + "\n");
             LogUtil.i(TAG, activityInfo.toString());
         }
         LogUtil.i(TAG, "Services");
         for (ServiceInfo service : appInfo.getServices()) {
-            tvServices.append("\n" + service.name);
+            tvServices.append(service.name + "\n");
             LogUtil.i(TAG, service.toString());
+        }
+        LogUtil.i(TAG, "tvProviders");
+        for (ProviderInfo providerInfo : appInfo.getProviders()) {
+            tvProviders.append(providerInfo.name + "\n");
+            LogUtil.i(TAG, providerInfo.toString());
         }
     }
 
+    /**
+     * 获取App信息
+     *
+     * @param packageName
+     * @return
+     */
     private AppInfo getAppInfo(String packageName) {
-        PackageManager packageManager = mContext.getApplicationContext().getPackageManager();
+        PackageManager packageManager = getPackageManager();
         try {
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName,
-                    PackageManager.GET_META_DATA | PackageManager.GET_ACTIVITIES | PackageManager.GET_RECEIVERS | PackageManager.GET_SERVICES | PackageManager.GET_PERMISSIONS);
+                    PackageManager.GET_ACTIVITIES | PackageManager.GET_RECEIVERS | PackageManager.GET_SERVICES | PackageManager.GET_PERMISSIONS | PackageManager.GET_SIGNATURES);
             AppInfo appInfo = new AppInfo();
             appInfo.setIcon(packageManager.getApplicationIcon(packageInfo.applicationInfo));
             appInfo.setName(packageInfo.applicationInfo.loadLabel(packageManager).toString());
@@ -143,7 +161,9 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
             appInfo.setActivitys(packageInfo.activities == null ? new ActivityInfo[0] : packageInfo.activities);
             appInfo.setReceivers(packageInfo.receivers == null ? new ActivityInfo[0] : packageInfo.receivers);
             appInfo.setServices(packageInfo.services == null ? new ServiceInfo[0] : packageInfo.services);
+            appInfo.setProviders(packageInfo.providers == null ? new ProviderInfo[0] : packageInfo.providers);
             appInfo.setPermissions(packageInfo.requestedPermissions == null ? new String[0] : packageInfo.requestedPermissions);
+            appInfo.setSignatures(packageInfo.signatures);
             return appInfo;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -167,28 +187,27 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.tvGetApk:
                 try {
-                    String path = CacheConfig.PATH + "/" + appInfo.getPackageName() + ".apk";
+                    String path = Environment.getExternalStorageDirectory() + "/appinfo/" + appInfo.getPackageName() + ".apk";
                     FileUtil.copyFile(appInfo.getSrcPath(), path);
                     ToastUtil.showToast(mContext, "apk存放在" + path);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    ToastUtil.showToast(mContext, "部分手机不允许导出系统apk");
                 }
                 break;
             case R.id.tvUninstall:
-                DialogUtil.showConfirm(mContext, null, "是否卸载该App？", null, null, new BaseListener() {
-                    @Override
-                    public void baseListener(View v, String msg) {
-                        Uri packageURI = Uri.parse("package:" + appInfo.getPackageName());
-                        Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
-                        startActivity(uninstallIntent);
-                    }
-                }, new BaseListener() {
-                    @Override
-                    public void baseListener(View v, String msg) {
-
-                    }
-                }, false);
+                new AlertDialog.Builder(this)
+                        .setTitle("提示")
+                        .setMessage("是否卸载该App?")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Uri packageURI = Uri.parse("package:" + appInfo.getPackageName());
+                                Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+                                startActivity(uninstallIntent);
+                            }
+                        })
+                        .setNegativeButton("取消", null)
+                        .show();
                 break;
         }
     }
@@ -196,7 +215,6 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
     private void shareApk(File file, String title) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
-//        intent.putExtra(Intent.EXTRA_STREAM, FileUtil.getUriForFile(mContext, file));
         intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
         intent.setType("application/vnd.android.package-archive");
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
