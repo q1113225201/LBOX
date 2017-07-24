@@ -7,11 +7,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.DesignPattern.DesignPatternActivity;
 import com.sjl.lbox.app.component.ComponentActivity;
 import com.sjl.lbox.app.lib.LibActivity;
-import com.sjl.lbox.app.lib.RxJava.RxBus;
 import com.sjl.lbox.app.mobile.MobileActivity;
 import com.sjl.lbox.app.mode.ModeActivity;
 import com.sjl.lbox.app.network.NetworkActivity;
@@ -22,9 +22,6 @@ import com.sjl.lbox.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
 
 /**
  * MainActivity

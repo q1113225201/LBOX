@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.MainActivity;
 import com.sjl.lbox.base.BaseActivity;
@@ -29,6 +30,7 @@ public class RouterActivity extends BaseActivity implements View.OnClickListener
     private void initView() {
         findViewById(R.id.btnMyRouter).setOnClickListener(this);
         initMyRouter();
+        findViewById(R.id.btnARouter).setOnClickListener(this);
     }
 
     private void initMyRouter() {
@@ -40,6 +42,10 @@ public class RouterActivity extends BaseActivity implements View.OnClickListener
         if (v.getId() == R.id.btnMyRouter) {
             Intent intent = Router.getInstance().invokeRouter(mContext, IntentRule.ACTIVITY_SCHEME + "main");
             startActivity(intent);
+        } else if (v.getId() == R.id.btnARouter) {
+            ARouter.getInstance().build("/app/router")
+                    .withString("key", "Router跳转")
+                    .navigation();
         }
     }
 }
