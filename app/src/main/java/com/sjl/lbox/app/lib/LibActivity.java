@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.lib.Charts.MPAndroidChartActivity;
 import com.sjl.lbox.app.lib.EventBus.EventBusActivity;
 import com.sjl.lbox.app.lib.Glide.GlideActivity;
 import com.sjl.lbox.app.lib.Picasso.PicassoActivity;
@@ -52,6 +53,7 @@ public class LibActivity extends BaseActivity {
         list.add(new Module("RxJava2.0", RxJavaActivity.class));
         list.add(new Module("Glide", GlideActivity.class));
         list.add(new Module("Picasso", PicassoActivity.class));
+        list.add(new Module("MPAndroidChart", MPAndroidChartActivity.class));
         list.add(new Module("Router（路由）", RouterActivity.class));
     }
 }

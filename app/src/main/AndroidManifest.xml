@@ -241,9 +241,11 @@
         </activity>
         <activity android:name=".app.lib.RxJava.RxJavaActivity" />
         <activity android:name=".app.lib.Picasso.PicassoActivity" />
-        <activity android:name=".app.mobile.AppInfo.AppInfoActivity"/>
-        <activity android:name=".app.mobile.AppInfo.AppInfoListActivity"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" ></activity>
+        <activity android:name=".app.mobile.AppInfo.AppInfoActivity" />
+        <activity
+            android:name=".app.mobile.AppInfo.AppInfoListActivity"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+        <activity android:name=".app.lib.Charts.MPAndroidChartActivity"></activity>
     </application>
 
 </manifest>
