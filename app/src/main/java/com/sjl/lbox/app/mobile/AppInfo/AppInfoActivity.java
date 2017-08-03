@@ -14,7 +14,6 @@ import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +23,7 @@ import android.widget.TextView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.mobile.AppInfo.bean.AppInfo;
 import com.sjl.lbox.base.BaseActivity;
+import com.sjl.lbox.config.CacheConfig;
 import com.sjl.lbox.util.AppUtil;
 import com.sjl.lbox.util.FileUtil;
 import com.sjl.lbox.util.LogUtil;
@@ -187,7 +187,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.tvGetApk:
                 try {
-                    String path = Environment.getExternalStorageDirectory() + "/appinfo/" + appInfo.getPackageName() + ".apk";
+                    String path = CacheConfig.PATH + "/appinfo/" + appInfo.getPackageName() + ".apk";
                     FileUtil.copyFile(appInfo.getSrcPath(), path);
                     ToastUtil.showToast(mContext, "apk存放在" + path);
                 } catch (IOException e) {
