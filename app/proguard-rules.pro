@@ -144,3 +144,7 @@
 #NoHttp 混淆
 -dontwarn com.yanzhenjie.nohttp.**
 -keep class com.yanzhenjie.nohttp.**{*;}
+
+#ARouter 混淆
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}

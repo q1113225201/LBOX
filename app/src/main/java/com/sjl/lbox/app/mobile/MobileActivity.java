@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.mobile.AppInfo.AppInfoListActivity;
 import com.sjl.lbox.app.mobile.QRCode.QRCodeActivity;
+import com.sjl.lbox.app.mobile.ReadWrite.ReadWriteActivity;
 import com.sjl.lbox.app.mobile.compass.CompassActivity;
 import com.sjl.lbox.app.mobile.image.ImageActivity;
 import com.sjl.lbox.app.mobile.music.MusicActivity;
@@ -64,5 +65,6 @@ public class MobileActivity extends BaseActivity {
         list.add(new Module("App信息", AppInfoListActivity.class));
         list.add(new Module("Zip", ZipActivity.class));
         list.add(new Module("分享", ShareActivity.class));
+        list.add(new Module("读写", ReadWriteActivity.class));
     }
 }

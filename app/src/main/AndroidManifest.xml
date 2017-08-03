@@ -246,7 +246,8 @@
             android:name=".app.mobile.AppInfo.AppInfoListActivity"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity android:name=".app.lib.Charts.MPAndroidChartActivity" />
-        <activity android:name=".app.lib.Router.ARouterActivity"></activity>
+        <activity android:name=".app.lib.Router.ARouterActivity" />
+        <activity android:name=".app.mobile.ReadWrite.ReadWriteActivity"></activity>
     </application>
 
 </manifest>

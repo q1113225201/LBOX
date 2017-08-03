@@ -519,6 +519,7 @@ public class PinYinUtil {
         if (cmp < 0) {
             offset--;
         }
+        offset = offset<0?0:offset;
         StringBuilder pinyin = new StringBuilder();
         for (int j = 0;
              j < PINYINS[offset].length && PINYINS[offset][j] != 0;

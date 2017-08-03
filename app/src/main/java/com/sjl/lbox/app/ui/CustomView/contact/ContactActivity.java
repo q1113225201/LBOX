@@ -64,7 +64,7 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
         lv = (ListView) findViewById(R.id.lv);
         sectionIndexBar = (SectionIndexBar) findViewById(R.id.sectionIndexBar);
         tvCenter = (TextView) findViewById(R.id.tvCenter);
-
+        
         etKeyword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
