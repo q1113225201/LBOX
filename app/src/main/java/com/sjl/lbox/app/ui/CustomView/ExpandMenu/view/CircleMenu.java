@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,7 +101,8 @@ public class CircleMenu extends ViewGroup {
      */
     private void openMenu() {
         for (int i=0;i<getChildCount();i++){
-            ViewCompat.setTranslationX(getChildAt(i),100*i*(i%2==0?1:-1));
+//            ViewCompat.setTranslationX(getChildAt(i),100*i*(i%2==0?1:-1));
+            getChildAt(i).setTranslationX(100*i*(i%2==0?1:-1));
         }
         requestLayout();
     }

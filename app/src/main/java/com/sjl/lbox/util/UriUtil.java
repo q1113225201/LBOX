@@ -9,6 +9,9 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
+
+import java.io.File;
 
 /**
  * Uri常用工具类
@@ -17,10 +20,22 @@ import android.provider.MediaStore;
  * @date 2016/11/14 21:52
  */
 public class UriUtil {
+    private static final String TAG = "UriUtil";
+    public static Uri getFileUri(Context context, File file) {
+        Uri uri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            uri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", file);
+        } else {
+            uri = Uri.fromFile(file);
+        }
+        LogUtil.i(TAG,uri);
+        return uri;
+    }
 
     /**
      * uri转换成文件路径
      * 4.4之后和之前uri格式不一样
+     *
      * @param context
      * @param uri
      * @return

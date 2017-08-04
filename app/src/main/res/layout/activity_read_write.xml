@@ -5,18 +5,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.sjl.lbox.app.mobile.ReadWrite.ReadWriteActivity">
+
     <TextView
+        android:id="@+id/tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv"/>
+        android:layout_height="wrap_content" />
+
     <Button
+        android:id="@+id/btnWrite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="写"
-        android:id="@+id/btnWrite"/>
+        android:text="写" />
+
     <Button
+        android:id="@+id/btnRead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="读"
-        android:id="@+id/btnRead"/>
+        android:text="读" />
+
+    <Button
+        android:id="@+id/btnOpen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文件打开" />
+    <Button
+        android:id="@+id/btnOpen2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文件打开2" />
 </LinearLayout>

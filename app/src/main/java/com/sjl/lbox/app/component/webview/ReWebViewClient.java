@@ -192,9 +192,9 @@ public class ReWebViewClient extends WebViewClient {
                                 WebResourceError error) {
         LogUtil.i(tag, "onReceivedError:" + request.toString() + "---error:" + error.toString());
         //取消计时
-        cancelTime();
+//        cancelTime();
         //加载页面出错时
-        showNetworkError();
+//        showNetworkError();
     }
 
     @Override

@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.component.AccessibilityService.AccessibilityServiceActivity;
+import com.sjl.lbox.app.component.CorrdinatorLayout.CoordinatorLayoutActivity;
 import com.sjl.lbox.app.component.FloatWindow.FloatWindowActivity;
 import com.sjl.lbox.app.component.Notification.NotificationActivity;
 import com.sjl.lbox.app.component.broadcastreceiver.BroadcastActivity;
@@ -64,5 +65,6 @@ public class ComponentActivity extends BaseActivity {
         list.add(new Module("悬浮窗", FloatWindowActivity.class));
         list.add(new Module("ViewPager", ViewPagerActivity.class));
         list.add(new Module("侧滑菜单", SlideMenuActivity.class));
+        list.add(new Module("CoordinatorLayout效果", CoordinatorLayoutActivity.class));
     }
 }

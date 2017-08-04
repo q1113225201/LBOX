@@ -247,7 +247,9 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
         <activity android:name=".app.lib.Charts.MPAndroidChartActivity" />
         <activity android:name=".app.lib.Router.ARouterActivity" />
-        <activity android:name=".app.mobile.ReadWrite.ReadWriteActivity"></activity>
+        <activity android:name=".app.mobile.ReadWrite.ReadWriteActivity" />
+        <activity android:name=".app.component.CorrdinatorLayout.CoordinatorLayoutActivity" />
+        <activity android:name=".app.component.CorrdinatorLayout.CoordinatorLayoutActivity2"></activity>
     </application>
 
 </manifest>
