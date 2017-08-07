@@ -1,19 +1,17 @@
-package com.sjl.lbox.app.component.CorrdinatorLayout;
+package com.sjl.lbox.app.ui.Effect.CorrdinatorLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BaseTransientBottomBar;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.base.adapter.CommonRVAdapter;
-import com.sjl.lbox.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,6 @@ public class CoordinatorLayoutActivity2 extends BaseActivity {
     }
 
     private void initView() {
-
         initRV();
     }
 
@@ -48,7 +45,7 @@ public class CoordinatorLayoutActivity2 extends BaseActivity {
                 viewHolder.findViewById(R.id.single_text).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(new Intent(mContext,CoordinatorLayoutActivity2.class));
+                        Snackbar.make(view,item,Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }

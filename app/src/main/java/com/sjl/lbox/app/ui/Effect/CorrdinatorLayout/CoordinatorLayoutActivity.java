@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.component.CorrdinatorLayout;
+package com.sjl.lbox.app.ui.Effect.CorrdinatorLayout;
 
 import android.content.Intent;
 import android.os.Bundle;

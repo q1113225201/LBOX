@@ -9,8 +9,8 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.ui.CustomView.CustomViewActivity;
+import com.sjl.lbox.app.ui.Effect.EffectActivity;
 import com.sjl.lbox.app.ui.animate.AnimateActivity;
-import com.sjl.lbox.app.component.slideMenu.SlideMenuActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -52,5 +52,6 @@ public class UIActivity extends BaseActivity {
         list = new ArrayList<Module>();
         list.add(new Module("动画", AnimateActivity.class));
         list.add(new Module("自定义View", CustomViewActivity.class));
+        list.add(new Module("效果实现", EffectActivity.class));
     }
 }
