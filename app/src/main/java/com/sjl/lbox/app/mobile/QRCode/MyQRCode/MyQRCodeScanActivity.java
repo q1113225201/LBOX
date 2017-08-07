@@ -9,6 +9,9 @@ import android.widget.TextView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.mobile.QRCode.MyQRCode.activity.CaptureActivity;
 import com.sjl.lbox.base.BaseActivity;
+import com.sjl.lbox.util.PermisstionUtil;
+import com.sjl.lbox.util.ToastUtil;
+
 /**
  * 二维码扫描
  *
@@ -35,8 +38,18 @@ public class MyQRCodeScanActivity extends BaseActivity {
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, CaptureActivity.class);
-                startActivityForResult(intent, CaptureActivity.SCAN_CODE);
+                PermisstionUtil.requestPermissions(mContext, new PermisstionUtil.OnPermissionResult() {
+                    @Override
+                    public void granted(int requestCode) {
+                        Intent intent = new Intent(mContext, CaptureActivity.class);
+                        startActivityForResult(intent, CaptureActivity.SCAN_CODE);
+                    }
+
+                    @Override
+                    public void denied(int requestCode) {
+                        ToastUtil.showToast(mContext,"拍照权限被禁止");
+                    }
+                },"扫码需要拍照权限",1004,PermisstionUtil.CAMERA);
             }
         });
     }

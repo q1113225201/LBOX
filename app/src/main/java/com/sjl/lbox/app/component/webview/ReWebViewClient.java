@@ -137,7 +137,7 @@ public class ReWebViewClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, final String url) {
         LogUtil.i(tag, "shouldOverrideUrlLoading url:" + url);
         if (url.toString().startsWith("tel:")) {
-            PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.CALL_PHONE}, PermisstionUtil.CALL_PHONE_CODE, "拨打电话需要拨号权限，是否继续？", new PermisstionUtil.OnPermissionResult() {
+            PermisstionUtil.requestPermissions(mContext,new PermisstionUtil.OnPermissionResult() {
                 @Override
                 public void granted(int requestCode) {
                     try {
@@ -154,7 +154,7 @@ public class ReWebViewClient extends WebViewClient {
                 public void denied(int requestCode) {
 
                 }
-            });
+            },"拨打电话需要拨号权限，是否继续？",1002,PermisstionUtil.PHONE);
         } else if (url.startsWith("http:") || url.startsWith("https:")) {
             view.loadUrl(url);
         }

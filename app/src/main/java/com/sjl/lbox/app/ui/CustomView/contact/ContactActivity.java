@@ -64,7 +64,7 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
         lv = (ListView) findViewById(R.id.lv);
         sectionIndexBar = (SectionIndexBar) findViewById(R.id.sectionIndexBar);
         tvCenter = (TextView) findViewById(R.id.tvCenter);
-        
+
         etKeyword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -94,7 +94,7 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
 
         btnAdd.setOnClickListener(this);
 
-        PermisstionUtil.requestPermissions(this, new String[]{PermisstionUtil.CONTACTS}, PermisstionUtil.CONTACTS_CODE, "读取联系人需要联系人读写权限", new PermisstionUtil.OnPermissionResult() {
+        PermisstionUtil.requestPermissions(this, new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
                 initData();
@@ -104,7 +104,7 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
             public void denied(int requestCode) {
                 ToastUtil.showToast(mContext, "联系人权限被拒绝");
             }
-        });
+        }, "读取联系人需要联系人读写权限", 1003, PermisstionUtil.CONTACTS);
     }
 
     private void initData() {
@@ -158,7 +158,7 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnAdd:
                 addUser();
                 break;
@@ -166,11 +166,11 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void addUser() {
-        PermisstionUtil.requestPermissions(this, new String[]{PermisstionUtil.CONTACTS_WRITE}, PermisstionUtil.CONTACTS_WRITE_CODE, "写联系人需要联系人读写权限", new PermisstionUtil.OnPermissionResult() {
+        PermisstionUtil.requestPermissions(this, new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
-                if(ContactUtil.addContacts(mContext,etName.getText().toString(),etMobile.getText().toString())){
-                    ToastUtil.showToast(mContext,"添加成功");
+                if (ContactUtil.addContacts(mContext, etName.getText().toString(), etMobile.getText().toString())) {
+                    ToastUtil.showToast(mContext, "添加成功");
                     initData();
                 }
                 /*for (int i=1000;i<3000;i++){
@@ -184,7 +184,6 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
             public void denied(int requestCode) {
                 ToastUtil.showToast(mContext, "联系人权限被拒绝");
             }
-        });
-
+        }, "写联系人需要联系人读写权限",1005,PermisstionUtil.CONTACTS);
     }
 }

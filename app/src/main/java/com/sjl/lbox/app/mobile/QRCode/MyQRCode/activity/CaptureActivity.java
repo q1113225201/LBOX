@@ -25,17 +25,18 @@ import com.sjl.lbox.app.mobile.QRCode.MyQRCode.decode.LuminanceSource;
 import com.sjl.lbox.app.mobile.QRCode.MyQRCode.decode.PlanarYUVLuminanceSource;
 import com.sjl.lbox.app.mobile.QRCode.MyQRCode.decode.RGBLuminanceSource;
 import com.sjl.lbox.app.mobile.QRCode.MyQRCode.view.CaptureView;
+
 /**
  * 二维码扫描框界面
  * 需权限
- <uses-permission android:name="android.permission.CAMERA" />
- <uses-permission android:name="android.permission.FLASHLIGHT" />
- <uses-permission android:name="android.permission.VIBRATE" />
- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
- <uses-feature android:name="android.hardware.camera" />
- <uses-feature android:name="android.hardware.camera.autofocus" />
- <uses-feature android:name="android.hardware.camera.flash" />
+ * <uses-permission android:name="android.permission.CAMERA" />
+ * <uses-permission android:name="android.permission.FLASHLIGHT" />
+ * <uses-permission android:name="android.permission.VIBRATE" />
+ * <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+ * <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+ * <uses-feature android:name="android.hardware.camera" />
+ * <uses-feature android:name="android.hardware.camera.autofocus" />
+ * <uses-feature android:name="android.hardware.camera.flash" />
  *
  * @author SJL
  * @date 2016/8/22 21:20

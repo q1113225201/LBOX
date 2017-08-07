@@ -26,33 +26,73 @@ import java.util.List;
 @TargetApi(Build.VERSION_CODES.M)
 public class PermisstionUtil {
     private static final String TAG = "PermisstionUtil";
-    //拍照权限
-    public static String CAMERA = Manifest.permission.CAMERA;
-    public static int CAMERA_CODE = 0x1101;
-    //读取联系人权限
-    public static String CONTACTS = Manifest.permission.READ_CONTACTS;
-    public static int CONTACTS_CODE = 0x1102;
-    //读取联系人权限
-    public static String CONTACTS_WRITE = Manifest.permission.WRITE_CONTACTS;
-    public static int CONTACTS_WRITE_CODE = 0x1103;
-    //读写权限
-    public static String STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-    public static int STORAGE_CODE = 0x1104;
-    //WIFI、位置权限
-    public static String ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
-    public static int ACCESS_FINE_LOCATION_CODE = 0x1105;
-    //电话
-    public static String CALL_PHONE = Manifest.permission.CALL_PHONE;
-    public static int CALL_PHONE_CODE = 0x1106;
-
+    //日历
+    public static String[] CALENDAR = {Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR};
+    //相机
+    public static String[] CAMERA = {Manifest.permission.CAMERA};
+    //联系人
+    public static String[] CONTACTS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.GET_ACCOUNTS};
+    //位置
+    public static String[] LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+    //麦克风
+    public static String[] MICROPHONE = {Manifest.permission.RECORD_AUDIO};
+    //手机
+    public static String[] PHONE = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.CALL_PHONE,
+            Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG,
+            Manifest.permission.ADD_VOICEMAIL, Manifest.permission.USE_SIP, Manifest.permission.PROCESS_OUTGOING_CALLS};
+    //传感器
+    public static String[] SENSORS = {Manifest.permission.BODY_SENSORS};
+    //短信
+    public static String[] SMS = {Manifest.permission.SEND_SMS, Manifest.permission.RECEIVE_SMS,
+            Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_WAP_PUSH, Manifest.permission.RECEIVE_MMS};
+    //文件读写
+    public static String[] STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private static HashMap<String, Object> map = new HashMap<String, Object>();
 
     /**
      * 版本检测
+     *
      * @return
      */
     private static boolean checkSDK() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+    }
+
+    /**
+     * 权限请求
+     *
+     * @param context
+     * @param onPermissionResult
+     * @param explainMsg         权限解释
+     * @param requestCode
+     * @param permissions        需要请求的权限
+     */
+    public static void requestPermissions(@NonNull Context context, OnPermissionResult onPermissionResult, String explainMsg, int requestCode, @NonNull String... permissions) {
+        onPermissionResult = initOnPermissionResult(onPermissionResult, permissions, requestCode, explainMsg);
+        if (permissions.length == 0) {
+            invokeOnRequestPermissionsResult(context, onPermissionResult);
+        } else if (context instanceof Activity || (Object) context instanceof Fragment) {
+            if (checkSDK()) {
+                onPermissionResult.deniedPermissions = getDeniedPermissions(context, permissions);
+                if (onPermissionResult.deniedPermissions.length > 0) {//存在被拒绝的权限
+                    onPermissionResult.rationalePermissions = getRationalePermissions(context, onPermissionResult.deniedPermissions);
+                    if (onPermissionResult.rationalePermissions.length > 0) {//向用户解释请求权限的理由
+                        shouldShowRequestPermissionRationale(context, onPermissionResult);
+                    } else {
+                        invokeRequestPermissions(context, onPermissionResult);
+                    }
+                } else {//所有权限允许
+                    onPermissionResult.grantResults = new int[permissions.length];
+                    for (int i = 0; i < onPermissionResult.grantResults.length; i++) {
+                        onPermissionResult.grantResults[i] = PackageManager.PERMISSION_GRANTED;
+                    }
+                    invokeOnRequestPermissionsResult(context, onPermissionResult);
+                }
+            } else {
+                onPermissionResult.grantResults = getPermissionsResults(context, permissions);
+                invokeOnRequestPermissionsResult(context, onPermissionResult);
+            }
+        }
     }
 
     /**

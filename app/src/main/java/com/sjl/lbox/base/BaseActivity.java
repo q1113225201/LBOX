@@ -50,7 +50,7 @@ public class BaseActivity extends Activity {
     }
 
     private void requestPermission() {
-        PermisstionUtil.requestPermissions(mContext, new String[]{PermisstionUtil.STORAGE}, PermisstionUtil.STORAGE_CODE, "SD卡读写权限", null);
+        PermisstionUtil.requestPermissions(mContext, null, "SD卡读写权限", 1000, PermisstionUtil.STORAGE);
     }
 
     @Override
