@@ -1,6 +1,5 @@
 package com.sjl.lbox.app.mobile.ReadWrite;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -25,7 +24,7 @@ public class ReadWriteActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void initView() {
-        tv = findViewById(R.id.tv);
+        tv = (TextView) findViewById(R.id.tv);
         findViewById(R.id.btnWrite).setOnClickListener(this);
         findViewById(R.id.btnRead).setOnClickListener(this);
     }

@@ -1,11 +1,9 @@
 package com.sjl.lbox.app.ui.Effect.CorrdinatorLayout;
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -32,7 +30,7 @@ public class CoordinatorLayoutActivity2 extends BaseActivity {
     }
 
     private void initRV() {
-        rv = findViewById(R.id.rv);
+        rv = (RecyclerView) findViewById(R.id.rv);
         rv.setAdapter(new CommonRVAdapter<String>(mContext,getDataList(),R.layout.item_single_text,R.layout.item_empty) {
             @Override
             protected void onBindNullViewHolder(RecyclerView.Adapter adapter, RVViewHolder viewHolder, int position, String item, List<String> list) {

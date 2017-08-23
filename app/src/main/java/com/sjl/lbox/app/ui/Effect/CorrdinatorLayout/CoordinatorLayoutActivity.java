@@ -41,7 +41,7 @@ public class CoordinatorLayoutActivity extends BaseActivity {
     }
 
     private void initView() {
-        fab = findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +72,7 @@ public class CoordinatorLayoutActivity extends BaseActivity {
     }
 
     private void initRV() {
-        rv = findViewById(R.id.rv);
+        rv = (RecyclerView) findViewById(R.id.rv);
         rv.setAdapter(new CommonRVAdapter<String>(mContext,getDataList(),R.layout.item_single_text,R.layout.item_empty) {
             @Override
             protected void onBindNullViewHolder(RecyclerView.Adapter adapter, RVViewHolder viewHolder, int position, String item, List<String> list) {
