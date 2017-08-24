@@ -31,6 +31,13 @@ public class WallpaperActivity extends BaseActivity {
                 startActivity(Intent.createChooser(intent, "选择壁纸"));
             }
         });
+        findViewById(R.id.btnChooseLiveWallpaper).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER);
+                startActivity(intent);
+            }
+        });
         findViewById(R.id.btnVideoWallpaper).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
