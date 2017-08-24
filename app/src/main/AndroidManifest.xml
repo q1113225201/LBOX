@@ -12,7 +12,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <!--设置壁纸-->
+    <!-- 设置壁纸 -->
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -256,20 +256,33 @@
         <activity android:name=".app.ui.Effect.CorrdinatorLayout.CoordinatorLayoutActivity" />
         <activity android:name=".app.ui.Effect.CorrdinatorLayout.CoordinatorLayoutActivity2" />
         <activity android:name=".app.ui.Effect.EffectActivity" />
-        <!--配置壁纸服务-->
+        <!-- 配置壁纸服务 -->
         <service
-            android:name=".app.component.WallpaperService.CameraWallpaperService"
+            android:name=".app.component.WallpaperService.service.CameraWallpaperService"
             android:label="@string/camera_wallpaper"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
             </intent-filter>
+
             <meta-data
                 android:name="android.service.wallpaper"
                 android:resource="@xml/camera_wallpaper" />
         </service>
 
-        <activity android:name=".app.component.WallpaperService.WallpaperActivity"></activity>
+        <activity android:name=".app.component.WallpaperService.WallpaperActivity" />
+
+        <service
+            android:name=".app.component.WallpaperService.service.VideoWallpaperService"
+            android:label="@string/video_wallpaper"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/camera_wallpaper" /></service>
     </application>
 
 </manifest>
