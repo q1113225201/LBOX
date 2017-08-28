@@ -15,10 +15,6 @@ import java.nio.channels.Channel;
  */
 public class IOUtil {
 
-    private IOUtil() {
-        
-    }
-
     /**
      * 将输入流转成字符串，默认编码utf-8
      * @param in

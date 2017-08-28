@@ -62,43 +62,6 @@ public class PermisstionUtil {
      * 权限请求
      *
      * @param context
-     * @param onPermissionResult
-     * @param explainMsg         权限解释
-     * @param requestCode
-     * @param permissions        需要请求的权限
-     */
-    public static void requestPermissions(@NonNull Context context, OnPermissionResult onPermissionResult, String explainMsg, int requestCode, @NonNull String... permissions) {
-        onPermissionResult = initOnPermissionResult(onPermissionResult, permissions, requestCode, explainMsg);
-        if (permissions.length == 0) {
-            invokeOnRequestPermissionsResult(context, onPermissionResult);
-        } else if (context instanceof Activity || (Object) context instanceof Fragment) {
-            if (checkSDK()) {
-                onPermissionResult.deniedPermissions = getDeniedPermissions(context, permissions);
-                if (onPermissionResult.deniedPermissions.length > 0) {//存在被拒绝的权限
-                    onPermissionResult.rationalePermissions = getRationalePermissions(context, onPermissionResult.deniedPermissions);
-                    if (onPermissionResult.rationalePermissions.length > 0) {//向用户解释请求权限的理由
-                        shouldShowRequestPermissionRationale(context, onPermissionResult);
-                    } else {
-                        invokeRequestPermissions(context, onPermissionResult);
-                    }
-                } else {//所有权限允许
-                    onPermissionResult.grantResults = new int[permissions.length];
-                    for (int i = 0; i < onPermissionResult.grantResults.length; i++) {
-                        onPermissionResult.grantResults[i] = PackageManager.PERMISSION_GRANTED;
-                    }
-                    invokeOnRequestPermissionsResult(context, onPermissionResult);
-                }
-            } else {
-                onPermissionResult.grantResults = getPermissionsResults(context, permissions);
-                invokeOnRequestPermissionsResult(context, onPermissionResult);
-            }
-        }
-    }
-
-    /**
-     * 权限请求
-     *
-     * @param context
      * @param permissions        需要请求的权限
      * @param requestCode
      * @param explainMsg         权限解释

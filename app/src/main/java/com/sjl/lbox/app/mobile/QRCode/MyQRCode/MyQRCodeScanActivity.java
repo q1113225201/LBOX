@@ -38,7 +38,7 @@ public class MyQRCodeScanActivity extends BaseActivity {
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermisstionUtil.requestPermissions(mContext, new PermisstionUtil.OnPermissionResult() {
+                PermisstionUtil.requestPermissions(mContext, PermisstionUtil.CAMERA, 1004, "扫码需要拍照权限", new PermisstionUtil.OnPermissionResult() {
                     @Override
                     public void granted(int requestCode) {
                         Intent intent = new Intent(mContext, CaptureActivity.class);
@@ -49,7 +49,7 @@ public class MyQRCodeScanActivity extends BaseActivity {
                     public void denied(int requestCode) {
                         ToastUtil.showToast(mContext,"拍照权限被禁止");
                     }
-                },"扫码需要拍照权限",1004,PermisstionUtil.CAMERA);
+                });
             }
         });
     }

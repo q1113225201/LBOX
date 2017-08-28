@@ -45,7 +45,7 @@ public class ImageActivity extends BaseActivity {
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermisstionUtil.requestPermissions(mContext, new PermisstionUtil.OnPermissionResult() {
+                PermisstionUtil.requestPermissions(mContext, PermisstionUtil.CAMERA, 1005, "图片选择需要拍照权限", new PermisstionUtil.OnPermissionResult() {
                     @Override
                     public void granted(int requestCode) {
                         requestPermission();
@@ -55,7 +55,7 @@ public class ImageActivity extends BaseActivity {
                     public void denied(int requestCode) {
                         ToastUtil.showToast(mContext, "拍照权限被拒绝");
                     }
-                }, "图片选择需要拍照权限", 1005, PermisstionUtil.CAMERA);
+                });
             }
         });
 
@@ -101,7 +101,7 @@ public class ImageActivity extends BaseActivity {
     }
 
     private void requestPermission() {
-        PermisstionUtil.requestPermissions(mContext,  new PermisstionUtil.OnPermissionResult() {
+        PermisstionUtil.requestPermissions(mContext, PermisstionUtil.CAMERA, 1006, "图片选择需要拍照权限", new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
                 choosePicture();
@@ -111,7 +111,7 @@ public class ImageActivity extends BaseActivity {
             public void denied(int requestCode) {
                 ToastUtil.showToast(mContext, "拍照权限被禁止");
             }
-        },"图片选择需要拍照权限",1006,PermisstionUtil.CAMERA);
+        });
     }
 
     @Override

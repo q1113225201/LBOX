@@ -108,7 +108,7 @@ public class CompassActivity extends BaseActivity {
      */
     private void initLocation() {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        PermisstionUtil.requestPermissions(mContext, new PermisstionUtil.OnPermissionResult() {
+        PermisstionUtil.requestPermissions(mContext, PermisstionUtil.LOCATION, 1001, "正在请求位置权限", new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
                 if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -130,7 +130,7 @@ public class CompassActivity extends BaseActivity {
             public void denied(int requestCode) {
                 ToastUtil.showToast(mContext, "位置权限被拒绝");
             }
-        }, "位置权限", 1001, PermisstionUtil.LOCATION);
+        });
     }
 
     /**

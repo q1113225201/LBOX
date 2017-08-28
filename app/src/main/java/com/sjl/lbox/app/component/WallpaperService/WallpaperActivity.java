@@ -50,7 +50,7 @@ public class WallpaperActivity extends BaseActivity {
         findViewById(R.id.btnCameraWallpaper).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PermisstionUtil.requestPermissions(mContext, new PermisstionUtil.OnPermissionResult() {
+                PermisstionUtil.requestPermissions(mContext, PermisstionUtil.CAMERA, 1004, "正在请求拍照权限", new PermisstionUtil.OnPermissionResult() {
                     @Override
                     public void granted(int requestCode) {
                         //选择相机壁纸
@@ -63,7 +63,7 @@ public class WallpaperActivity extends BaseActivity {
                     public void denied(int requestCode) {
                         ToastUtil.showToast(mContext, "拍照权限被禁止");
                     }
-                }, "正在请求拍照权限", 10, PermisstionUtil.CAMERA);
+                });
             }
         });
 
