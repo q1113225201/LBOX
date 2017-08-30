@@ -282,7 +282,12 @@
 
             <meta-data
                 android:name="android.service.wallpaper"
-                android:resource="@xml/camera_wallpaper" /></service>
+                android:resource="@xml/camera_wallpaper" />
+        </service>
+
+        <activity android:name=".app.component.Camera.CameraActivity" />
+        <activity android:name=".app.component.Camera.Camera1Activity" />
+        <activity android:name=".app.component.Camera.Camera2Activity"></activity>
     </application>
 
 </manifest>

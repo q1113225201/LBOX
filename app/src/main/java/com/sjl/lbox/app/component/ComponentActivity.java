@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.component.AccessibilityService.AccessibilityServiceActivity;
+import com.sjl.lbox.app.component.Camera.CameraActivity;
 import com.sjl.lbox.app.component.WallpaperService.WallpaperActivity;
 import com.sjl.lbox.app.ui.Effect.CorrdinatorLayout.CoordinatorLayoutActivity;
 import com.sjl.lbox.app.component.FloatWindow.FloatWindowActivity;
@@ -61,6 +62,7 @@ public class ComponentActivity extends BaseActivity {
         list.add(new Module("IntentService和LocalBroadcastManager", IntentServiceActivity.class));
         list.add(new Module("无障碍服务", AccessibilityServiceActivity.class));
         list.add(new Module("壁纸服务", WallpaperActivity.class));
+        list.add(new Module("5.0前后Camera和Camera2使用", CameraActivity.class));
         list.add(new Module("通知", NotificationActivity.class));
         list.add(new Module("广播", BroadcastActivity.class));
         list.add(new Module("webview", WebViewActivity.class));
