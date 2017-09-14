@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sjl.lbox.app.ui.CustomView.Turntable.TurntableActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+
+        <com.sjl.lbox.app.ui.CustomView.Turntable.view.TurntableView
+            android:id="@+id/turntableView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.sjl.lbox.app.ui.CustomView.Turntable.view.TurntableView>
+
+        <ImageView
+            android:id="@+id/ivRotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/pointer" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="重置" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="扇区数量"
+                android:inputType="number"
+                android:text="6" />
+
+            <Button
+                android:id="@+id/btnRedraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="重绘" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etAngle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="角度"
+                android:inputType="number"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/btnStopAngle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="指定角度停止" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etSector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="扇区"
+                android:inputType="number"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/btnStopSector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="指定扇区停止" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

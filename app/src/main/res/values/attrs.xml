@@ -96,4 +96,10 @@
         <!--图片-->
         <attr name="menuDrawable" format="color|reference" />
     </declare-styleable>
+    <!--转盘-->
+    <declare-styleable name="TurntableView">
+        <attr name="edgeTV" format="float" />
+        <attr name="bgColorTV" format="color" />
+        <attr name="durationTV" format="integer" />
+    </declare-styleable>
 </resources>
