@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.media.AudioFormat;
+import android.media.AudioRecord;
+import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Process;
 import android.support.annotation.NonNull;
@@ -213,7 +216,12 @@ public class PermisstionUtil {
      * @return
      */
     private static int checkPermission(Context context, String permission) {
-        return context.checkPermission(permission, Process.myPid(), Process.myUid());
+        int result = context.checkPermission(permission, Process.myPid(), Process.myUid());
+        if(Manifest.permission.RECORD_AUDIO.equalsIgnoreCase(permission)&&result==PackageManager.PERMISSION_GRANTED){
+            //录音权限特殊处理
+            result = hasRecordPermission()?PackageManager.PERMISSION_GRANTED:PackageManager.PERMISSION_DENIED;
+        }
+        return result;
     }
 
     /**
@@ -272,6 +280,67 @@ public class PermisstionUtil {
             onPermissionResult.grantResults = new int[0];
             map.put(String.valueOf(requestCode), onPermissionResult);
             return onPermissionResult;
+        }
+    }
+
+    /**
+     * 是否有录音权限
+     * 部分6.0之前的手机录音权限在被禁止的情况下可能返回有权限，使用中发现一般可以通过以下三种现象判断是否有权限
+     * 可能情况一：权限被禁止，启动录音直接崩溃
+     * 可能情况二：权限被禁止，启动录音后状态不是录音中
+     //可能情况三：权限被禁止，正常启动录音，但没有数据
+     * @return
+     */
+    private static boolean hasRecordPermission() {
+        int minBufferSize = AudioRecord.getMinBufferSize(8000, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+        int bufferSizeInBytes = 640;
+        byte[] audioData = new byte[bufferSizeInBytes];
+        int readSize = 0;
+        AudioRecord audioRecord = null;
+        try {
+            audioRecord = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, 8000,
+                    AudioFormat.CHANNEL_IN_MONO,
+                    AudioFormat.ENCODING_PCM_16BIT, minBufferSize);
+            // 开始录音
+            audioRecord.startRecording();
+        } catch (Exception e) {
+            //可能情况一
+            if (audioRecord != null) {
+                audioRecord.release();
+                audioRecord = null;
+            }
+            return false;
+        }
+        // 检测是否在录音中,6.0以下会返回此状态
+        if (audioRecord.getRecordingState() != AudioRecord.RECORDSTATE_RECORDING) {
+            //可能情况二
+            if (audioRecord != null) {
+                audioRecord.stop();
+                audioRecord.release();
+                audioRecord = null;
+            }
+            return false;
+        } else {// 正在录音
+            readSize = audioRecord.read(audioData, 0, bufferSizeInBytes);
+            // 检测是否可以获取录音结果
+            if (readSize <= 0) {
+                //可能情况三
+                if (audioRecord != null) {
+                    audioRecord.stop();
+                    audioRecord.release();
+                    audioRecord = null;
+                }
+                LogUtil.e(TAG, "没有获取到录音数据，无录音权限");
+                return false;
+            } else {
+                //有权限，正常启动录音并有数据
+                if (audioRecord != null) {
+                    audioRecord.stop();
+                    audioRecord.release();
+                    audioRecord = null;
+                }
+                return true;
+            }
         }
     }
 
