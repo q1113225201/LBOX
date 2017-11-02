@@ -217,9 +217,9 @@ public class PermisstionUtil {
      */
     private static int checkPermission(Context context, String permission) {
         int result = context.checkPermission(permission, Process.myPid(), Process.myUid());
-        if(Manifest.permission.RECORD_AUDIO.equalsIgnoreCase(permission)&&result==PackageManager.PERMISSION_GRANTED){
+        if (Manifest.permission.RECORD_AUDIO.equalsIgnoreCase(permission) && result == PackageManager.PERMISSION_GRANTED) {
             //录音权限特殊处理
-            result = hasRecordPermission()?PackageManager.PERMISSION_GRANTED:PackageManager.PERMISSION_DENIED;
+            result = hasRecordPermission() ? PackageManager.PERMISSION_GRANTED : PackageManager.PERMISSION_DENIED;
         }
         return result;
     }
@@ -288,7 +288,8 @@ public class PermisstionUtil {
      * 部分6.0之前的手机录音权限在被禁止的情况下可能返回有权限，使用中发现一般可以通过以下三种现象判断是否有权限
      * 可能情况一：权限被禁止，启动录音直接崩溃
      * 可能情况二：权限被禁止，启动录音后状态不是录音中
-     //可能情况三：权限被禁止，正常启动录音，但没有数据
+     * //可能情况三：权限被禁止，正常启动录音，但没有数据
+     *
      * @return
      */
     private static boolean hasRecordPermission() {
@@ -330,7 +331,6 @@ public class PermisstionUtil {
                     audioRecord.release();
                     audioRecord = null;
                 }
-                LogUtil.e(TAG, "没有获取到录音数据，无录音权限");
                 return false;
             } else {
                 //有权限，正常启动录音并有数据
@@ -342,6 +342,28 @@ public class PermisstionUtil {
                 return true;
             }
         }
+    }
+
+    /**
+     * 多组权限合并
+     *
+     * @param items
+     * @return
+     */
+    public static String[] getPermissions(String[]... items) {
+        int length = 0;
+        for (String[] item : items) {
+            length += item.length;
+        }
+        String[] result = new String[length];
+        int i = 0;
+        for (String[] item : items) {
+            for (String itemIn : item) {
+                result[i] = itemIn;
+                i++;
+            }
+        }
+        return result;
     }
 
     public abstract static class OnPermissionResult {
