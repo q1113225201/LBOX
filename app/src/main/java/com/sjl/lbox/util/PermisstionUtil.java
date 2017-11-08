@@ -33,8 +33,8 @@ public class PermisstionUtil {
     public static String[] CALENDAR = {Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR};
     //相机
     public static String[] CAMERA = {Manifest.permission.CAMERA};
-    //联系人
-    public static String[] CONTACTS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.GET_ACCOUNTS};
+    //联系人, Manifest.permission.GET_ACCOUNTS
+    public static String[] CONTACTS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS};
     //位置
     public static String[] LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     //麦克风
