@@ -15,10 +15,12 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.config.CacheConfig;
 import com.sjl.lbox.util.BitmapUtil;
+import com.sjl.lbox.util.LogUtil;
 import com.sjl.lbox.util.PermisstionUtil;
 import com.sjl.lbox.util.ToastUtil;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 5.0之前Camera
@@ -98,6 +100,7 @@ public class Camera1Activity extends BaseActivity {
             public void granted(int requestCode) {
                 if (camera == null) {
                     camera = Camera.open(currentCameraId);
+                    initCameraParams(camera);
                 }
                 startPreview(camera, surfaceHolder);
             }
@@ -109,6 +112,38 @@ public class Camera1Activity extends BaseActivity {
         });
     }
 
+    /**
+     * 设置摄像头参数
+     * @param camera
+     */
+    private void initCameraParams(Camera camera) {
+        Camera.Parameters parameters = camera.getParameters();
+        //获取预览的各种分辨率
+        List<Camera.Size> supportedPreviewSizes = parameters.getSupportedPreviewSizes();
+        Camera.Size maxPreviewSize = supportedPreviewSizes.get(0);
+        for (int i = 1; i < supportedPreviewSizes.size(); i++) {
+            Camera.Size itemSize = supportedPreviewSizes.get(i);
+            if (maxPreviewSize.width * maxPreviewSize.height < itemSize.width * itemSize.height) {
+                maxPreviewSize = itemSize;
+            }
+        }
+        //获取摄像头支持的各种分辨率
+        List<Camera.Size> supportedPictureSizes = parameters.getSupportedPictureSizes();
+        Camera.Size maxPictureSize = supportedPreviewSizes.get(0);
+        for (int i = 1; i < supportedPictureSizes.size(); i++) {
+            Camera.Size itemSize = supportedPictureSizes.get(i);
+            if (maxPictureSize.width * maxPictureSize.height < itemSize.width * itemSize.height) {
+                maxPictureSize = itemSize;
+            }
+        }
+        parameters.setPictureFormat(android.graphics.ImageFormat.JPEG);
+        //将摄像头像素与预览像素设成一致
+        parameters.setPictureSize(maxPreviewSize.width, maxPreviewSize.height);
+        parameters.setPreviewSize(maxPreviewSize.width, maxPreviewSize.height);
+        LogUtil.i(TAG, maxPictureSize.width + "---" + maxPictureSize.height);
+        LogUtil.i(TAG, maxPreviewSize.width + "---" + maxPreviewSize.height);
+        camera.setParameters(parameters);
+    }
     /**
      * 打开预览
      */
