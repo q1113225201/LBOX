@@ -5,9 +5,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.sjl.lbox.app.component.WallpaperService.WallpaperActivity">
+
     <Button
+        android:id="@+id/btnChooseWallpaper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="选择壁纸"
-        android:id="@+id/btnChooseWallpaper"/>
+        android:text="选择壁纸" />
+    <Button
+        android:id="@+id/btnChooseLiveWallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="选择动态壁纸" />
+
+    <Button
+        android:id="@+id/btnVideoWallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="视频壁纸" />
+
+    <Button
+        android:id="@+id/btnCameraWallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="相机壁纸" />
 </LinearLayout>

@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.media.AudioFormat;
+import android.media.AudioRecord;
+import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Process;
 import android.support.annotation.NonNull;
@@ -30,8 +33,8 @@ public class PermisstionUtil {
     public static String[] CALENDAR = {Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR};
     //相机
     public static String[] CAMERA = {Manifest.permission.CAMERA};
-    //联系人
-    public static String[] CONTACTS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.GET_ACCOUNTS};
+    //联系人, Manifest.permission.GET_ACCOUNTS
+    public static String[] CONTACTS = {Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS};
     //位置
     public static String[] LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     //麦克风
@@ -56,43 +59,6 @@ public class PermisstionUtil {
      */
     private static boolean checkSDK() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
-    }
-
-    /**
-     * 权限请求
-     *
-     * @param context
-     * @param onPermissionResult
-     * @param explainMsg         权限解释
-     * @param requestCode
-     * @param permissions        需要请求的权限
-     */
-    public static void requestPermissions(@NonNull Context context, OnPermissionResult onPermissionResult, String explainMsg, int requestCode, @NonNull String... permissions) {
-        onPermissionResult = initOnPermissionResult(onPermissionResult, permissions, requestCode, explainMsg);
-        if (permissions.length == 0) {
-            invokeOnRequestPermissionsResult(context, onPermissionResult);
-        } else if (context instanceof Activity || (Object) context instanceof Fragment) {
-            if (checkSDK()) {
-                onPermissionResult.deniedPermissions = getDeniedPermissions(context, permissions);
-                if (onPermissionResult.deniedPermissions.length > 0) {//存在被拒绝的权限
-                    onPermissionResult.rationalePermissions = getRationalePermissions(context, onPermissionResult.deniedPermissions);
-                    if (onPermissionResult.rationalePermissions.length > 0) {//向用户解释请求权限的理由
-                        shouldShowRequestPermissionRationale(context, onPermissionResult);
-                    } else {
-                        invokeRequestPermissions(context, onPermissionResult);
-                    }
-                } else {//所有权限允许
-                    onPermissionResult.grantResults = new int[permissions.length];
-                    for (int i = 0; i < onPermissionResult.grantResults.length; i++) {
-                        onPermissionResult.grantResults[i] = PackageManager.PERMISSION_GRANTED;
-                    }
-                    invokeOnRequestPermissionsResult(context, onPermissionResult);
-                }
-            } else {
-                onPermissionResult.grantResults = getPermissionsResults(context, permissions);
-                invokeOnRequestPermissionsResult(context, onPermissionResult);
-            }
-        }
     }
 
     /**
@@ -250,7 +216,12 @@ public class PermisstionUtil {
      * @return
      */
     private static int checkPermission(Context context, String permission) {
-        return context.checkPermission(permission, Process.myPid(), Process.myUid());
+        int result = context.checkPermission(permission, Process.myPid(), Process.myUid());
+        if (Manifest.permission.RECORD_AUDIO.equalsIgnoreCase(permission) && result == PackageManager.PERMISSION_GRANTED) {
+            //录音权限特殊处理
+            result = hasRecordPermission() ? PackageManager.PERMISSION_GRANTED : PackageManager.PERMISSION_DENIED;
+        }
+        return result;
     }
 
     /**
@@ -310,6 +281,89 @@ public class PermisstionUtil {
             map.put(String.valueOf(requestCode), onPermissionResult);
             return onPermissionResult;
         }
+    }
+
+    /**
+     * 是否有录音权限
+     * 部分6.0之前的手机录音权限在被禁止的情况下可能返回有权限，使用中发现一般可以通过以下三种现象判断是否有权限
+     * 可能情况一：权限被禁止，启动录音直接崩溃
+     * 可能情况二：权限被禁止，启动录音后状态不是录音中
+     * //可能情况三：权限被禁止，正常启动录音，但没有数据
+     *
+     * @return
+     */
+    private static boolean hasRecordPermission() {
+        int minBufferSize = AudioRecord.getMinBufferSize(8000, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+        int bufferSizeInBytes = 640;
+        byte[] audioData = new byte[bufferSizeInBytes];
+        int readSize = 0;
+        AudioRecord audioRecord = null;
+        try {
+            audioRecord = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, 8000,
+                    AudioFormat.CHANNEL_IN_MONO,
+                    AudioFormat.ENCODING_PCM_16BIT, minBufferSize);
+            // 开始录音
+            audioRecord.startRecording();
+        } catch (Exception e) {
+            //可能情况一
+            if (audioRecord != null) {
+                audioRecord.release();
+                audioRecord = null;
+            }
+            return false;
+        }
+        // 检测是否在录音中,6.0以下会返回此状态
+        if (audioRecord.getRecordingState() != AudioRecord.RECORDSTATE_RECORDING) {
+            //可能情况二
+            if (audioRecord != null) {
+                audioRecord.stop();
+                audioRecord.release();
+                audioRecord = null;
+            }
+            return false;
+        } else {// 正在录音
+            readSize = audioRecord.read(audioData, 0, bufferSizeInBytes);
+            // 检测是否可以获取录音结果
+            if (readSize <= 0) {
+                //可能情况三
+                if (audioRecord != null) {
+                    audioRecord.stop();
+                    audioRecord.release();
+                    audioRecord = null;
+                }
+                return false;
+            } else {
+                //有权限，正常启动录音并有数据
+                if (audioRecord != null) {
+                    audioRecord.stop();
+                    audioRecord.release();
+                    audioRecord = null;
+                }
+                return true;
+            }
+        }
+    }
+
+    /**
+     * 多组权限合并
+     *
+     * @param items
+     * @return
+     */
+    public static String[] getPermissions(String[]... items) {
+        int length = 0;
+        for (String[] item : items) {
+            length += item.length;
+        }
+        String[] result = new String[length];
+        int i = 0;
+        for (String[] item : items) {
+            for (String itemIn : item) {
+                result[i] = itemIn;
+                i++;
+            }
+        }
+        return result;
     }
 
     public abstract static class OnPermissionResult {

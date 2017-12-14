@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.ui.CustomView.EditText.EditTextActivity;
 import com.sjl.lbox.app.ui.CustomView.ExpandMenu.ExpandMenuActivity;
+import com.sjl.lbox.app.ui.CustomView.Turntable.TurntableActivity;
 import com.sjl.lbox.app.ui.CustomView.contact.ContactActivity;
 import com.sjl.lbox.app.ui.CustomView.gesture.GestureActivity;
 import com.sjl.lbox.app.ui.CustomView.indicator.IndicatorActivity;
@@ -56,6 +57,7 @@ public class CustomViewActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
+        list.add(new Module("转盘", TurntableActivity.class));
         list.add(new Module("联系人列表", ContactActivity.class));
         list.add(new Module("输入框", EditTextActivity.class));
         list.add(new Module("手势密码", GestureActivity.class));

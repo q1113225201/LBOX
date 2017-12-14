@@ -113,7 +113,7 @@ public class BGAQRCodeActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void scan() {
-        PermisstionUtil.requestPermissions(mContext, new PermisstionUtil.OnPermissionResult() {
+        PermisstionUtil.requestPermissions(mContext, PermisstionUtil.CAMERA, 1004, "正在请求拍照权限", new PermisstionUtil.OnPermissionResult() {
             @Override
             public void granted(int requestCode) {
                 Intent intent = new Intent(mContext, ScanActivity.class);
@@ -124,7 +124,7 @@ public class BGAQRCodeActivity extends BaseActivity implements View.OnClickListe
             public void denied(int requestCode) {
                 ToastUtil.showToast(mContext, "无拍照权限");
             }
-        }, "拍照权限",1004,PermisstionUtil.CAMERA);
+        });
     }
 
     @Override

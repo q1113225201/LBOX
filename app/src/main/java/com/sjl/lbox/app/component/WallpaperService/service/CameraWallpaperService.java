@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.component.WallpaperService;
+package com.sjl.lbox.app.component.WallpaperService.service;
 
 import android.hardware.Camera;
 import android.service.wallpaper.WallpaperService;
