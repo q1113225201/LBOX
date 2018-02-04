@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':librouter')
     //凡是用到ARouter的模块都需要添加
@@ -62,4 +63,5 @@ dependencies {
     compile 'com.alibaba:arouter-api:1.2.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.2'
+    compile 'com.github.q1113225201:TreeView:1.0.1'
 }
