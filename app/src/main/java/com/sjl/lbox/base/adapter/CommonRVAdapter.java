@@ -33,7 +33,7 @@ public abstract class CommonRVAdapter<T> extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return list==null?0:list.size();
+        return list == null ? 0 : list.size();
     }
 
     @Override
@@ -86,34 +86,40 @@ public abstract class CommonRVAdapter<T> extends RecyclerView.Adapter {
         }
     }
 
-    public void flush(List<T> list){
+    public void flush(List<T> list) {
+        int oldLength = this.list == null ? 0 : this.list.size();
+        int newLength = list == null ? 0 : list.size();
         this.list = list;
-        notifyDataSetChanged();
+        notifyItemRangeChanged(0, oldLength > newLength ? newLength : oldLength);
     }
 
-    public void addFlush(T item){
-        if(list==null){
+    public void addFlush(T item) {
+        if (list == null) {
             list = new ArrayList<>();
         }
         list.add(item);
-        notifyDataSetChanged();
+        notifyItemInserted(list.size() - 1);
     }
 
-    public void update(T item){
-        update(list.indexOf(item),item);
+    public void update(T item) {
+        update(list.indexOf(item), item);
     }
 
-    public void update(int position,T item){
-        list.add(position+1,item);
+    public void update(int position, T item) {
+        list.add(position + 1, item);
         list.remove(position);
-        notifyDataSetChanged();
+        notifyItemChanged(position);
     }
 
-    public List<T> getList() {
-        return list;
-    }
-
-    public void setList(List<T> list) {
-        this.list = list;
+    public void addList(List<T> newList) {
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        if (newList == null) {
+            newList = new ArrayList<>();
+        }
+        int old = list.size();
+        list.addAll(newList);
+        notifyItemRangeInserted(old, newList.size());
     }
 }

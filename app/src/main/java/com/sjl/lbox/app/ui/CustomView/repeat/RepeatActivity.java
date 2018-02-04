@@ -55,7 +55,7 @@ public class RepeatActivity extends BaseActivity {
     private void initData() {
         list = new ArrayList<Module>();
         list.add(new Module("ListView", ListViewActivity.class));
-        list.add(new Module("RecyclerView", RecyclerViewActivity.class));
+        list.add(new Module("RecyclerView 可拖拉排序", RecyclerViewActivity.class));
         list.add(new Module("RecyclerView Gallery", RecyclerViewGalleryActivity.class));
         list.add(new Module("SwipeItemLayout", SwipeItemLayoutActivity.class));
         list.add(new Module("CardView", CardViewActivity.class));

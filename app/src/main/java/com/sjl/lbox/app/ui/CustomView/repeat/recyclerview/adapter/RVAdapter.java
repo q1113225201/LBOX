@@ -41,6 +41,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
     /**
      * 添加项
+     *
      * @param position
      * @param item
      */
@@ -48,21 +49,22 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         if (list == null) {
             list = new ArrayList<String>();
         }
-        position = position<=getItemCount()?position:getItemCount();
+        position = position <= getItemCount() ? position : getItemCount();
         list.add(position, item);
         notifyItemInserted(position);
     }
 
     /**
      * 删除项
+     *
      * @param position
      */
-    public void removeItem(int position){
-        if(list==null){
+    public void removeItem(int position) {
+        if (list == null) {
             list = new ArrayList<String>();
         }
-        position = position>getItemCount()?getItemCount():position;
-        if(list.size()>position) {
+        position = position > getItemCount() ? getItemCount() : position;
+        if (list.size() > position) {
             list.remove(position);
         }
         notifyItemRemoved(position);
@@ -70,26 +72,37 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
     /**
      * 获取项
+     *
      * @param position
      * @return
      */
-    public String getItem(int position){
+    public String getItem(int position) {
         return list.get(position);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.single_text.setText(list.get(position));
-        if (onItemClickListener != null) {
-            holder.single_text.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        holder.single_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
                     //holder.itemView代表这一项的View
                     //holder.getLayoutPosition()获取点击的是第几项
                     onItemClickListener.onItemClick(holder.itemView, holder.getLayoutPosition());
                 }
-            });
-        }
+            }
+        });
+        holder.single_text.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemLongClick(holder, holder.getLayoutPosition());
+                }
+                return false;
+            }
+        });
+
     }
 
 
@@ -100,9 +113,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
+
+        void onItemLongClick(ViewHolder viewHolder, int position);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView single_text;
 
         public ViewHolder(View itemView) {
