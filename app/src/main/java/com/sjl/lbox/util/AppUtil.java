@@ -3,6 +3,8 @@ package com.sjl.lbox.util;
 import android.app.ActivityManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
+import static android.content.Context.CLIPBOARD_SERVICE;
 
 /**
  * App常用工具
@@ -185,5 +189,16 @@ public class AppUtil {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 复制到剪贴板
+     * @param context
+     * @param msg
+     */
+    public static void copyToClipboard(Context context,String msg){
+        ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(CLIPBOARD_SERVICE);
+        clipboardManager.setPrimaryClip(ClipData.newPlainText("text", msg));
+
     }
 }

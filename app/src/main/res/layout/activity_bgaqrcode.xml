@@ -17,10 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="编码" />
-<ImageView
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    android:id="@+id/ivEncodeResult"/>
+
+    <ImageView
+        android:id="@+id/ivEncodeResult"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
     <Button
         android:id="@+id/btnDecode"
         android:layout_width="match_parent"

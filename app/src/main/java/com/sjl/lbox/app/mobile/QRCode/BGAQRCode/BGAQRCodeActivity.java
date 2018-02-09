@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.base.BaseActivity;
+import com.sjl.lbox.util.AppUtil;
 import com.sjl.lbox.util.ImageUtil;
 import com.sjl.lbox.util.PermisstionUtil;
 import com.sjl.lbox.util.ToastUtil;
@@ -71,6 +72,14 @@ public class BGAQRCodeActivity extends BaseActivity implements View.OnClickListe
         btnEncode.setOnClickListener(this);
         btnDecode.setOnClickListener(this);
         btnScan.setOnClickListener(this);
+        tvScanResult.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AppUtil.copyToClipboard(mContext, tvScanResult.getText().toString());
+                ToastUtil.showToast(mContext, "已复制到剪贴板");
+                return false;
+            }
+        });
     }
 
     @Override

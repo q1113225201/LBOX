@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.mobile.QRCode.MyQRCode.activity.CaptureActivity;
 import com.sjl.lbox.base.BaseActivity;
+import com.sjl.lbox.util.AppUtil;
 import com.sjl.lbox.util.PermisstionUtil;
 import com.sjl.lbox.util.ToastUtil;
 
@@ -47,9 +48,17 @@ public class MyQRCodeScanActivity extends BaseActivity {
 
                     @Override
                     public void denied(int requestCode) {
-                        ToastUtil.showToast(mContext,"拍照权限被禁止");
+                        ToastUtil.showToast(mContext, "拍照权限被禁止");
                     }
                 });
+            }
+        });
+        tvScanResult.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AppUtil.copyToClipboard(mContext, tvScanResult.getText().toString());
+                ToastUtil.showToast(mContext, "已复制到剪贴板");
+                return false;
             }
         });
     }
