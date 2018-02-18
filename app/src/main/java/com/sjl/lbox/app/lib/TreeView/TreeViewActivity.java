@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.sjl.lbox.R;
 import com.sjl.lbox.app.lib.TreeView.bean.BranchNode;
@@ -37,6 +39,24 @@ public class TreeViewActivity extends BaseActivity {
     }
 
     private void initView() {
+        findViewById(R.id.btnOpenAll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.openAll();
+            }
+        });
+        findViewById(R.id.btnCloseAll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.closeAll();
+            }
+        });
+        ((ToggleButton) findViewById(R.id.tbChoose)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                adapter.setChangeParentCheck(isChecked);
+            }
+        });
         rv = findViewById(R.id.rv);
 
         list.clear();
@@ -46,11 +66,10 @@ public class TreeViewActivity extends BaseActivity {
 
     private void initAdapter() {
         adapter = new TreeViewAdapter(list, Arrays.asList(new RootViewBinder(), new BranchViewBinder(), new LeafViewBinder())) {
+
             @Override
-            public void toggle(View view, TreeNode treeNode) {
-                if (!(treeNode.getValue() instanceof LeafNode)) {
-                    view.setRotation(view.getRotation() > 0 ? 0 : 90);
-                }
+            public void toggle(View view, boolean isOpen, TreeNode treeNode) {
+                view.setRotation(isOpen ? 90 : 0);
             }
 
             @Override

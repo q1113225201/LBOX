@@ -5,8 +5,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.sjl.lbox.app.lib.TreeView.TreeViewActivity">
-    <android.support.v7.widget.RecyclerView
+
+    <Button
+        android:id="@+id/btnOpenAll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:text="展开所有" />
+
+    <Button
+        android:id="@+id/btnCloseAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭所有" />
+
+    <ToggleButton
+        android:id="@+id/tbChoose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="不选中父节点"
+        android:textOn="选中父节点" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </LinearLayout>
