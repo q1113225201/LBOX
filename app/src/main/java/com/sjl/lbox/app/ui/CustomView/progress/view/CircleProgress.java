@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
@@ -135,13 +136,17 @@ public class CircleProgress extends View {
 */
         float startAngle = 0 + offsetAngle;
         float sweepAngle = 360 * progressValue / progressMax;
+        RectF rectF = new RectF(progressWidth, progressWidth, mWidth - progressWidth, mHeight - progressWidth);
         mPaintProgress.setStrokeWidth(progressWidth);
         //绘制进度背景
         mPaintProgress.setColor(progressBackgroundColor);
-        canvas.drawArc(progressWidth, progressWidth, mWidth - progressWidth, mHeight - progressWidth, 0f, 360f, false, mPaintProgress);
+//        canvas.drawArc(progressWidth, progressWidth, mWidth - progressWidth, mHeight - progressWidth, 0f, 360f, false, mPaintProgress);
+        canvas.drawArc(rectF, 0f, 360f, false, mPaintProgress);
+
         //绘制进度
         mPaintProgress.setColor(progressColor);
-        canvas.drawArc(progressWidth, progressWidth, mWidth - progressWidth, mHeight - progressWidth, startAngle, sweepAngle, false, mPaintProgress);
+//        canvas.drawArc(progressWidth, progressWidth, mWidth - progressWidth, mHeight - progressWidth, startAngle, sweepAngle, false, mPaintProgress);
+        canvas.drawArc(rectF, startAngle, sweepAngle, false, mPaintProgress);
         //画字体
         Rect rect = new Rect();
         mPaintText.getTextBounds(text, 0, text.length(), rect);
