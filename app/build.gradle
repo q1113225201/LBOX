@@ -63,5 +63,5 @@ dependencies {
     compile 'com.alibaba:arouter-api:1.2.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.2'
-    compile 'com.github.q1113225201:TreeView:1.0.1'
+    compile 'com.github.q1113225201:TreeView:1.1.0'
 }
