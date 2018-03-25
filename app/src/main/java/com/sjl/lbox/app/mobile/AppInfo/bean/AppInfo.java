@@ -28,6 +28,10 @@ public class AppInfo implements Serializable {
      */
     private String version;
     /**
+     * 版本
+     */
+    private int code;
+    /**
      * 包名
      */
     private String packageName;
@@ -90,6 +94,14 @@ public class AppInfo implements Serializable {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getPackageName() {

@@ -89,6 +89,7 @@ public class AppInfoListActivity extends BaseActivity {
                     appInfo.setName(packageInfo.applicationInfo.loadLabel(packageManager).toString());
                     appInfo.setPackageName(packageInfo.packageName);
                     appInfo.setVersion(packageInfo.versionName);
+                    appInfo.setCode(packageInfo.versionCode);
                     appInfo.setLastModifyTime(packageInfo.lastUpdateTime);
                     appInfo.setSystemApp(AppUtil.isSystemApp(packageInfo.applicationInfo));
                     appInfo.setSrcPath(packageInfo.applicationInfo.sourceDir);
@@ -129,7 +130,7 @@ public class AppInfoListActivity extends BaseActivity {
             @Override
             protected void onBindViewHolder(RecyclerView.Adapter adapter, RVViewHolder viewHolder, int position, final AppInfo item, List<AppInfo> list) {
                 ((ImageView) viewHolder.findViewById(R.id.ivItemIcon)).setImageDrawable(item.getIcon());
-                ((TextView) viewHolder.findViewById(R.id.tvItemInfo)).setText(String.format("%s(%s)%s", item.getName(), item.getVersion(), item.getSystemApp() ? "(系统应用)" : ""));
+                ((TextView) viewHolder.findViewById(R.id.tvItemInfo)).setText(String.format("%s (%s) %d %s", item.getName(), item.getVersion(), item.getCode(), item.getSystemApp() ? "(系统应用)" : ""));
                 ((TextView) viewHolder.findViewById(R.id.tvItemPkg)).setText(item.getPackageName());
                 viewHolder.findViewById(R.id.llParent).setOnClickListener(new View.OnClickListener() {
                     @Override
