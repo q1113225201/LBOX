@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -130,12 +131,15 @@ public class NodeProgress extends View {
         int radius = Math.min(mWidth, mHeight) / 2;
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(progressWidth);
+        RectF rectF = new RectF(nodeWidth, nodeWidth, mWidth - nodeWidth, mHeight - nodeWidth);
         //绘制进度背景
         mPaint.setColor(progressBackgroundColor);
-        canvas.drawArc(nodeWidth, nodeWidth, mWidth - nodeWidth, mHeight - nodeWidth, 0f, 360f, false, mPaint);
+//        canvas.drawArc(nodeWidth, nodeWidth, mWidth - nodeWidth, mHeight - nodeWidth, 0f, 360f, false, mPaint);
+        canvas.drawArc(rectF, 0f, 360f, false, mPaint);
         //绘制进度
         mPaint.setColor(progressColor);
-        canvas.drawArc(nodeWidth, nodeWidth, mWidth - nodeWidth, mHeight - nodeWidth, 0f + offsetAngle, currentProgress, false, mPaint);
+//        canvas.drawArc(nodeWidth, nodeWidth, mWidth - nodeWidth, mHeight - nodeWidth, offsetAngle, currentProgress, false, mPaint);
+        canvas.drawArc(rectF, offsetAngle, currentProgress, false, mPaint);
         //绘制节点
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(nodeWidth);

@@ -110,7 +110,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         }
         ivIcon.setImageDrawable(appInfo.getIcon());
         tvName.setText(String.format("%s%s", appInfo.getName(), appInfo.getSystemApp() ? "(系统应用)" : ""));
-        tvVersion.setText(String.format("%s(%s)", appInfo.getVersion(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(appInfo.getLastModifyTime()))));
+        tvVersion.setText(String.format("%s %d (%s)", appInfo.getVersion(), appInfo.getCode(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(appInfo.getLastModifyTime()))));
         tvSignature.setText(parseSignature(appInfo.getSignatures()[0].toByteArray()));
         LogUtil.i(TAG, "Permissions");
         for (String permissionInfo : appInfo.getPermissions()) {
@@ -155,6 +155,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
             appInfo.setName(packageInfo.applicationInfo.loadLabel(packageManager).toString());
             appInfo.setPackageName(packageInfo.packageName);
             appInfo.setVersion(packageInfo.versionName);
+            appInfo.setCode(packageInfo.versionCode);
             appInfo.setLastModifyTime(packageInfo.lastUpdateTime);
             appInfo.setSystemApp(AppUtil.isSystemApp(packageInfo.applicationInfo));
             appInfo.setSrcPath(packageInfo.applicationInfo.sourceDir);
