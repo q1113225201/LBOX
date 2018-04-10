@@ -21,14 +21,14 @@ public abstract class CommonRVAdapter<T> extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_NULL = -1;
     private Context context;
     private List<T> list;
-    private int itemLayoutResId;
-    private int nullResId;
+    private int itemLayout;
+    private int nullLayout;
 
-    public CommonRVAdapter(Context context, List<T> list, int itemLayoutResId, int nullResId) {
+    public CommonRVAdapter(Context context, List<T> list, int itemLayout, int nullLayout) {
         this.context = context;
         this.list = list;
-        this.itemLayoutResId = itemLayoutResId;
-        this.nullResId = nullResId;
+        this.itemLayout = itemLayout;
+        this.nullLayout = nullLayout;
     }
 
     @Override
@@ -39,9 +39,9 @@ public abstract class CommonRVAdapter<T> extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_NULL) {
-            return new RVViewHolder(LayoutInflater.from(context).inflate(nullResId, parent, false));
+            return new RVViewHolder(LayoutInflater.from(context).inflate(nullLayout, parent, false));
         } else {
-            return new RVViewHolder(LayoutInflater.from(context).inflate(itemLayoutResId, parent, false));
+            return new RVViewHolder(LayoutInflater.from(context).inflate(itemLayout, parent, false));
         }
     }
 
@@ -86,17 +86,43 @@ public abstract class CommonRVAdapter<T> extends RecyclerView.Adapter {
         }
     }
 
+    public void remove(int start,int end){
+        check();
+        if(end<list.size()) {
+            for (int i=0;i<end-start;i++){
+                list.remove(start);
+            }
+            notifyItemRangeChanged(start,end-start);
+        }
+    }
+
+    public void removeAll(){
+        check();
+        int length = list.size();
+        list.clear();
+        notifyItemRangeRemoved(0,length);
+    }
+
     public void flush(List<T> list) {
         int oldLength = this.list == null ? 0 : this.list.size();
         int newLength = list == null ? 0 : list.size();
-        this.list = list;
-        notifyItemRangeChanged(0, oldLength > newLength ? newLength : oldLength);
+        this.list.clear();
+        this.list.addAll(list);
+        if(oldLength==0){
+            notifyItemRangeInserted(0,newLength);
+        }else if(oldLength>newLength){
+            notifyItemRangeChanged(0, Math.min(oldLength, newLength));
+            notifyItemRangeRemoved(Math.min(oldLength,newLength),oldLength-newLength);
+        }else if(oldLength<newLength){
+            notifyItemChanged(0,Math.min(oldLength,newLength));
+            notifyItemRangeInserted(Math.min(oldLength,newLength),newLength-oldLength);
+        }else if(oldLength==newLength){
+            notifyItemChanged(0,oldLength);
+        }
     }
 
     public void addFlush(T item) {
-        if (list == null) {
-            list = new ArrayList<>();
-        }
+        check();
         list.add(item);
         notifyItemInserted(list.size() - 1);
     }
@@ -112,14 +138,18 @@ public abstract class CommonRVAdapter<T> extends RecyclerView.Adapter {
     }
 
     public void addList(List<T> newList) {
-        if (list == null) {
-            list = new ArrayList<>();
-        }
+        check();
         if (newList == null) {
             newList = new ArrayList<>();
         }
         int old = list.size();
         list.addAll(newList);
-        notifyItemRangeInserted(old, newList.size());
+        notifyItemRangeInserted(old,newList.size());
+    }
+
+    private void check() {
+        if(list==null){
+            list = new ArrayList<>();
+        }
     }
 }

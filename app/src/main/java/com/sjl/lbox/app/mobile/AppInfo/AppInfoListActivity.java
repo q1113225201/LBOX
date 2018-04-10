@@ -36,8 +36,8 @@ public class AppInfoListActivity extends BaseActivity {
     private EditText etKeyword;
     private RecyclerView rvApp;
     private CommonRVAdapter<AppInfo> adapter;
-    private List<AppInfo> wholeList;
-    private List<AppInfo> list;
+    private List<AppInfo> wholeList = new ArrayList<>();
+    private List<AppInfo> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class AppInfoListActivity extends BaseActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                wholeList = new ArrayList<AppInfo>();
+                wholeList.clear();
                 PackageManager packageManager = getPackageManager();
                 List<PackageInfo> packageInfoList = packageManager.getInstalledPackages(PackageManager.MATCH_UNINSTALLED_PACKAGES);
                 for (PackageInfo packageInfo : packageInfoList) {
