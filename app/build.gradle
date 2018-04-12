@@ -18,10 +18,19 @@ android {
             }
         }
     }
+    signingConfigs{
+        debug{
+            storeFile file("$projectDir/lboxapp.jks")
+            storePassword "lboxapp"
+            keyAlias "lboxapp"
+            keyPassword "lboxapp"
+        }
+    }
     buildTypes {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
         release {
             minifyEnabled false

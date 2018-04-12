@@ -64,7 +64,7 @@
             android:id="@+id/tvCenter"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/sectionIndexBar"
             android:background="#33000000"
             android:gravity="center"
             android:text="A"

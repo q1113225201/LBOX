@@ -1,5 +1,6 @@
 package com.sjl.lbox.app.ui.CustomView.contact;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sjl.lbox.R;
@@ -31,7 +33,7 @@ import java.util.List;
  * @date 2016/8/11 23:31
  */
 public class ContactActivity extends BaseActivity implements View.OnClickListener {
-    private String tag = ContactActivity.class.getSimpleName();
+
     private EditText etKeyword;
     private EditText etName;
     private EditText etMobile;
@@ -119,12 +121,12 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
         });
         sectionIndexBar.setOnIndexListener(new SectionIndexBar.OnIndexListener() {
             @Override
-            public void onIndexSelect(String str) {
+            public void onIndexSelect(String str, Point point) {
                 tvCenter.setVisibility(View.GONE);
             }
 
             @Override
-            public void onIndexChange(String str) {
+            public void onIndexChange(String str, Point point) {
                 tvCenter.setText(str);
                 tvCenter.setVisibility(View.VISIBLE);
                 for (int i = 0; i < list.size(); i++) {
@@ -133,6 +135,10 @@ public class ContactActivity extends BaseActivity implements View.OnClickListene
                         break;
                     }
                 }
+                //设置选中文字位置
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) tvCenter.getLayoutParams();
+                layoutParams.setMargins(layoutParams.leftMargin,point.y-tvCenter.getHeight()/2,layoutParams.rightMargin,layoutParams.bottomMargin);
+                tvCenter.setLayoutParams(layoutParams);
             }
         });
     }

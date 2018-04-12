@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +20,8 @@ public class SectionIndexBar extends View {
     private String[] indexs = {"#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
     private int selectIndex = -1;
+
+    private Point point = new Point();
 
     private Paint paintNormal;
 
@@ -43,9 +46,9 @@ public class SectionIndexBar extends View {
     }
 
     public interface OnIndexListener {
-        void onIndexSelect(String str);
+        void onIndexSelect(String str, Point point);
 
-        void onIndexChange(String str);
+        void onIndexChange(String str, Point point);
     }
 
     public SectionIndexBar(Context context) {
@@ -111,12 +114,13 @@ public class SectionIndexBar extends View {
         int count = (int) event.getY() / itemHeight;
         count = count < 0 ? 0 : (count >= indexs.length ? indexs.length - 1 : count);
         selectIndex = count;
+        point.set((int) event.getX(), (int) ((count+0.5)*itemHeight));
         if (onIndexListener != null) {
-            onIndexListener.onIndexChange(indexs[selectIndex]);
+            onIndexListener.onIndexChange(indexs[selectIndex],point);
         }
         if (event.getAction() == MotionEvent.ACTION_UP) {
             if (onIndexListener != null) {
-                onIndexListener.onIndexSelect(indexs[selectIndex]);
+                onIndexListener.onIndexSelect(indexs[selectIndex],point);
             }
         }
         return super.onTouchEvent(event);
