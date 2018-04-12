@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.CustomView.repeat.recyclerview;
+package com.sjl.lbox.app.ui.CustomView.repeat.recyclerview.ItemDecoration;
 
 import android.content.Context;
 import android.graphics.Bitmap;

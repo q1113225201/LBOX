@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.ui.CustomView.repeat.recyclerview.ItemDecoration.CustomItemDecoration;
 import com.sjl.lbox.app.ui.CustomView.repeat.recyclerview.adapter.RVAdapter;
 import com.sjl.lbox.base.BaseActivity;
 
