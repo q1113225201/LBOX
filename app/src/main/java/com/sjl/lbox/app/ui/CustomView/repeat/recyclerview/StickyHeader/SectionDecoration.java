@@ -80,7 +80,7 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
-        int childCount = parent.getChildCount();
+        /*int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View view = parent.getChildAt(i);
 
@@ -111,6 +111,48 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
                     Bitmap bitmap = groupView.getDrawingCache();
                     LogUtil.i(TAG, "right----------------------------------" + right);
                     c.drawBitmap(bitmap, left, top, null);
+                }
+            }
+        }*/
+    }
+
+    @Override
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        super.onDrawOver(c, parent, state);
+        int childCount = parent.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View view = parent.getChildAt(i);
+
+            int index = parent.getChildAdapterPosition(view);
+            if (groupInfoCallback != null) {
+                GroupInfo groupInfo = groupInfoCallback.getGroupInfo(index);
+                int left = parent.getPaddingLeft();
+                int right = parent.getWidth() - parent.getPaddingRight();
+                int top = Math.max(headerHeight,view.getTop()+parent.getPaddingTop());
+
+                //自定义布局头部
+                View groupView = groupInfoCallback.getHeaderView();
+
+                if (groupInfo.isFirstViewInGroup()||i==0) {
+                    //如果是组内第一个ItemView之上才绘制
+                    ((TextView) groupView.findViewById(R.id.tvName)).setText(groupInfo.getTitle());
+                    if (groupView == null) return;
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, headerHeight);
+                    groupView.setLayoutParams(layoutParams);
+                    groupView.setDrawingCacheEnabled(true);
+                    groupView.measure(
+                            View.MeasureSpec.makeMeasureSpec(right, View.MeasureSpec.EXACTLY),
+                            View.MeasureSpec.makeMeasureSpec(headerHeight, View.MeasureSpec.EXACTLY));
+                    //指定高度、宽度的groupView
+                    groupView.layout(0, 0, right,headerHeight);
+                    groupView.buildDrawingCache();
+                    Bitmap bitmap = groupView.getDrawingCache();
+                    GroupInfo next = groupInfoCallback.getGroupInfo(index+1);
+                    LogUtil.i(TAG,view.getBottom()+"---------------------"+top);
+                    if(next!=null&&next.isFirstViewInGroup()&&view.getBottom()<top){
+                        top = view.getBottom();
+                    }
+                    c.drawBitmap(bitmap, left, top-headerHeight, null);
                 }
             }
         }
