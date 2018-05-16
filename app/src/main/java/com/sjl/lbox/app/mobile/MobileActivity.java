@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
+import com.sjl.lbox.app.mobile.Alarm.AlarmActivity;
 import com.sjl.lbox.app.mobile.AppInfo.AppInfoListActivity;
 import com.sjl.lbox.app.mobile.QRCode.QRCodeActivity;
 import com.sjl.lbox.app.mobile.ReadWrite.ReadWriteActivity;
@@ -66,5 +67,6 @@ public class MobileActivity extends BaseActivity {
         list.add(new Module("Zip", ZipActivity.class));
         list.add(new Module("分享", ShareActivity.class));
         list.add(new Module("读写", ReadWriteActivity.class));
+        list.add(new Module("闹钟", AlarmActivity.class));
     }
 }
