@@ -1,14 +1,11 @@
 package com.sjl.lbox.app;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.sjl.lbox.R;
+import com.sjl.lbox.adapter.ModuleAdapter;
 import com.sjl.lbox.app.DesignPattern.DesignPatternActivity;
 import com.sjl.lbox.app.component.ComponentActivity;
 import com.sjl.lbox.app.lib.LibActivity;
@@ -30,8 +27,8 @@ import java.util.List;
  * @date 2016/8/6 14:19
  */
 public class MainActivity extends BaseActivity {
-    private ListView lv;
-    private ArrayAdapter adapter;
+    private RecyclerView rv;
+    private ModuleAdapter adapter;
     private List<Module> list;
 
     @Override
@@ -43,16 +40,10 @@ public class MainActivity extends BaseActivity {
 
     private void initView() {
         initData();
-        lv = (ListView) findViewById(R.id.lv);
-        adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, list);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(mContext, list.get(position).getAct());
-                startActivity(intent);
-            }
-        });
+        rv = findViewById(R.id.rv);
+        adapter = new ModuleAdapter(this, list);
+        rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void initData() {
