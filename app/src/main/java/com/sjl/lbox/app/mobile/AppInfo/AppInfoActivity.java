@@ -111,7 +111,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         ivIcon.setImageDrawable(appInfo.getIcon());
         tvName.setText(String.format("%s%s", appInfo.getName(), appInfo.getSystemApp() ? "(系统应用)" : ""));
         tvVersion.setText(String.format("%s %d (%s)", appInfo.getVersion(), appInfo.getCode(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(appInfo.getLastModifyTime()))));
-        tvSignature.setText(parseSignature(appInfo.getSignatures()[0].toByteArray()));
+        tvSignature.setText(parseSignature(appInfo.getSignatures()[0].toByteArray()).toLowerCase());
         LogUtil.i(TAG, "Permissions");
         for (String permissionInfo : appInfo.getPermissions()) {
             tvPermissions.append(permissionInfo + "\n");
