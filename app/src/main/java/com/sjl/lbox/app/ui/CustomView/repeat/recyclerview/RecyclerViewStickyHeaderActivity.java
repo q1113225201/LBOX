@@ -48,7 +48,10 @@ public class RecyclerViewStickyHeaderActivity extends BaseActivity {
         recyclerView.addItemDecoration(new SectionDecoration(this, new SectionDecoration.GroupInfoCallback() {
             @Override
             public GroupInfo getGroupInfo(int position) {
-                return groupInfoList.get(position);
+                if (position < groupInfoList.size()) {
+                    return groupInfoList.get(position);
+                }
+                return null;
             }
 
             @Override
