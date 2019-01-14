@@ -2,9 +2,9 @@
 工具箱，这里是个人在开发过程中觉得有用的、有趣的一些东西的记录整理。
 ## UI
 ### View
-ViewFlipper 可做滚动广告
+[ViewFlipper](/app/src/main/java/com/sjl/lbox/app/ui/view/ViewFlipper/ViewFlipperActivity.java) 可做滚动广告
 
-CardView 卡片式布局
+[CardView](/app/src/main/java/com/sjl/lbox/app/ui/view/CardView/CardViewActivity.java) 卡片式布局
 
 ### 自定义View
 
