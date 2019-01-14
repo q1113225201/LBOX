@@ -11,6 +11,7 @@ import com.sjl.lbox.R;
 import com.sjl.lbox.app.ui.CustomView.CustomViewActivity;
 import com.sjl.lbox.app.ui.Effect.EffectActivity;
 import com.sjl.lbox.app.ui.animate.AnimateActivity;
+import com.sjl.lbox.app.ui.view.ViewActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -51,6 +52,7 @@ public class UIActivity extends BaseActivity {
     private void initData() {
         list = new ArrayList<Module>();
         list.add(new Module("动画", AnimateActivity.class));
+        list.add(new Module("View", ViewActivity.class));
         list.add(new Module("自定义View", CustomViewActivity.class));
         list.add(new Module("效果实现", EffectActivity.class));
     }

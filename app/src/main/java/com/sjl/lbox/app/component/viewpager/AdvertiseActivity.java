@@ -83,9 +83,9 @@ public class AdvertiseActivity extends BaseActivity {
 
     private void initData() {
         List<String> imageList = new ArrayList<>();
-        imageList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493701483398&di=e2ef2a0ebecdb86812e5b4f0c33ddfae&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fd%2F59014d3e879e7.jpg");
-        imageList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=905012644,2707244964&fm=23&gp=0.jpg");
-        imageList.add("http://img.zcool.cn/community/01033456f114f932f875a94467912f.jpg@900w_1l_2o_100sh.jpg");
+        imageList.add("http://example-pictures.oss-cn-hangzhou.aliyuncs.com/%E8%8E%B2%E6%AD%A3.png");
+        imageList.add("http:\\/\\/example-pictures.oss-cn-hangzhou.aliyuncs.com\\/%E6%B8%85%E5%BB%89%E4%B8%BD%E6%B0%B4.png");
+        imageList.add("http:\\/\\/example-pictures.oss-cn-hangzhou.aliyuncs.com\\/%E6%B8%85%E6%AD%A3%E5%BB%89%E6%B4%81.png");
         //初始化滚动图片
         list = new ArrayList<ImageView>();
         for (int i=0;i<imageList.size();i++) {

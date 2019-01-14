@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.CustomView.repeat.CardView;
+package com.sjl.lbox.app.ui.view.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.sjl.lbox.R;
-import com.sjl.lbox.app.ui.CustomView.repeat.CardView.adapter.ItemCardAdapter;
+import com.sjl.lbox.app.ui.view.CardView.adapter.ItemCardAdapter;
 import com.sjl.lbox.base.BaseActivity;
 
 import java.util.ArrayList;

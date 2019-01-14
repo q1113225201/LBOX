@@ -48,11 +48,11 @@ public class MainActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<Module>();
-        list.add(new Module("UI效果", UIActivity.class));
+        list.add(new Module("UI", UIActivity.class));
         list.add(new Module("开发模式", ModeActivity.class));
         list.add(new Module("设计模式", DesignPatternActivity.class));
         list.add(new Module("网络", NetworkActivity.class));
-        list.add(new Module("组件", ComponentActivity.class));
+        list.add(new Module("组件控件", ComponentActivity.class));
         list.add(new Module("手机功能", MobileActivity.class));
         list.add(new Module("三方", LibActivity.class));
         LogUtil.delFile();

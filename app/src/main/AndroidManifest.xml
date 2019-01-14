@@ -5,7 +5,6 @@
 
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -189,8 +188,8 @@
         <activity android:name=".app.mobile.MobileActivity" />
         <activity android:name=".app.component.ComponentActivity" />
         <activity android:name=".app.ui.CustomView.EditText.FloatLableEditText.FloatLableEditTextActivity" />
-        <activity android:name=".app.ui.CustomView.repeat.CardView.CardViewActivity" />
-        <activity android:name=".app.ui.CustomView.repeat.CardView.CardViewDetailActivity" />
+        <activity android:name=".app.ui.view.CardView.CardViewActivity" />
+        <activity android:name=".app.ui.view.CardView.CardViewDetailActivity" />
         <activity android:name=".app.ui.animate.SceneAnim.SceneAnimActivity" />
         <activity android:name=".app.ui.animate.SceneAnim.snow.SnowActivity" />
         <activity android:name=".app.ui.animate.TransitionAnim.Rotate3d.Rotate3dActivity" />
@@ -320,7 +319,9 @@
         <activity android:name=".app.lib.TreeView.TreeViewActivity" />
         <activity android:name=".app.ui.CustomView.repeat.recyclerview.RecyclerViewItemDecorationActivity" />
         <activity android:name=".app.ui.CustomView.repeat.recyclerview.RecyclerViewStickyHeaderActivity" />
-        <activity android:name=".app.mobile.Alarm.AlarmActivity"></activity>
+        <activity android:name=".app.mobile.Alarm.AlarmActivity" />
+        <activity android:name=".app.ui.view.ViewFlipper.ViewFlipperActivity" />
+        <activity android:name=".app.ui.view.ViewActivity"></activity>
     </application>
 
 </manifest>

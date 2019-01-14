@@ -1,4 +1,4 @@
-package com.sjl.lbox.app.ui.CustomView.repeat.CardView;
+package com.sjl.lbox.app.ui.view.CardView;
 
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
