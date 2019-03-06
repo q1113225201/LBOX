@@ -15,6 +15,7 @@ import com.sjl.lbox.app.lib.Picasso.PicassoActivity;
 import com.sjl.lbox.app.lib.Router.RouterActivity;
 import com.sjl.lbox.app.lib.RxJava.RxJavaActivity;
 import com.sjl.lbox.app.lib.TreeView.TreeViewActivity;
+import com.sjl.lbox.app.lib.webview.WebViewActivity;
 import com.sjl.lbox.base.BaseActivity;
 import com.sjl.lbox.bean.Module;
 
@@ -57,5 +58,6 @@ public class LibActivity extends BaseActivity {
         list.add(new Module("MPAndroidChart", MPAndroidChartActivity.class));
         list.add(new Module("Router（路由）", RouterActivity.class));
         list.add(new Module("树形列表", TreeViewActivity.class));
+        list.add(new Module("X5WebView", WebViewActivity.class));
     }
 }

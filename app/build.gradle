@@ -72,4 +72,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.2'
     implementation 'com.github.q1113225201:TreeView:1.1.0'
+    implementation files('libs/tbs_sdk_thirdapp_v3.6.0.1310_43612_sharewithdownload_withoutGame_obfs_20180706_163319.jar')
 }
